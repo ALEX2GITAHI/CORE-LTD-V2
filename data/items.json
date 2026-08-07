@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Tenda F3 Router",
+    "price": 2500,
+    "stock": 15,
+    "image": "images/tenda-f3.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Ruijie N300 Router",
+    "price": 2000,
+    "stock": 0,
+    "image": "images/ruijie-n300.jpg"
+  },
+  {
+    "id": 3,
+    "name": "JK Copy",
+    "price": 530,
+    "stock": 3,
+    "image": "images/jk-copy.jpg"
+  }
+]

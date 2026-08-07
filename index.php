@@ -1,0 +1,1455 @@
+<?php
+include 'header.php'; // Includes the header file
+?>
+<!-- Begin Slider With Category Menu Area -->
+<div class="slider-with-banner">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Begin Category Menu Area -->
+            <div class="col-lg-3">
+                <!--Category Menu Start-->
+                <div class="category-menu">
+                    <div class="category-heading">
+                        <h2 class="categories-toggle"><span>categories</span></h2>
+                    </div>
+                    <div id="cate-toggle" class="category-menu-list">
+                        <ul>
+                            <li class="right-menu">
+                                <a href="index.php">Networking</a>
+                                <ul class="cat-mega-menu">
+                                    <li class="right-menu cat-mega-title">
+                                        <a href="index.php">Wireless</a>
+                                        <ul>
+                                            <li><a href="routers.php">Routers</a></li>
+                                            <li><a href="#">Switches</a></li>
+                                            <li><a href="cat6-cables.php">CAT-6 Cables</a></li>
+                                            <li><a href="#">Crimping Tools</a></li>
+                                            <li><a href="#">RJ's</a></li>
+                                            <li><a href="#">Access Points</a></li>
+                                            <li><a href="#">Adapter Boxs</a></li>
+                                            <li><a href="#">LAN Testers</a></li>
+                                            <li><a href="miktrotik.php">Mikrotik's</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="right-menu cat-mega-title">
+                                        <a href="index.php">Fiber</a>
+                                        <ul>
+                                            <li><a href="#">ATB's</a></li>
+                                            <li><a href="#">Patch-Codes</a></li>
+                                            <li><a href="#">Climbers</a></li>
+                                            <li><a href="#">Closures</a></li>
+                                            <li><a href="#">FAT's</a></li>
+                                            <li><a href="#">Drop Cable</a></li>
+                                            <li><a href="#">Splitters</a></li>
+                                            <li><a href="#">Safety Tools</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="right-menu cat-mega-title">
+                                        <a href="index.php">Electronics</a>
+                                        <ul>
+                                            <li><a href="#">Adpters</a></li>
+                                            <li><a href="#">Dispay Cables</a></li>
+                                            <li><a href="#">HDMI Switches</a></li>
+                                            <li><a href="#">HDMI Splitters</a></li>
+                                            <li><a href="#">Tools</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="right-menu">
+                                <a href="index.php">Stationery </a>
+                                <ul class="cat-mega-menu">
+                                    <li class="right-menu cat-mega-title">
+                                        <a href="index.php">Papers</a>
+                                        <ul>
+                                            <li><a href="#">Rim Papers</a></li>
+                                            <li><a href="#">Envelops</a></li>
+                                            <li><a href="#">Exercise Books</a></li>
+                                            <li><a href="#">Embossed Papers</a></li>
+                                            <li><a href="#">PVC Papers</a></li>
+                                            <li><a href="#">Sticker Papers</a></li>
+                                            <li><a href="#"></a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="right-menu cat-mega-title">
+                                        <a href="index.php">Computer</a>
+                                        <ul>
+                                            <li><a href="#">Hard Drives</a></li>
+                                            <li><a href="#">Keyboards</a></li>
+                                            <li><a href="#">Mouse</a></li>
+                                            <li><a href="#">TFT's</a></li>
+                                            <li><a href="#">Gaming</a></li>
+                                            <li><a href="#">Adroid Box</a></li>
+                                            <li><a href="#">Ethernet Adapter</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="right-menu cat-mega-title">
+                                        <a href="index.php">Mobile Accessories</a>
+                                        <ul>
+                                            <li><a href="#">Pod's</a></li>
+                                            <li><a href="#">EarPhones</a></li>
+                                            <li><a href="#">HeadPhones</a></li>
+                                            <li><a href="#">Chargers</a></li>
+                                            <li><a href="#">Data Cables</a></li>
+                                            <li><a href="#">Memory Cards</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="right-menu">
+                                <a href="index.php">CCTV</a>
+                                <ul class="cat-mega-menu cat-mega-menu-2">
+                                    <li class="right-menu cat-mega-title">
+                                        <a href="index.php">Camera Accessories</a>
+                                        <ul>
+                                            <li><a href="#">DVR</a></li>
+                                            <li><a href="#">Cameras</a></li>
+                                            <li><a href="#">Hard Disks</a></li>
+                                            <li><a href="#">Power Supply</a></li>
+                                            <li><a href="#">BNC</a></li>
+                                            <li><a href="#">Power Jack</a></li>
+                                            <li><a href="#">Video Baloon</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="right-menu cat-mega-title">
+                                        <a href="index.php">CCTV Accessories</a>
+                                        <ul>
+                                            <li><a href="#">Adapter Boxs</a></li>
+                                            <li><a href="#">RG59 Cable</a></li>
+                                            <li><a href="#">Cable Clips</a></li>
+                                            <li><a href="#">Cable Ties</a></li>
+                                            <li><a href="#"></a></li>
+                                            <li><a href="#"></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li><a href="index.php">Electronics</a></li>
+                            <li><a href="miktrotik.php">Mikrotik</a></li>
+                            <li><a href="cat6-cables.php">CAT-6 Cables</a></li>
+                            <li><a href="index.php">Computer Accessories</a></li>
+                            <li><a href="index.php">#</a></li>
+                            <li class="rx-child"><a href="index.php">Access Points</a></li>
+                            <li class="rx-child"><a href="index.php">Accessories</a></li>
+                            <li class="rx-parent">
+                                <a class="rx-default">More Categories</a>
+                                <a class="rx-show">Less Categories</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--Category Menu End-->
+            </div>
+            <!-- Category Menu Area End Here -->
+            <!-- Begin Slider Area -->
+            <div class="col-lg-9">
+                <div class="slider-area pt-sm-30 pt-xs-30">
+                    <div class="slider-active owl-carousel">
+                        <!-- Begin Single Slide Area -->
+                        <div class="single-slide align-center-left animation-style-02 bg-4">
+                            <div class="slider-progress"></div>
+                            <div class="slider-content">
+                                <!-- <h5>Sale Offer <span>-20% Off</span> This Week</h5>
+                                <h2>Tenda Routers</h2>
+                                <h3>Starting at <span>Ksh. 1,300</span></h3> -->
+                                <div class="default-btn slide-btn">
+                                    <!-- <a class="links" href="#">Shopping Now</a> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Slide Area End Here -->
+                        <!-- Begin Single Slide Area -->
+                        <div class="single-slide align-center-left animation-style-01 bg-5">
+                            <div class="slider-progress"></div>
+                            <div class="slider-content">
+                                <!-- <h5>Sale Offer <span>Black Friday</span> This Week</h5>
+                                <h2>Mikrotiks</h2>
+                                <h3>Starting at <span>Ksh. 3,500</span></h3> -->
+                                <div class="default-btn slide-btn">
+                                    <!-- <a class="links" href="#">Shopping Now</a> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Slide Area End Here -->
+                        <!-- Begin Single Slide Area -->
+                        <div class="single-slide align-center-left animation-style-02 bg-6">
+                            <div class="slider-progress"></div>
+                            <div class="slider-content">
+                                <!-- <h5>Sale Offer <span>-10% Off</span> This Week</h5>
+                                <h2>Phantom 4 Pro+ Obsidian</h2>
+                                <h3>Starting at <span>$809.00</span></h3> -->
+                                <div class="default-btn slide-btn">
+                                    <!-- <a class="links" href="#">Shopping Now</a> -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Slide Area End Here -->
+                    </div>
+                </div>
+            </div>
+            <!-- Slider Area End Here -->
+        </div>
+    </div>
+</div>
+<!-- Slider With Category Menu Area End Here -->
+<!-- Begin Li's Static Banner Area -->
+<div class="li-static-banner pt-20 pt-sm-30 pt-xs-30">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Begin Single Banner Area -->
+            <div class="col-lg-4 col-md-4">
+                <div class="single-banner pb-xs-30">
+                    <a href="rb951.php">
+                        <img src="images/banner/rb951-banner.png" alt="Li's Static Banner" />
+                    </a>
+                </div>
+            </div>
+            <!-- Single Banner Area End Here -->
+            <!-- Begin Single Banner Area -->
+            <div class="col-lg-4 col-md-4">
+                <div class="single-banner pb-xs-30">
+                    <a href="huawei-expon.php">
+                        <img src="images/banner/huawenew-banner.png" alt="Li's Static Banner" />
+                    </a>
+                </div>
+            </div>
+            <!-- Single Banner Area End Here -->
+            <!-- Begin Single Banner Area -->
+            <div class="col-lg-4 col-md-4">
+                <div class="single-banner">
+                    <a href="crimping-tool-big.php">
+                        <img src="images/banner/Crimping-tool-big-banner.png" alt="Li's Static Banner" />
+                    </a>
+                </div>
+            </div>
+            <!-- Single Banner Area End Here -->
+        </div>
+    </div>
+</div>
+<!-- Li's Static Banner Area End Here -->
+<!-- Begin Li's Special Product Area -->
+<section class="product-area li-laptop-product Special-product pt-60 pb-45">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Begin Li's Section Area -->
+            <div class="col-lg-12">
+                <div class="li-section-title">
+                    <h2>
+                        <span>Hot Deals Products</span>
+                    </h2>
+                </div>
+                <div class="row">
+                    <div class="product-active owl-carousel">
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="drop-cable-1km.php">
+                                        <img src="images/product/small-size/drop 1km.webp" alt="Li's Product Image" />
+                                    </a>
+                                    <span class="sticker">New</span>
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="drop-cable-1km.php">Drop</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="drop-cable-1km.php">Drop Cable 1KM</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price">Ksh. 9,500</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="tenda-f3.php">
+                                        <img src="images/product/small-size/Tenda F3.jpg" alt="Li's Product Image" />
+                                    </a>
+                                    <span class="sticker">New</span>
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="routers.php">Router</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="tenda-f3.php">Tenda-F3</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price">Ksh. 1,350</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="ruijie-6262g.php">
+                                        <img src="images/product/small-size/ruijie-front.jpg"
+                                            alt="Li's Product Image" />
+                                    </a>
+                                    <span class="sticker">New</span>
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="access-points.php">Access Points</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="ruijie-6262g.php">Ruijie-RAP6262(G)</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price new-price-2">Ksh. 23,500</span>
+                                            <span class="old-price">Ksh. 24,000</span>
+                                            <span class="discount-percentage">-5%</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="tenda-oap1200.php">
+                                        <img src="images/product/small-size/tenda-aop-box.jpeg"
+                                            alt="Li's Product Image" />
+                                    </a>
+                                    <span class="sticker">New</span>
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="access-points.php">Access Points</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="tenda-oap1200.php">Tenda OAP-1200</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price">Ksh. 5,500</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="tenda-f6.php">
+                                        <img src="images/product/small-size/tenda-f6 front.jpg"
+                                            alt="Li's Product Image" />
+                                    </a>
+                                    <span class="sticker">New</span>
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="routers.php">Router</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="tenda-f6.php">Tenda F6 Router</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price new-price-2">Ksh. 1,550</span>
+                                            <span class="old-price">Ksh. 1,600</span>
+                                            <span class="discount-percentage">-5%</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="tenda-4g.php">
+                                        <img src="images/product/small-size/tenda 4g front.png"
+                                            alt="Li's Product Image" />
+                                    </a>
+                                    <span class="sticker">New</span>
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="routers.php">Router</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="tenda-4g.php">Tenda 4G03 Pro</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price">Ksh. 5,500</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="d-link.php">
+                                        <img src="images/product/small-size/d-link.webp" alt="Li's Product Image" />
+                                    </a>
+                                    <span class="sticker">New</span>
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="routers.php">Router</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="d-link.php">D-Link 4G LTE Router DWR-M921</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price">Ksh. 2,000</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="tp-link-844.php">
+                                        <img src="images/product/small-size/tp link844 front.jpg"
+                                            alt="Li's Product Image" />
+                                    </a>
+                                    <span class="sticker">New</span>
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="routers.php">Router</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="tp-link-844.php">TP-Link 844N</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price new-price-2">Ksh. 1450</span>
+                                            <span class="old-price">Ksh. 1,550</span>
+                                            <span class="discount-percentage">-5%</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Li's Section Area End Here -->
+        </div>
+    </div>
+</section>
+<!-- Li's Special Product Area End Here -->
+<!-- Begin Li's Laptops Product | Home V2 Area -->
+<section class="product-area li-laptop-product li-laptop-product-2 pb-45">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Begin Li's Section Area -->
+            <div class="col-lg-12">
+                <div class="li-section-title">
+                    <h2>
+                        <span>Networking</span>
+                    </h2>
+                    <ul class="li-sub-category-list">
+                        <li class="active">
+                            <a href="shop-left-sidebar.html">Prime Video</a>
+                        </li>
+                        <li><a href="shop-left-sidebar.html">Computers</a></li>
+                        <li><a href="shop-left-sidebar.html">Electronics</a></li>
+                    </ul>
+                </div>
+                <div class="li-banner-2 pt-15">
+                    <div class="row">
+                        <!-- Begin Single Banner Area -->
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single-banner">
+                                <a href="#">
+                                    <img src="images/banner/tendapost.png" href="tenda-f3.php" />
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Single Banner Area End Here -->
+                        <!-- Begin Single Banner Area -->
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single-banner pt-xs-30">
+                                <a href="#">
+                                    <img src="images/banner/splicingpost.png" alt="Li's Static Banner" />
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Single Banner Area End Here -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="product-active owl-carousel">
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="single-product.html">
+                                        <img src="images/product/small-size/jakemy.jpg" alt="Li's Product Image" />
+                                    </a>
+
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="crimping-tools.php">CRIMPING TOOL</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="jakemy-crimping-tool.php">Jakemy JM-CT4-3
+                                                Crimping Tool</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price">Ksh. 650</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="single-product.html">
+                                        <img src="images/product/small-size/easenet_1.png" alt="Li's Product Image" />
+                                    </a>
+
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="cat6-cables.php">CAT6-CABLES</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="easenet.php">Easenet Cat 6 Indoor Cable</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price new-price-2">Ksh. 5,600
+                                                <span class="old-price">Ksh. 6,200
+                                                    <span class="discount-percentage">-7%</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="lite-beam-m5.php">
+                                        <img src="images/product/small-size/lite-beam-m5=front.webp"
+                                            alt="Li's Product Image" />
+                                    </a>
+                                    <span class="sticker">New</span>
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="access-points.php">Access Points</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="lite-beam-m5.php">LiteBeam M5</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price">Ksh. 6,500</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="rb760-igs.php">
+                                        <img src="images/product/small-size/rb760igs 1.webp" alt="Li's Product Image" />
+                                    </a>
+
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="miktrotik.php">Mikrotik</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="rb760-igs.php">Mikrotik RB760iGS hEX</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price new-price-2">Ksh. 11,500</span>
+                                            <!-- <span class="old-price">Ksh. 11,000</span>
+                                            <span class="discount-percentage">-5%</span> -->
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="l009.php">
+                                        <img src="images/product/small-size/l009 front.png" alt="Li's Product Image" />
+                                    </a>
+                                    <span class="sticker">New</span>
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="miktrotik.php">Mikrotik</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="l009.php">Mikrotik L009UIGS-2HAXD-IN
+                                                Router</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price">Ksh. 23,000</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <<a href="rdcom-oudoor.php">
+                                        <img src="images/product/small-size/RDCOM-OUTDOOR.webp"
+                                            alt="Li's Product Image" />
+                                        </a>
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="cat6-cables.php">CAT6-CABLES</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="rdcom-oudoor.php">RDCOM Cat 6 Outdoor
+                                                Cable</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price new-price-2">Ksh. 6,800</span>
+                                            <span class="old-price">Ksh. 6,500</span>
+                                            <span class="discount-percentage">-2%</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Li's Section Area End Here -->
+        </div>
+    </div>
+</section>
+<!-- Li's Laptops Product | Home V2 Area End Here -->
+
+<!-- Begin Li's Laptops Product | Home V2 Area -->
+<section class="product-area li-laptop-product li-laptop-product-2 pb-45">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Begin Li's Section Area -->
+            <div class="col-lg-12">
+                <div class="li-section-title">
+                    <h2>
+                        <span>Networking</span>
+                    </h2>
+                    <ul class="li-sub-category-list">
+                        <li class="active">
+                            <a href="shop-left-sidebar.html">Prime Video</a>
+                        </li>
+                        <li><a href="shop-left-sidebar.html">Computers</a></li>
+                        <li><a href="shop-left-sidebar.html">Electronics</a></li>
+                    </ul>
+                </div>
+                <div class="li-banner-2 pt-15">
+                    <div class="row">
+                        <!-- Begin Single Banner Area -->
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single-banner">
+                                <a href="#">
+                                    <img src="images/banner/lite-beam-m5-banner.png" alt="Li's Static Banner" />
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Single Banner Area End Here -->
+                        <!-- Begin Single Banner Area -->
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single-banner pt-xs-30">
+                                <a href="#">
+                                    <img src="images/banner/ruijie-6262g-banner.png" alt="Li's Static Banner" />
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Single Banner Area End Here -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="product-active owl-carousel">
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="crimping-tool-big.php">
+                                        <img src="images/product/small-size/crimbing too big.webp"
+                                            alt="Li's Product Image" />
+                                    </a>
+
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="crimping-tools.php">CRIMPING TOOL</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="crimping-tool-big.php">RJ45 Crimp Tool Pass
+                                                Through</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price">Ksh. 1,000</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="adss-24-core.php">
+                                        <img src="images/product/small-size/ADSS 24-CORE.jpg"
+                                            alt="Li's Product Image" />
+                                    </a>
+
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="adss-24-core.php">ADSS</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="adss-24-core.php">ADSS Fiber Cable 24 Core</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price new-price-2">Ksh. 60,000 Per KM
+                                                <!-- <span class="old-price">Ksh. 6,200
+                                                    <span class="discount-percentage">-7%</span> -->
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="power-beam.php">
+                                        <img src="images/product/small-size/power-beam-front.jpg"
+                                            alt="Li's Product Image" />
+                                    </a>
+                                    <span class="sticker">New</span>
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="access-points.php">Access Points</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="power-beam.php">PowerBeam M5</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price">Ksh. 9,500</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="rb951.php">
+                                        <img src="images/product/small-size/rb951 all.jpg" alt="Li's Product Image" />
+                                    </a>
+
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="miktrotik.php">Mikrotik</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>S
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="rb951.php">Mikrotik RB951Ui-2HnD Mikrotik</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price new-price-2">Ksh. 9,500</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <a href="tenda-ac10.php">
+                                        <img src="images/product/small-size/tenda ac10.jpg" alt="Li's Product Image" />
+                                    </a>
+                                    <span class="sticker">New</span>
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="routers.php">Router</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="tenda-ac10.php">Tenda AC10</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price">Ksh. 5,000</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                        <div class="col-lg-12">
+                            <!-- single-product-wrap start -->
+                            <div class="single-product-wrap">
+                                <div class="product-image">
+                                    <<a href="rdcom-oudoor.php">
+                                        <img src="images/product/small-size/RDCOM-OUTDOOR.webp"
+                                            alt="Li's Product Image" />
+                                        </a>
+                                </div>
+                                <div class="product_desc">
+                                    <div class="product_desc_info">
+                                        <div class="product-review">
+                                            <h5 class="manufacturer">
+                                                <a href="cat6-cables.php">CAT6-CABLES</a>
+                                            </h5>
+                                            <div class="rating-box">
+                                                <ul class="rating">
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li><i class="fa fa-star-o"></i></li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                    <li class="no-star">
+                                                        <i class="fa fa-star-o"></i>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <h4>
+                                            <a class="product_name" href="rdcom-oudoor.php">RDCOM Cat 6 Outdoor
+                                                Cable</a>
+                                        </h4>
+                                        <div class="price-box">
+                                            <span class="new-price new-price-2">Ksh. 6,800</span>
+                                            <span class="old-price">Ksh. 6,500</span>
+                                            <span class="discount-percentage">-2%</span>
+                                        </div>
+                                    </div>
+                                    <div class="add-actions">
+                                        <ul class="add-actions-link">
+                                            <li class="add-to-cart">
+                                                <a href="#" class="add-to-cart-link">
+                                                    <i class="fa fa-shopping-cart"></i> <!-- Cart Icon -->
+
+                                            <li>
+                                                <a class="links-details" href="#"><i class="fa fa-heart-o"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- single-product-wrap end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Li's Section Area End Here -->
+        </div>
+    </div>
+</section>
+<!-- Li's Laptops Product | Home V2 Area End Here -->
+
+<!-- Begin Li's Laptops Product | Home V2 Area -->
+<section class="product-area li-laptop-product li-laptop-product-2 pb-45">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Begin Li's Section Area -->
+            <div class="col-lg-12">
+                <div class="li-section-title">
+                    <h2>
+                        <span>Networking</span>
+                    </h2>
+                    <ul class="li-sub-category-list">
+                        <li class="active">
+                            <a href="shop-left-sidebar.html">Prime Video</a>
+                        </li>
+                        <li><a href="shop-left-sidebar.html">Computers</a></li>
+                        <li><a href="shop-left-sidebar.html">Electronics</a></li>
+                    </ul>
+                </div>
+                <div class="li-banner-2 pt-15">
+                    <div class="row">
+                        <!-- Begin Single Banner Area -->
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single-banner">
+                                <a href="#">
+                                    <img src="images/banner/lite-beam-m5-banner.png" alt="Li's Static Banner" />
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Single Banner Area End Here -->
+                        <!-- Begin Single Banner Area -->
+                        <div class="col-lg-6 col-md-6">
+                            <div class="single-banner pt-xs-30">
+                                <a href="#">
+                                    <img src="images/banner/Tenda-oap-1200-banner.png" alt="Li's Static Banner" />
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Single Banner Area End Here -->
+                    </div>
+                </div>
+
+                <!-- single-product-wrap end -->
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- Li's Section Area End Here -->
+    </div>
+    </div>
+</section>
+<!-- Li's Laptops Product | Home V2 Area End Here -->
+<?php
+include 'footer.php'; // Includes the footer file
+?>
