@@ -1,3 +1,11 @@
+<?php
+
+require_once __DIR__ . '/includes/cart-functions.php';
+
+$headerCartCount = getCartCount();
+$headerCartTotal = getCartTotal();
+
+?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 <!-- index-231:32-->
@@ -109,34 +117,253 @@
                                 </li> -->
                                 <!-- Header Middle Wishlist Area End Here -->
                                 <!-- Begin Header Mini Cart Area -->
+                                <?php
+                                /*
+|--------------------------------------------------------------------------
+| MINI CART DATA
+|--------------------------------------------------------------------------
+*/
+
+                                $miniCart = getCart();
+                                $miniCartCount = getCartCount();
+                                $miniCartTotal = getCartTotal();
+                                ?>
+
                                 <li class="hm-minicart">
+
+                                    <!-- CART HEADER -->
                                     <div class="hm-minicart-trigger">
+
                                         <span class="item-icon"></span>
+
                                         <span class="item-text">
-                                            Ksh. <span id="cart-total">0</span>
-                                            <span class="cart-item-count">0</span>
+
+                                            Ksh.
+
+                                            <span id="cart-total">
+                                                <?= number_format($miniCartTotal, 0) ?>
+                                            </span>
+
+                                            <span class="cart-item-count">
+                                                <?= (int) $miniCartCount ?>
+                                            </span>
+
                                         </span>
+
                                     </div>
+
+
+                                    <!-- MINI CART DROPDOWN -->
                                     <div class="minicart">
+
                                         <ul class="minicart-product-list" id="cart-items">
-                                            <!-- Items will be dynamically added here -->
+
+                                            <?php if (empty($miniCart)): ?>
+
+                                                <li class="mini-cart-empty" style="
+                        padding:15px 0;
+                        text-align:left;
+                    ">
+                                                    Your cart is empty.
+                                                </li>
+
+                                            <?php else: ?>
+
+                                                <?php foreach ($miniCart as $item): ?>
+
+                                                    <?php
+
+                                                    /*
+                    |--------------------------------------------------------------------------
+                    | PRODUCT IMAGE
+                    |--------------------------------------------------------------------------
+                    */
+
+                                                    $miniImage = $item['image'] ?? '';
+
+                                                    if ($miniImage !== '') {
+
+                                                        /*
+                        If database only stores:
+                        Tenda F3.jpg
+
+                        use:
+                        uploads/products/Tenda F3.jpg
+                        */
+
+                                                        if (
+                                                            strpos(
+                                                                $miniImage,
+                                                                'images/'
+                                                            ) === 0
+                                                        ) {
+
+                                                            $miniImageUrl = $miniImage;
+                                                        } else {
+
+                                                            $miniImageUrl =
+                                                                'uploads/products/' .
+                                                                $miniImage;
+                                                        }
+                                                    } else {
+
+                                                        $miniImageUrl =
+                                                            'uploads/products/default.png';
+                                                    }
+
+                                                    ?>
+
+                                                    <li class="mini-cart-product" data-product-id="<?= (int) $item['id'] ?>"
+                                                        style="
+                            display:flex;
+                            align-items:center;
+                            gap:12px;
+                            padding:12px 0;
+                            border-bottom:1px solid #eee;
+                        ">
+
+                                                        <!-- IMAGE -->
+
+                                                        <div style="
+                                width:48px;
+                                min-width:48px;
+                                height:48px;
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                            ">
+
+                                                            <img src="<?= htmlspecialchars($miniImageUrl) ?>"
+                                                                alt="<?= htmlspecialchars($item['name']) ?>" style="
+                                    width:48px;
+                                    height:48px;
+                                    object-fit:contain;
+                                    display:block;
+                                " onerror="
+                                    this.onerror=null;
+                                    this.src='uploads/products/default.png';
+                                ">
+
+                                                        </div>
+
+
+                                                        <!-- PRODUCT DETAILS -->
+
+                                                        <div style="
+                                flex:1;
+                                min-width:0;
+                            ">
+
+                                                            <h6 style="
+                                    margin:0 0 5px;
+                                    font-size:14px;
+                                    line-height:1.35;
+                                    font-weight:500;
+                                ">
+
+                                                                <?= htmlspecialchars($item['name']) ?>
+
+                                                            </h6>
+
+                                                            <span style="
+                                    font-size:13px;
+                                    color:#555;
+                                ">
+
+                                                                Ksh.
+                                                                <?= number_format($item['price'], 0) ?>
+
+                                                                ×
+
+                                                                <?= (int) $item['quantity'] ?>
+
+                                                            </span>
+
+                                                        </div>
+
+
+                                                        <!-- REMOVE X -->
+
+                                                        <button type="button" class="mini-cart-remove"
+                                                            data-product-id="<?= (int) $item['id'] ?>" title="Remove item"
+                                                            style="
+                                border:none;
+                                background:none;
+                                color:#aaa;
+                                font-size:18px;
+                                line-height:1;
+                                padding:5px;
+                                cursor:pointer;
+                            ">
+
+                                                            ×
+
+                                                        </button>
+
+                                                    </li>
+
+                                                <?php endforeach; ?>
+
+                                            <?php endif; ?>
+
                                         </ul>
-                                        <p class="minicart-total">
-                                            SUBTOTAL: <span>Ksh. <span id="cart-subtotal">0</span></span>
+
+
+                                        <!-- SUBTOTAL -->
+
+                                        <p class="minicart-total" style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                margin:15px 0;
+                padding-top:10px;
+                border-top:1px solid #ddd;
+            ">
+
+                                            <strong>
+                                                SUBTOTAL:
+                                            </strong>
+
+                                            <strong>
+
+                                                Ksh.
+
+                                                <span id="cart-subtotal">
+                                                    <?= number_format($miniCartTotal, 0) ?>
+                                                </span>
+
+                                            </strong>
+
                                         </p>
+
+
+                                        <!-- BUTTONS -->
+
                                         <div class="minicart-button">
-                                            <a href="shopping-cart.php" id="view-full-cart"
+
+                                            <a href="cart.php" id="view-full-cart"
                                                 class="li-button li-button-dark li-button-fullwidth li-button-sm">
-                                                <span>View Full Cart</span>
+
+                                                <span>
+                                                    View Full Cart
+                                                </span>
+
                                             </a>
-                                            <a href="checkout.php" id="view-full-cart"
-                                                class="li-button li-button-fullwidth li-button-sm">
-                                                <span>Checkout</span>
+
+
+                                            <a href="checkout.php" class="li-button li-button-fullwidth li-button-sm">
+
+                                                <span>
+                                                    Checkout
+                                                </span>
+
                                             </a>
+
                                         </div>
+
                                     </div>
+
                                 </li>
-                                <!-- Header Mini Cart Area End Here -->
                             </ul>
                         </div>
                         <!-- Header Middle Right Area End Here -->
@@ -296,7 +523,7 @@
                                                 <ul>
                                                     <li><a href="contact.php">Contact</a></li>
                                                     <!--/<li><a href="about-us.php">About Us</a></li>-->
-                                                    <li><a href="shopping-cart.php">Shopping Cart</a></li>
+                                                    <li><a href="cart.php">Shopping Cart</a></li>
                                                     <li><a href="faq.php">FAQ</a></li>
                                                 </ul>
                                             </li>
@@ -619,206 +846,417 @@
         }
     </style>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        (function() {
 
-            function saveCart() {
-                localStorage.setItem("cart", JSON.stringify(cart));
+            /*
+            |--------------------------------------------------------------------------
+            | FORMAT MONEY
+            |--------------------------------------------------------------------------
+            */
+
+            function formatMoney(amount) {
+
+                amount = parseFloat(amount) || 0;
+
+                return amount.toLocaleString();
+
             }
 
-            function updateMiniCart() {
-                let cartContainer = $("#cart-items");
-                let cartTotal = $("#cart-total");
-                let cartSubtotal = $("#cart-subtotal");
-                let cartCount = $(".cart-item-count");
 
-                cartContainer.empty();
+            /*
+            |--------------------------------------------------------------------------
+            | BUILD IMAGE URL
+            |--------------------------------------------------------------------------
+            */
 
-                if (cart.length === 0) {
-                    cartContainer.append('<li><p>Your cart is empty.</p></li>');
-                    cartTotal.text("0");
-                    cartSubtotal.text("0");
-                    cartCount.text("0");
-                    return;
+            function getCartImage(image) {
+
+                if (!image) {
+
+                    return 'uploads/products/default.png';
+
                 }
 
-                let totalCost = 0;
-                let totalItems = 0;
-                cart.forEach((item, index) => {
-                    let itemTotal = item.price * item.quantity;
-                    totalCost += itemTotal;
-                    totalItems += item.quantity;
 
-                    // ✅ Use fallback image if undefined
-                    let imageUrl = item.image || 'assets/images/default.png';
+                if (image.indexOf('images/') === 0) {
 
-                    cartContainer.append(`
-            <li style="display: flex; align-items: center; gap: 10px;">
-                <img src="${imageUrl}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">
-                <div class="minicart-product-details" style="flex-grow: 1;">
-                    <h6>${item.name}</h6>
-                    <span>Ksh. ${item.price.toLocaleString()} x ${item.quantity}</span>
-                </div>
-                <button class="close remove-item" data-index="${index}">
-                    <i class="fa fa-close"></i>
-                </button>
-            </li>
-        `);
-                });
+                    return image;
 
-                cartTotal.text(totalCost.toLocaleString());
-                cartSubtotal.text(totalCost.toLocaleString());
-                cartCount.text(totalItems);
+                }
+
+
+                return 'uploads/products/' + image;
+
             }
 
-            function updateFullCart() {
-                let cartBody = $("#cart-body");
-                let fullSubtotal = $("#cart-subtotal");
-                let fullTotal = $("#full-cart-total");
 
-                cartBody.empty();
+            /*
+            |--------------------------------------------------------------------------
+            | UPDATE HEADER MINI CART
+            |--------------------------------------------------------------------------
+            */
 
-                if (cart.length === 0) {
-                    cartBody.append('<tr><td colspan="6" class="text-center">Your cart is empty.</td></tr>');
-                    fullSubtotal.text("0");
-                    fullTotal.text("0");
+            window.updateHeaderMiniCart = function(cart, cartCount, cartTotal) {
+
+                const container =
+                    $('#cart-items');
+
+
+                if (!container.length) {
+
                     return;
+
                 }
 
-                let totalCost = 0;
-                cart.forEach((item, index) => {
-                    let itemTotal = item.price * item.quantity;
-                    totalCost += itemTotal;
 
-                    cartBody.append(`
-                <tr>
-                    <td>${index + 1}</td>
-                    <td class="li-product-thumbnail">
-                        <img src="${item.image || 'assets/images/default.png'}" alt="" style="width:50px; height:50px; object-fit:cover; border-radius:5px;">
-                    </td>
-                    <td class="cart-product-name">${item.name}</td>
-                    <td class="li-product-price">Ksh. ${item.price.toLocaleString()}</td>
-                    <td class="quantity">
-                        <input type="number" min="1" value="${item.quantity}" data-index="${index}" class="form-control quantity-input" />
-                    </td>
-                    <td class="product-subtotal">Ksh. ${(itemTotal).toLocaleString()}</td>
-                    <td class="li-product-remove">
-                        <button class="remove-item btn btn-sm btn-danger" data-index="${index}">
-                            <i class="fa fa-times"></i>
-                        </button>
-                    </td>
-                </tr>
+                container.empty();
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | EMPTY CART
+                |--------------------------------------------------------------------------
+                */
+
+                if (!cart || Object.keys(cart).length === 0) {
+
+                    container.append(`
+
+                <li
+                    class="mini-cart-empty"
+                    style="
+                        padding:15px 0;
+                        text-align:left;
+                    "
+                >
+
+                    Your cart is empty.
+
+                </li>
+
             `);
-                });
 
-                fullSubtotal.text(totalCost.toLocaleString());
-                fullTotal.text(totalCost.toLocaleString());
+                } else {
+
+
+                    /*
+                    |--------------------------------------------------------------------------
+                    | PRODUCTS
+                    |--------------------------------------------------------------------------
+                    */
+
+                    Object.values(cart).forEach(function(item) {
+
+
+                        const image =
+                            getCartImage(item.image);
+
+
+                        container.append(`
+
+                    <li
+                        class="mini-cart-product"
+                        data-product-id="${item.id}"
+                        style="
+                            display:flex;
+                            align-items:center;
+                            gap:12px;
+                            padding:12px 0;
+                            border-bottom:1px solid #eee;
+                        "
+                    >
+
+                        <div
+                            style="
+                                width:48px;
+                                min-width:48px;
+                                height:48px;
+                                display:flex;
+                                align-items:center;
+                                justify-content:center;
+                            "
+                        >
+
+                            <img
+                                src="${image}"
+                                alt="${escapeHtml(item.name)}"
+                                style="
+                                    width:48px;
+                                    height:48px;
+                                    object-fit:contain;
+                                    display:block;
+                                "
+                                onerror="
+                                    this.onerror=null;
+                                    this.src='uploads/products/default.png';
+                                "
+                            >
+
+                        </div>
+
+
+                        <div
+                            style="
+                                flex:1;
+                                min-width:0;
+                            "
+                        >
+
+                            <h6
+                                style="
+                                    margin:0 0 5px;
+                                    font-size:14px;
+                                    line-height:1.35;
+                                    font-weight:500;
+                                "
+                            >
+
+                                ${escapeHtml(item.name)}
+
+                            </h6>
+
+
+                            <span
+                                style="
+                                    font-size:13px;
+                                    color:#555;
+                                "
+                            >
+
+                                Ksh.
+                                ${formatMoney(item.price)}
+
+                                ×
+
+                                ${item.quantity}
+
+                            </span>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="mini-cart-remove"
+                            data-product-id="${item.id}"
+                            title="Remove item"
+                            style="
+                                border:none;
+                                background:none;
+                                color:#aaa;
+                                font-size:18px;
+                                line-height:1;
+                                padding:5px;
+                                cursor:pointer;
+                            "
+                        >
+
+                            ×
+
+                        </button>
+
+                    </li>
+
+                `);
+
+                    });
+
+                }
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | UPDATE COUNT
+                |--------------------------------------------------------------------------
+                */
+
+                $('.cart-item-count').text(
+                    parseInt(cartCount) || 0
+                );
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | UPDATE TOTAL
+                |--------------------------------------------------------------------------
+                */
+
+                $('#cart-total').text(
+                    formatMoney(cartTotal)
+                );
+
+
+                $('#cart-subtotal').text(
+                    formatMoney(cartTotal)
+                );
+
+            };
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | HTML ESCAPE
+            |--------------------------------------------------------------------------
+            */
+
+            function escapeHtml(text) {
+
+                return $('<div>')
+                    .text(text || '')
+                    .html();
+
             }
 
-            function updateAllCarts() {
-                updateMiniCart();
-                updateFullCart();
-                saveCart();
-            }
 
-            // ✅ Add to cart from product list
-            $(".add-to-cart").on("click", function(e) {
-                e.preventDefault();
+            /*
+            |--------------------------------------------------------------------------
+            | REMOVE FROM MINI CART
+            |--------------------------------------------------------------------------
+            */
 
-                let itemContainer = $(this).closest(".single-product-wrap");
-                let itemName = itemContainer.find(".product_name").first().text().trim();
-                let itemPriceText = itemContainer.find(".new-price").first().text().replace("Ksh.", "")
-                    .replace(",", "").trim();
-                let itemImage = itemContainer.find("img").attr("src") || 'assets/images/default.png';
-                let itemPrice = parseInt(itemPriceText);
+            $(document).on(
+                'click',
+                '.mini-cart-remove',
+                function(e) {
 
-                if (!itemName || isNaN(itemPrice)) {
-                    alert("Error: Unable to add item to cart.");
-                    return;
-                }
+                    e.preventDefault();
 
-                let existingItem = cart.find(item => item.name === itemName);
-                if (existingItem) {
-                    existingItem.quantity += 1;
-                } else {
-                    cart.push({
-                        name: itemName,
-                        price: itemPrice,
-                        quantity: 1,
-                        image: itemImage
+                    e.stopPropagation();
+
+
+                    const button =
+                        $(this);
+
+
+                    const productId =
+                        parseInt(
+                            button.data('product-id')
+                        );
+
+
+                    if (!productId) {
+
+                        return;
+
+                    }
+
+
+                    button.prop(
+                        'disabled',
+                        true
+                    );
+
+
+                    button.html(
+                        '<i class="fa fa-spinner fa-spin"></i>'
+                    );
+
+
+                    $.ajax({
+
+                        url: 'cart-action.php',
+
+                        type: 'POST',
+
+                        dataType: 'json',
+
+                        data: {
+
+                            action: 'remove',
+
+                            product_id: productId
+
+                        },
+
+
+                        success: function(response) {
+
+
+                            if (response.success) {
+
+
+                                /*
+                                |--------------------------------------------------------------------------
+                                | UPDATE MINI CART WITHOUT REFRESH
+                                |--------------------------------------------------------------------------
+                                */
+
+                                updateHeaderMiniCart(
+                                    response.cart,
+                                    response.cart_count,
+                                    response.cart_total
+                                );
+
+
+                                /*
+                                |--------------------------------------------------------------------------
+                                | UPDATE OTHER CART COUNTERS
+                                |--------------------------------------------------------------------------
+                                */
+
+                                $('.cart-item-count').text(
+                                    response.cart_count
+                                );
+
+
+                                $('#cart-total').text(
+                                    formatMoney(
+                                        response.cart_total
+                                    )
+                                );
+
+
+                                $('#cart-subtotal').text(
+                                    formatMoney(
+                                        response.cart_total
+                                    )
+                                );
+
+
+                            } else {
+
+                                alert(
+                                    response.message ||
+                                    'Unable to remove item.'
+                                );
+
+
+                                button.prop(
+                                    'disabled',
+                                    false
+                                );
+
+
+                                button.text('×');
+
+                            }
+
+                        },
+
+
+                        error: function() {
+
+
+                            alert(
+                                'Unable to remove this item. Please try again.'
+                            );
+
+
+                            button.prop(
+                                'disabled',
+                                false
+                            );
+
+
+                            button.text('×');
+
+                        }
+
                     });
+
                 }
 
-                updateAllCarts();
-                $("html, body").animate({
-                    scrollTop: 0
-                }, 800);
-            });
+            );
 
-            $(".single-product-add-to-cart").on("click", function(e) {
-                e.preventDefault();
-
-                let productContainer = $(this).closest(".product-details-view-content");
-                let itemName = productContainer.find(".product_name").text().trim();
-                let itemPriceText = productContainer.find(".new-price").text().replace("Ksh.", "").replace(
-                    ",", "").trim();
-                let itemPrice = parseInt(itemPriceText);
-
-                let itemImage = $(".product-details-left .lg-image img").attr("src") ||
-                    'assets/images/default.png';
-
-                console.log("💥 Add to Cart Debug →", {
-                    itemName,
-                    itemPrice,
-                    itemImage
-                });
-
-                if (!itemName || isNaN(itemPrice)) {
-                    alert("Error: Unable to add item to cart.");
-                    return;
-                }
-
-                let existingItem = cart.find(item => item.name === itemName);
-                if (existingItem) {
-                    existingItem.quantity += 1;
-                } else {
-                    cart.push({
-                        name: itemName,
-                        price: itemPrice,
-                        quantity: 1,
-                        image: itemImage
-                    });
-                }
-
-                updateAllCarts();
-                $("html, body").animate({
-                    scrollTop: 0
-                }, 800);
-            });
-
-            // ✅ Remove item
-            $(document).on("click", ".remove-item", function() {
-                let index = $(this).data("index");
-                cart.splice(index, 1);
-                updateAllCarts();
-            });
-
-            // ✅ Update quantity
-            $(document).on("change", ".quantity-input", function() {
-                let index = $(this).data("index");
-                let newQuantity = parseInt($(this).val());
-
-                if (newQuantity <= 0 || isNaN(newQuantity)) {
-                    alert("Invalid quantity! Minimum is 1.");
-                    $(this).val(cart[index].quantity);
-                    return;
-                }
-
-                cart[index].quantity = newQuantity;
-                updateAllCarts();
-            });
-
-            // ✅ Load cart on page load
-            updateAllCarts();
-        });
+        })();
     </script>

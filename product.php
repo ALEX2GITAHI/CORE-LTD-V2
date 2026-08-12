@@ -28,11 +28,11 @@ include 'header.php';
 
                 <?php if (!empty($product['category_name'])): ?>
 
-                <li>
-                    <a href="category.php?slug=<?= urlencode($product['category_slug']) ?>">
-                        <?= htmlspecialchars($product['category_name']) ?>
-                    </a>
-                </li>
+                    <li>
+                        <a href="category.php?slug=<?= urlencode($product['category_slug']) ?>">
+                            <?= htmlspecialchars($product['category_name']) ?>
+                        </a>
+                    </li>
 
                 <?php endif; ?>
 
@@ -78,22 +78,21 @@ include 'header.php';
 
                         <?php foreach ($images as $image): ?>
 
-                        <div class="lg-image">
+                            <div class="lg-image">
 
-                            <a class="popup-img venobox vbox-item"
-                                href="images/product/small-size/<?= htmlspecialchars($image['image']) ?>"
-                                data-gall="myGallery">
+                                <a class="popup-img venobox vbox-item"
+                                    href="uploads/products/<?= htmlspecialchars($image['image']) ?>" data-gall="myGallery">
 
-                                <img src="images/product/small-size/<?= htmlspecialchars($image['image']) ?>"
-                                    alt="<?= htmlspecialchars(
-                                                                                                                            !empty($image['alt_text'])
-                                                                                                                                ? $image['alt_text']
-                                                                                                                                : $product['name']
-                                                                                                                        ) ?>" />
+                                    <img src="uploads/products/<?= htmlspecialchars($image['image']) ?>"
+                                        alt="<?= htmlspecialchars(
+                                                    !empty($image['alt_text'])
+                                                        ? $image['alt_text']
+                                                        : $product['name']
+                                                ) ?>" />
 
-                            </a>
+                                </a>
 
-                        </div>
+                            </div>
 
                         <?php endforeach; ?>
 
@@ -106,16 +105,15 @@ include 'header.php';
 
                         <?php foreach ($images as $image): ?>
 
-                        <div class="sm-image">
+                            <div class="sm-image">
 
-                            <img src="images/product/small-size/<?= htmlspecialchars($image['image']) ?>"
-                                alt="<?= htmlspecialchars(
-                                                                                                                        !empty($image['alt_text'])
-                                                                                                                            ? $image['alt_text']
-                                                                                                                            : $product['name']
-                                                                                                                    ) ?>" />
+                                <img src="uploads/products//<?= htmlspecialchars($image['image']) ?>" alt="<?= htmlspecialchars(
+                                                                                                                !empty($image['alt_text'])
+                                                                                                                    ? $image['alt_text']
+                                                                                                                    : $product['name']
+                                                                                                            ) ?>" />
 
-                        </div>
+                            </div>
 
                         <?php endforeach; ?>
 
@@ -157,12 +155,12 @@ include 'header.php';
 
                         <?php if (!empty($product['sku'])): ?>
 
-                        <span class="product-details-ref">
+                            <span class="product-details-ref">
 
-                            Reference:
-                            <?= htmlspecialchars($product['sku']) ?>
+                                Reference:
+                                <?= htmlspecialchars($product['sku']) ?>
 
-                        </span>
+                            </span>
 
                         <?php endif; ?>
 
@@ -234,12 +232,12 @@ include 'header.php';
                                 $product['old_price'] > $product['price']
                             ): ?>
 
-                            <span class="old-price">
+                                <span class="old-price">
 
-                                Ksh.
-                                <?= number_format($product['old_price'], 0) ?>
+                                    Ksh.
+                                    <?= number_format($product['old_price'], 0) ?>
 
-                            </span>
+                                </span>
 
                             <?php endif; ?>
 
@@ -252,116 +250,116 @@ include 'header.php';
 
                         <?php if (!empty($features)): ?>
 
-                        <div class="product-desc">
+                            <div class="product-desc">
 
-                            <div style="overflow-x:auto;">
+                                <div style="overflow-x:auto;">
 
-                                <h4>
+                                    <h4>
 
-                                    <b>
+                                        <b>
 
-                                        Features:
-                                        <?= htmlspecialchars($product['name']) ?>
+                                            Features:
+                                            <?= htmlspecialchars($product['name']) ?>
 
-                                    </b>
+                                        </b>
 
-                                </h4>
+                                    </h4>
 
 
-                                <table style="
+                                    <table style="
                                         width:100%;
                                         border-collapse:collapse;
                                         font-family:Arial,sans-serif;
                                         border:1px solid #ddd;
                                         ">
 
-                                    <thead style="
+                                        <thead style="
                                             background:#f4f4f4;
                                             ">
 
-                                        <tr>
+                                            <tr>
 
-                                            <th style="
+                                                <th style="
                                                     text-align:left;
                                                     padding:12px;
                                                     border:1px solid #ddd;
                                                     width:30%;
                                                     ">
 
-                                                Feature
+                                                    Feature
 
-                                            </th>
+                                                </th>
 
-                                            <th style="
+                                                <th style="
                                                     text-align:left;
                                                     padding:12px;
                                                     border:1px solid #ddd;
                                                     ">
 
-                                                Benefit
+                                                    Benefit
 
-                                            </th>
+                                                </th>
 
-                                        </tr>
+                                            </tr>
 
-                                    </thead>
+                                        </thead>
 
 
-                                    <tbody>
+                                        <tbody>
 
-                                        <?php foreach ($features as $index => $feature): ?>
+                                            <?php foreach ($features as $index => $feature): ?>
 
-                                        <tr class="product-feature-row" style="
+                                                <tr class="product-feature-row" style="
                                                     <?= $index >= 5
                                                         ? 'display:none;'
                                                         : '' ?>
                                                     ">
 
-                                            <td style="
+                                                    <td style="
                                                         padding:10px;
                                                         border:1px solid #ddd;
                                                         ">
 
-                                                <b>
+                                                        <b>
 
-                                                    <?= htmlspecialchars(
+                                                            <?= htmlspecialchars(
                                                                 $feature['feature']
                                                             ) ?>
 
-                                                </b>
+                                                        </b>
 
-                                            </td>
+                                                    </td>
 
 
-                                            <td style="
+                                                    <td style="
                                                         padding:10px;
                                                         border:1px solid #ddd;
                                                         ">
 
-                                                <?= htmlspecialchars(
+                                                        <?= htmlspecialchars(
                                                             $feature['benefit']
                                                         ) ?>
 
-                                            </td>
+                                                    </td>
 
-                                        </tr>
+                                                </tr>
 
-                                        <?php endforeach; ?>
+                                            <?php endforeach; ?>
 
-                                    </tbody>
+                                        </tbody>
 
-                                </table>
+                                    </table>
 
 
-                                <?php if (count($features) > 5): ?>
+                                    <?php if (count($features) > 5): ?>
 
-                                <div style="
+                                        <div style="
                                             text-align:center;
                                             margin-top:10px;
                                             ">
 
-                                    <button type="button" id="productFeatureBtn" onclick="toggleProductFeatures()"
-                                        style="
+                                            <button type="button" id="productFeatureBtn" onclick="toggleProductFeatures()"
+                                                style="
                                                 padding:8px 16px;
                                                 background:#007BFF;
                                                 color:#fff;
@@ -370,18 +368,18 @@ include 'header.php';
                                                 cursor:pointer;
                                                 ">
 
-                                        View More
+                                                View More
 
-                                    </button>
+                                            </button>
+
+                                        </div>
+
+                                    <?php endif; ?>
+
 
                                 </div>
 
-                                <?php endif; ?>
-
-
                             </div>
-
-                        </div>
 
                         <?php endif; ?>
 
@@ -392,15 +390,12 @@ include 'header.php';
 
                         <div class="add-to-cart-area pt-30">
 
-                            <button type="button" class="single-product-add-to-cart">
+                            <button type="button" class="single-product-add-to-cart" id="addToCartButton"
+                                data-product-id="<?= (int) $product['id'] ?>">
 
-                                <a href="#" class="add-to-cart-link">
+                                <i class="fa fa-shopping-cart"></i>
 
-                                    <i class="fa fa-shopping-cart"></i>
-
-                                    Add to Cart
-
-                                </a>
+                                Add to Cart
 
                             </button>
 
@@ -426,67 +421,67 @@ include 'header.php';
                                 Click to Order on WhatsApp
                             </a>
                             <script>
-                            document.addEventListener("DOMContentLoaded", function() {
+                                document.addEventListener("DOMContentLoaded", function() {
 
-                                const whatsappBtn = document.getElementById("whatsapp-link");
+                                    const whatsappBtn = document.getElementById("whatsapp-link");
 
-                                if (!whatsappBtn) {
-                                    console.log("WhatsApp button not found.");
-                                    return;
-                                }
+                                    if (!whatsappBtn) {
+                                        console.log("WhatsApp button not found.");
+                                        return;
+                                    }
 
-                                whatsappBtn.addEventListener("click", async function(e) {
+                                    whatsappBtn.addEventListener("click", async function(e) {
 
-                                    e.preventDefault();
+                                        e.preventDefault();
 
-                                    const currentPageURL = window.location.href;
+                                        const currentPageURL = window.location.href;
 
-                                    const productName =
-                                        document.querySelector(".product_name")?.textContent
-                                        .trim() ||
-                                        "this product";
+                                        const productName =
+                                            document.querySelector(".product_name")?.textContent
+                                            .trim() ||
+                                            "this product";
 
-                                    const productPrice =
-                                        document.querySelector(".new-price")?.textContent.trim() ||
-                                        "";
+                                        const productPrice =
+                                            document.querySelector(".new-price")?.textContent.trim() ||
+                                            "";
 
-                                    try {
+                                        try {
 
-                                        const response = await fetch("whatsapp.php");
+                                            const response = await fetch("whatsapp.php");
 
-                                        if (!response.ok) {
-                                            throw new Error("Failed to load whatsapp.php");
-                                        }
+                                            if (!response.ok) {
+                                                throw new Error("Failed to load whatsapp.php");
+                                            }
 
-                                        const phoneNumber = (await response.text()).trim();
+                                            const phoneNumber = (await response.text()).trim();
 
-                                        console.log("Using Number:", phoneNumber);
+                                            console.log("Using Number:", phoneNumber);
 
-                                        const message = encodeURIComponent(
-                                            `Hello CORE LTD
+                                            const message = encodeURIComponent(
+                                                `Hello CORE LTD
 I'm interested in buying:
 
 Product: ${productName}
 Price: ${productPrice}
 
 Link: ${currentPageURL}`
-                                        );
+                                            );
 
-                                        window.open(
-                                            `https://wa.me/${phoneNumber}?text=${message}`,
-                                            "_blank"
-                                        );
+                                            window.open(
+                                                `https://wa.me/${phoneNumber}?text=${message}`,
+                                                "_blank"
+                                            );
 
-                                    } catch (error) {
+                                        } catch (error) {
 
-                                        console.error(error);
-                                        alert("Error: " + error.message);
+                                            console.error(error);
+                                            alert("Error: " + error.message);
 
-                                    }
+                                        }
+
+                                    });
 
                                 });
-
-                            });
                             </script>
 
                             <br>
@@ -591,194 +586,196 @@ Link: ${currentPageURL}`
 
 <?php if (!empty($relatedProducts)): ?>
 
-<section class="product-area li-laptop-product pt-30 pb-50">
+    <section class="product-area li-laptop-product pt-30 pb-50">
 
-    <div class="container-fluid">
+        <div class="container-fluid">
 
-        <div class="row">
+            <div class="row">
 
-            <div class="col-lg-12">
+                <div class="col-lg-12">
 
-                <div class="li-section-title">
+                    <div class="li-section-title">
 
-                    <h2>
+                        <h2>
 
-                        <span>
-                            Related Products
-                        </span>
+                            <span>
+                                Related Products
+                            </span>
 
-                    </h2>
+                        </h2>
 
-                </div>
-
-
-                <div class="row">
-
-                    <div class="product-active owl-carousel">
+                    </div>
 
 
-                        <?php foreach ($relatedProducts as $related): ?>
+                    <div class="row">
 
-                        <div class="col-lg-12">
-
-                            <div class="single-product-wrap">
+                        <div class="product-active owl-carousel">
 
 
-                                <!-- PRODUCT IMAGE -->
+                            <?php foreach ($relatedProducts as $related): ?>
 
-                                <div class="product-image">
+                                <div class="col-lg-12">
 
-                                    <a href="product.php?slug=<?= urlencode(
+                                    <div class="single-product-wrap">
+
+
+                                        <!-- PRODUCT IMAGE -->
+
+                                        <div class="product-image">
+
+                                            <a href="product.php?slug=<?= urlencode(
                                                                             $related['slug']
                                                                         ) ?>">
 
-                                        <?php if (!empty($related['main_image'])): ?>
+                                                <?php if (!empty($related['main_image'])): ?>
 
-                                        <img src="images/product/small-size/<?= htmlspecialchars(
-                                                                                            $related['main_image']
-                                                                                        ) ?>" alt="<?= htmlspecialchars(
+                                                    <img src="uploads/products/<?= htmlspecialchars(
+                                                                                    $related['main_image']
+                                                                                ) ?>" alt="<?= htmlspecialchars(
                                                                                                         $related['name']
                                                                                                     ) ?>" />
 
-                                        <?php endif; ?>
-
-                                    </a>
-
-                                    <span class="sticker">
-
-                                        New
-
-                                    </span>
-
-                                </div>
-
-
-                                <!-- PRODUCT DESCRIPTION -->
-
-                                <div class="product_desc">
-
-                                    <div class="product_desc_info">
-
-
-                                        <div class="product-review">
-
-                                            <h5 class="manufacturer">
-
-                                                <a href="category.php?slug=<?= urlencode(
-                                                                                        $product['category_slug']
-                                                                                    ) ?>">
-
-                                                    <?= htmlspecialchars(
-                                                                $product['category_name']
-                                                            ) ?>
-
-                                                </a>
-
-                                            </h5>
-
-
-                                            <div class="rating-box">
-
-                                                <ul class="rating">
-
-                                                    <li>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </li>
-
-                                                    <li>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </li>
-
-                                                    <li>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </li>
-
-                                                    <li class="no-star">
-                                                        <i class="fa fa-star-o"></i>
-                                                    </li>
-
-                                                    <li class="no-star">
-                                                        <i class="fa fa-star-o"></i>
-                                                    </li>
-
-                                                </ul>
-
-                                            </div>
-
-                                        </div>
-
-
-                                        <h4>
-
-                                            <a class="product_name" href="product.php?slug=<?= urlencode(
-                                                                                                        $related['slug']
-                                                                                                    ) ?>">
-
-                                                <?= htmlspecialchars(
-                                                            $related['name']
-                                                        ) ?>
+                                                <?php endif; ?>
 
                                             </a>
 
-                                        </h4>
+                                            <span class="sticker">
 
-
-                                        <div class="price-box">
-
-                                            <span class="new-price">
-
-                                                Ksh.
-                                                <?= number_format(
-                                                            $related['price'],
-                                                            0
-                                                        ) ?>
+                                                New
 
                                             </span>
 
                                         </div>
 
 
+                                        <!-- PRODUCT DESCRIPTION -->
+
+                                        <div class="product_desc">
+
+                                            <div class="product_desc_info">
+
+
+                                                <div class="product-review">
+
+                                                    <h5 class="manufacturer">
+
+                                                        <a href="category.php?slug=<?= urlencode(
+                                                                                        $product['category_slug']
+                                                                                    ) ?>">
+
+                                                            <?= htmlspecialchars(
+                                                                $product['category_name']
+                                                            ) ?>
+
+                                                        </a>
+
+                                                    </h5>
+
+
+                                                    <div class="rating-box">
+
+                                                        <ul class="rating">
+
+                                                            <li>
+                                                                <i class="fa fa-star-o"></i>
+                                                            </li>
+
+                                                            <li>
+                                                                <i class="fa fa-star-o"></i>
+                                                            </li>
+
+                                                            <li>
+                                                                <i class="fa fa-star-o"></i>
+                                                            </li>
+
+                                                            <li class="no-star">
+                                                                <i class="fa fa-star-o"></i>
+                                                            </li>
+
+                                                            <li class="no-star">
+                                                                <i class="fa fa-star-o"></i>
+                                                            </li>
+
+                                                        </ul>
+
+                                                    </div>
+
+                                                </div>
+
+
+                                                <h4>
+
+                                                    <a class="product_name" href="product.php?slug=<?= urlencode(
+                                                                                                        $related['slug']
+                                                                                                    ) ?>">
+
+                                                        <?= htmlspecialchars(
+                                                            $related['name']
+                                                        ) ?>
+
+                                                    </a>
+
+                                                </h4>
+
+
+                                                <div class="price-box">
+
+                                                    <span class="new-price">
+
+                                                        Ksh.
+                                                        <?= number_format(
+                                                            $related['price'],
+                                                            0
+                                                        ) ?>
+
+                                                    </span>
+
+                                                </div>
+
+
+                                            </div>
+
+
+                                            <div class="add-actions">
+
+                                                <ul class="add-actions-link">
+
+                                                    <li class="add-to-cart">
+
+                                                        <a href="#" class="add-to-cart-link">
+
+                                                            <i class="fa fa-shopping-cart"></i>
+
+                                                        </a>
+
+                                                    </li>
+
+
+                                                    <li>
+
+                                                        <a class="links-details" href="#">
+
+                                                            <i class="fa fa-heart-o"></i>
+
+                                                        </a>
+
+                                                    </li>
+
+                                                </ul>
+
+                                            </div>
+
+
+                                        </div>
+
                                     </div>
-
-
-                                    <div class="add-actions">
-
-                                        <ul class="add-actions-link">
-
-                                            <li class="add-to-cart">
-
-                                                <a href="#" class="add-to-cart-link">
-
-                                                    <i class="fa fa-shopping-cart"></i>
-
-                                                </a>
-
-                                            </li>
-
-
-                                            <li>
-
-                                                <a class="links-details" href="#">
-
-                                                    <i class="fa fa-heart-o"></i>
-
-                                                </a>
-
-                                            </li>
-
-                                        </ul>
-
-                                    </div>
-
 
                                 </div>
 
-                            </div>
+                            <?php endforeach; ?>
+
 
                         </div>
-
-                        <?php endforeach; ?>
-
 
                     </div>
 
@@ -788,9 +785,7 @@ Link: ${currentPageURL}`
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 <?php endif; ?>
 
@@ -800,72 +795,362 @@ Link: ${currentPageURL}`
 ========================================================= -->
 
 <script>
-function toggleProductFeatures() {
+    function toggleProductFeatures() {
 
-    const rows =
-        document.querySelectorAll('.product-feature-row');
+        const rows =
+            document.querySelectorAll('.product-feature-row');
 
-    const button =
-        document.getElementById('productFeatureBtn');
-
-
-    let opening = false;
+        const button =
+            document.getElementById('productFeatureBtn');
 
 
-    rows.forEach(function(row, index) {
+        let opening = false;
 
-        if (index >= 5) {
 
-            if (row.style.display === 'none') {
+        rows.forEach(function(row, index) {
 
-                row.style.display = 'table-row';
+            if (index >= 5) {
 
-                opening = true;
+                if (row.style.display === 'none') {
 
-            } else {
+                    row.style.display = 'table-row';
 
-                row.style.display = 'none';
+                    opening = true;
+
+                } else {
+
+                    row.style.display = 'none';
+
+                }
 
             }
 
+        });
+
+
+        if (button) {
+
+            button.textContent =
+                opening ? 'View Less' : 'View More';
+
         }
 
-    });
-
-
-    if (button) {
-
-        button.textContent =
-            opening ? 'View Less' : 'View More';
-
     }
-
-}
 </script>
 
 
 <style>
-.product-details-images .lg-image img {
-    width: 100%;
-    height: 450px;
-    object-fit: contain;
-}
-
-.product-details-images .lg-image {
-    height: 450px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-@media (max-width: 767px) {
-
-    .product-details-images .lg-image,
     .product-details-images .lg-image img {
-        height: 350px;
+        width: 100%;
+        height: 450px;
+        object-fit: contain;
     }
 
-}
-</style>
+    .product-details-images .lg-image {
+        height: 450px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
+    @media (max-width: 767px) {
+
+        .product-details-images .lg-image,
+        .product-details-images .lg-image img {
+            height: 350px;
+        }
+
+    }
+</style>
+<script>
+    $(document).on(
+        'click',
+        '#addToCartButton',
+        function(e) {
+
+            e.preventDefault();
+
+            const button = $(this);
+
+            const productId =
+                parseInt(
+                    button.attr('data-product-id')
+                );
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | CHECK PRODUCT ID
+            |--------------------------------------------------------------------------
+            */
+
+            if (!productId) {
+
+                alert(
+                    'Unable to add this product. Product ID is missing.'
+                );
+
+                return;
+
+            }
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | PREVENT DOUBLE CLICK
+            |--------------------------------------------------------------------------
+            */
+
+            if (button.prop('disabled')) {
+
+                return;
+
+            }
+
+
+            button.prop(
+                'disabled',
+                true
+            );
+
+
+            button.html(
+                '<i class="fa fa-spinner fa-spin"></i> Adding...'
+            );
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | SEND TO PHP SESSION CART
+            |--------------------------------------------------------------------------
+            */
+
+            $.ajax({
+
+                url: 'add-to-cart.php',
+
+                type: 'POST',
+
+                dataType: 'json',
+
+                data: {
+
+                    product_id: productId
+
+                },
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | SUCCESS
+                |--------------------------------------------------------------------------
+                */
+
+                success: function(response) {
+
+                    console.log(
+                        'ADD TO CART RESPONSE:',
+                        response
+                    );
+
+
+                    if (
+                        response.success
+                    ) {
+
+
+                        /*
+                        |--------------------------------------------------------------------------
+                        | UPDATE HEADER MINI CART
+                        |--------------------------------------------------------------------------
+                        */
+
+                        if (
+                            typeof window.updateHeaderMiniCart ===
+                            'function'
+                        ) {
+
+                            window.updateHeaderMiniCart(
+
+                                response.cart,
+
+                                response.cart_count,
+
+                                response.cart_total
+
+                            );
+
+                        }
+
+
+                        /*
+                        |--------------------------------------------------------------------------
+                        | UPDATE CART COUNT
+                        |--------------------------------------------------------------------------
+                        */
+
+                        $('.cart-item-count').text(
+                            response.cart_count
+                        );
+
+
+                        $('.cart-count').text(
+                            response.cart_count
+                        );
+
+
+                        $('.header-cart-count').text(
+                            response.cart_count
+                        );
+
+
+                        $('[data-cart-count]').text(
+                            response.cart_count
+                        );
+
+
+                        /*
+                        |--------------------------------------------------------------------------
+                        | UPDATE TOTAL
+                        |--------------------------------------------------------------------------
+                        */
+
+                        $('#cart-total').text(
+
+                            Number(
+                                response.cart_total
+                            ).toLocaleString()
+
+                        );
+
+
+                        $('#cart-subtotal').text(
+
+                            Number(
+                                response.cart_total
+                            ).toLocaleString()
+
+                        );
+
+
+                        $('.header-cart-total').text(
+
+                            'Ksh. ' +
+
+                            Number(
+                                response.cart_total
+                            ).toLocaleString()
+
+                        );
+
+
+                        /*
+                        |--------------------------------------------------------------------------
+                        | BUTTON SUCCESS
+                        |--------------------------------------------------------------------------
+                        */
+
+                        button.html(
+
+                            '<i class="fa fa-check"></i> Added to Cart'
+
+                        );
+
+
+                        /*
+                        |--------------------------------------------------------------------------
+                        | RESTORE BUTTON
+                        |--------------------------------------------------------------------------
+                        */
+
+                        setTimeout(
+
+                            function() {
+
+                                button.html(
+
+                                    '<i class="fa fa-shopping-cart"></i> Add to Cart'
+
+                                );
+
+                                button.prop(
+                                    'disabled',
+                                    false
+                                );
+
+                            },
+
+                            1500
+
+                        );
+
+
+                    } else {
+
+
+                        alert(
+
+                            response.message ||
+
+                            'Unable to add product to cart.'
+
+                        );
+
+
+                        button.html(
+
+                            '<i class="fa fa-shopping-cart"></i> Add to Cart'
+
+                        );
+
+
+                        button.prop(
+                            'disabled',
+                            false
+                        );
+
+                    }
+
+                },
+
+
+                /*
+                |--------------------------------------------------------------------------
+                | AJAX ERROR
+                |--------------------------------------------------------------------------
+                */
+
+                error: function(xhr) {
+
+                    console.error(
+                        'ADD TO CART ERROR:',
+                        xhr.responseText
+                    );
+
+
+                    alert(
+                        'Unable to add this product to the cart.'
+                    );
+
+
+                    button.html(
+
+                        '<i class="fa fa-shopping-cart"></i> Add to Cart'
+
+                    );
+
+
+                    button.prop(
+                        'disabled',
+                        false
+                    );
+
+                }
+
+            });
+
+        }
+
+    );
+</script>
 <?php include 'footer.php'; ?>

@@ -1,535 +1,754 @@
 <?php
-include 'header.php'; // Includes the header file
-?>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-<!-- Begin Li's Breadcrumb Area -->
+session_start();
+
+$cart = $_SESSION['cart'] ?? [];
+
+/*
+|--------------------------------------------------------------------------
+| CORE LTD - CHECKOUT PAGE
+|--------------------------------------------------------------------------
+*/
+
+require_once __DIR__ . '/includes/cart-functions.php';
+
+
+/*
+|--------------------------------------------------------------------------
+| GET CURRENT CART
+|--------------------------------------------------------------------------
+*/
+
+$cart = getCart();
+
+$cartTotal = getCartTotal();
+
+$cartCount = getCartCount();
+
+
+/*
+|--------------------------------------------------------------------------
+| REDIRECT IF CART IS EMPTY
+|--------------------------------------------------------------------------
+*/
+
+if (empty($cart)) {
+
+    header('Location: cart.php');
+
+    exit;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| PAGE HEADER
+|--------------------------------------------------------------------------
+*/
+
+include 'header.php';
+
+?>
+
+<!-- =========================================================
+     CHECKOUT BREADCRUMB
+========================================================= -->
+
 <div class="breadcrumb-area">
+
     <div class="container-fluid">
+
         <div class="breadcrumb-content">
+
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li class="active">Checkout</li>
+
+                <li>
+
+                    <a href="index.php">
+                        Home
+                    </a>
+
+                </li>
+
+                <li>
+
+                    <a href="cart.php">
+                        Shopping Cart
+                    </a>
+
+                </li>
+
+                <li class="active">
+
+                    Checkout
+
+                </li>
+
             </ul>
-        </div>
-    </div>
-</div>
-<!-- Li's Breadcrumb Area End Here -->
-<!--Checkout Area Strat-->
-<div class="checkout-area pt-60 pb-30">
-    <div class="container-fluid">
 
-        <div class="row">
-            <div class="col-lg-6 col-12">
-                <form action="#">
-                    <div class="checkbox-form">
-                        <h3>Billing Details</h3>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="country-select clearfix">
-                                    <label>Country <span class="required">*</span></label>
-                                    <select class="nice-select wide">
-                                        <option data-display="Bangladesh">Bangladesh</option>
-                                        <option value="uk">London</option>
-                                        <option value="rou">Romania</option>
-                                        <option value="fr">French</option>
-                                        <option value="de">Germany</option>
-                                        <option value="aus">Australia</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="checkout-form-list">
-                                    <label>First Name <span class="required">*</span></label>
-                                    <input placeholder="" type="text">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="checkout-form-list">
-                                    <label>Last Name <span class="required">*</span></label>
-                                    <input placeholder="" type="text">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="checkout-form-list">
-                                    <label>Company Name</label>
-                                    <input placeholder="" type="text">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="checkout-form-list">
-                                    <label>Address <span class="required">*</span></label>
-                                    <input placeholder="Street address" type="text">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="checkout-form-list">
-                                    <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="checkout-form-list">
-                                    <label>Town / City <span class="required">*</span></label>
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="checkout-form-list">
-                                    <label>State / County <span class="required">*</span></label>
-                                    <input placeholder="" type="text">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="checkout-form-list">
-                                    <label>Postcode / Zip <span class="required">*</span></label>
-                                    <input placeholder="" type="text">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="checkout-form-list">
-                                    <label>Email Address <span class="required">*</span></label>
-                                    <input placeholder="" type="email">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="checkout-form-list">
-                                    <label>Phone <span class="required">*</span></label>
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="checkout-form-list create-acc">
-                                    <input id="cbox" type="checkbox">
-                                    <label>Create an account?</label>
-                                </div>
-                                <div id="cbox-info" class="checkout-form-list create-account">
-                                    <p>Create an account by entering the information below. If you are a returning
-                                        customer please login at the top of the page.</p>
-                                    <label>Account password <span class="required">*</span></label>
-                                    <input placeholder="password" type="password">
-                                </div>
-                            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     CHECKOUT AREA
+========================================================= -->
+
+<div class="checkout-area" style="
+        padding:60px 0;
+        background:#fff;
+    ">
+
+    <div class="container">
+
+        <!-- =================================================
+             TITLE
+        ================================================== -->
+
+        <div class="checkout-title" style="
+                margin-bottom:35px;
+            ">
+
+            <h1 style="
+                    font-size:32px;
+                    font-weight:600;
+                    margin-bottom:10px;
+                ">
+                Checkout
+            </h1>
+
+            <p style="
+                    color:#777;
+                    margin:0;
+                ">
+                Complete your details below to place your order.
+            </p>
+
+        </div>
+
+
+        <form action="place-order.php" method="POST" id="checkout-form">
+
+            <div class="row">
+
+                <!-- =================================================
+                     CUSTOMER DETAILS
+                ================================================== -->
+
+                <div class="col-lg-7 col-md-7">
+
+                    <div class="checkout-box" style="
+                            border:1px solid #e5e5e5;
+                            padding:30px;
+                            margin-bottom:30px;
+                        ">
+
+                        <h3 style="
+                                font-size:22px;
+                                font-weight:600;
+                                margin-bottom:25px;
+                            ">
+
+                            Customer & Delivery Details
+
+                        </h3>
+
+
+                        <!-- FULL NAME -->
+
+                        <div class="form-group" style="margin-bottom:20px;">
+
+                            <label for="customer_name" style="
+                                    font-weight:600;
+                                    margin-bottom:8px;
+                                ">
+
+                                Full Name
+                                <span style="color:red;">
+                                    *
+                                </span>
+
+                            </label>
+
+
+                            <input type="text" id="customer_name" name="customer_name" class="form-control"
+                                placeholder="Enter your full name" required>
+
                         </div>
-                        <div class="different-address">
-                            <div class="ship-different-title">
-                                <h3>
-                                    <label>Ship to a different address?</label>
-                                    <input id="ship-box" type="checkbox">
-                                </h3>
-                            </div>
-                            <div id="ship-box-info" class="row">
-                                <div class="col-md-12">
-                                    <div class="country-select clearfix">
-                                        <label>Country <span class="required">*</span></label>
-                                        <select class="nice-select wide">
-                                            <option data-display="Bangladesh">Bangladesh</option>
-                                            <option value="uk">London</option>
-                                            <option value="rou">Romania</option>
-                                            <option value="fr">French</option>
-                                            <option value="de">Germany</option>
-                                            <option value="aus">Australia</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <label>First Name <span class="required">*</span></label>
-                                        <input placeholder="" type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <label>Last Name <span class="required">*</span></label>
-                                        <input placeholder="" type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <label>Company Name</label>
-                                        <input placeholder="" type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <label>Address <span class="required">*</span></label>
-                                        <input placeholder="Street address" type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <label>Town / City <span class="required">*</span></label>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <label>State / County <span class="required">*</span></label>
-                                        <input placeholder="" type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <label>Postcode / Zip <span class="required">*</span></label>
-                                        <input placeholder="" type="text">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <label>Email Address <span class="required">*</span></label>
-                                        <input placeholder="" type="email">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkout-form-list">
-                                        <label>Phone <span class="required">*</span></label>
-                                        <input type="text">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="order-notes">
-                                <div class="checkout-form-list">
-                                    <label>Order Notes</label>
-                                    <textarea id="checkout-mess" cols="30" rows="10"
-                                        placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
-                                </div>
-                            </div>
+
+
+                        <!-- PHONE -->
+
+                        <div class="form-group" style="margin-bottom:20px;">
+
+                            <label for="phone" style="
+                                    font-weight:600;
+                                    margin-bottom:8px;
+                                ">
+
+                                Phone Number
+                                <span style="color:red;">
+                                    *
+                                </span>
+
+                            </label>
+
+
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="e.g. 0712345678"
+                                required>
+
                         </div>
+
+
+                        <!-- EMAIL -->
+
+                        <div class="form-group" style="margin-bottom:20px;">
+
+                            <label for="email" style="
+                                    font-weight:600;
+                                    margin-bottom:8px;
+                                ">
+
+                                Email Address
+
+                            </label>
+
+
+                            <input type="email" id="email" name="email" class="form-control"
+                                placeholder="Enter your email address">
+
+                        </div>
+
+
+                        <!-- TOWN / AREA -->
+
+                        <div class="form-group" style="margin-bottom:20px;">
+
+                            <label for="town" style="
+                                    font-weight:600;
+                                    margin-bottom:8px;
+                                ">
+
+                                Town / Area
+                                <span style="color:red;">
+                                    *
+                                </span>
+
+                            </label>
+
+
+                            <input type="text" id="town" name="town" class="form-control"
+                                placeholder="e.g. Githurai, Nairobi" required>
+
+                        </div>
+
+
+                        <!-- DELIVERY ADDRESS -->
+
+                        <div class="form-group" style="margin-bottom:20px;">
+
+                            <label for="delivery_address" style="
+                                    font-weight:600;
+                                    margin-bottom:8px;
+                                ">
+
+                                Delivery Address / Location
+                                <span style="color:red;">
+                                    *
+                                </span>
+
+                            </label>
+
+
+                            <textarea id="delivery_address" name="delivery_address" class="form-control" rows="4"
+                                placeholder="Enter estate, building, street, landmark or other delivery details"
+                                required></textarea>
+
+                        </div>
+
+
+                        <!-- ORDER NOTES -->
+
+                        <div class="form-group" style="margin-bottom:0;">
+
+                            <label for="order_notes" style="
+                                    font-weight:600;
+                                    margin-bottom:8px;
+                                ">
+
+                                Order Notes
+                                <span style="
+                                        font-weight:400;
+                                        color:#999;
+                                    ">
+                                    (Optional)
+                                </span>
+
+                            </label>
+
+
+                            <textarea id="order_notes" name="order_notes" class="form-control" rows="4"
+                                placeholder="Any additional information about your order?"></textarea>
+
+                        </div>
+
                     </div>
-                </form>
-            </div>
-            <div class="col-lg-6 col-12">
-                <div class="your-order card p-4 shadow rounded-3 border-0" style="border: 2px solid #00fefe;">
-                    <h3 class="mb-4" style="color:rgb(47, 194, 252);">🛒 Your Order</h3>
-                    <div class="your-order-table table-responsive">
-                        <table class="table align-middle">
-                            <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody id="full-cart-body">
-                                <!-- Cart items will be injected here -->
-                            </tbody>
-                            <tfoot>
-                                <tr class="cart-subtotal">
-                                    <th colspan="2" class="text-end">Subtotal</th>
-                                    <td>Ksh. <span class="fw-semibold" id="full-cart-subtotal">Ksh.0</span></td>
-                                </tr>
-                                <tr class="order-total">
-                                    <th colspan="2" class="text-end">Grand Total</th>
-                                    <td><strong> <span>Ksh. </span><span class="fw-bold fs-5" id="full-cart-total">Ksh.
-                                                0</span></strong></td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                        <a href="#" id="whatsapp-order-btn" class="btn btn-success w-50 mt-3 shadow-sm">
-                            <i class="fab fa-whatsapp"></i>
-                            Place Order on WhatsApp
+
+
+                    <!-- =================================================
+                         DELIVERY INFORMATION
+                    ================================================== -->
+
+                    <div class="checkout-box" style="
+                            border:1px solid #e5e5e5;
+                            padding:25px 30px;
+                            margin-bottom:30px;
+                        ">
+
+                        <h4 style="
+                                font-size:18px;
+                                font-weight:600;
+                                margin-bottom:15px;
+                            ">
+
+                            <i class="fa fa-truck" style="margin-right:8px;"></i>
+
+                            Delivery Information
+
+                        </h4>
+
+
+                        <p style="
+                                margin:0;
+                                color:#666;
+                                line-height:1.7;
+                            ">
+
+                            Delivery charges will be confirmed based
+                            on your location before delivery.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                     ORDER SUMMARY
+                ================================================== -->
+
+                <div class="col-lg-5 col-md-5">
+
+                    <div class="checkout-box" style="
+                            border:1px solid #ddd;
+                            padding:30px;
+                            position:sticky;
+                            top:20px;
+                        ">
+
+                        <h3 style="
+                                font-size:22px;
+                                font-weight:600;
+                                margin-bottom:25px;
+                            ">
+
+                            Your Order
+
+                        </h3>
+
+
+                        <!-- PRODUCTS -->
+
+                        <div class="checkout-products" style="
+                                border-bottom:1px solid #ddd;
+                                padding-bottom:15px;
+                                margin-bottom:20px;
+                            ">
+
+                            <?php foreach ($cart as $item): ?>
+
+                                <?php
+
+                                $itemId =
+                                    (int) ($item['id'] ?? 0);
+
+                                $itemName =
+                                    $item['name'] ?? 'Product';
+
+                                $itemPrice =
+                                    (float) ($item['price'] ?? 0);
+
+                                $itemQuantity =
+                                    (int) ($item['quantity'] ?? 1);
+
+                                $itemImage =
+                                    $item['image'] ?? '';
+
+                                ?>
+
+                                <div class="checkout-product" style="
+                                        display:flex;
+                                        align-items:center;
+                                        gap:15px;
+                                        padding:12px 0;
+                                    ">
+
+                                    <!-- IMAGE -->
+
+                                    <div style="
+                                            width:65px;
+                                            min-width:65px;
+                                            height:65px;
+                                            border:1px solid #eee;
+                                            display:flex;
+                                            align-items:center;
+                                            justify-content:center;
+                                            background:#fff;
+                                        ">
+
+                                        <?php if (!empty($itemImage)): ?>
+
+                                            <img src="uploads/products/<?= htmlspecialchars($itemImage) ?>"
+                                                alt="<?= htmlspecialchars($itemName) ?>" style="
+                                                    width:55px;
+                                                    height:55px;
+                                                    object-fit:contain;
+                                                " onerror="
+                                                    this.onerror=null;
+                                                    this.src='uploads/products/default.png';
+                                                ">
+
+                                        <?php else: ?>
+
+                                            <i class="fa fa-shopping-cart" style="
+                                                    color:#ccc;
+                                                    font-size:25px;
+                                                "></i>
+
+                                        <?php endif; ?>
+
+                                    </div>
+
+
+                                    <!-- DETAILS -->
+
+                                    <div style="
+                                            flex:1;
+                                        ">
+
+                                        <h6 style="
+                                                margin:0 0 5px;
+                                                font-size:15px;
+                                                font-weight:600;
+                                                line-height:1.4;
+                                            ">
+
+                                            <?= htmlspecialchars($itemName) ?>
+
+                                        </h6>
+
+
+                                        <span style="
+                                                font-size:13px;
+                                                color:#777;
+                                            ">
+
+                                            Ksh.
+                                            <?= number_format($itemPrice, 0) ?>
+
+                                            ×
+
+                                            <?= $itemQuantity ?>
+
+                                        </span>
+
+                                    </div>
+
+
+                                    <!-- SUBTOTAL -->
+
+                                    <strong style="
+                                            white-space:nowrap;
+                                            font-size:14px;
+                                        ">
+
+                                        Ksh.
+                                        <?= number_format(
+                                            $itemPrice * $itemQuantity,
+                                            0
+                                        ) ?>
+
+                                    </strong>
+
+                                </div>
+
+                            <?php endforeach; ?>
+
+                        </div>
+
+
+                        <!-- =================================================
+                             SUBTOTAL
+                        ================================================== -->
+
+                        <div style="
+                                display:flex;
+                                justify-content:space-between;
+                                padding:8px 0;
+                            ">
+
+                            <span>
+                                Subtotal
+                            </span>
+
+
+                            <strong>
+
+                                Ksh.
+                                <?= number_format(
+                                    $cartTotal,
+                                    0
+                                ) ?>
+
+                            </strong>
+
+                        </div>
+
+
+                        <!-- =================================================
+                             DELIVERY
+                        ================================================== -->
+
+                        <div style="
+                                display:flex;
+                                justify-content:space-between;
+                                padding:8px 0;
+                            ">
+
+                            <span>
+                                Delivery
+                            </span>
+
+
+                            <span style="
+                                    color:#777;
+                                    font-size:14px;
+                                ">
+
+                                To be confirmed
+
+                            </span>
+
+                        </div>
+
+
+                        <hr style="
+                                margin:15px 0;
+                            ">
+
+
+                        <!-- =================================================
+                             TOTAL
+                        ================================================== -->
+
+                        <div style="
+                                display:flex;
+                                justify-content:space-between;
+                                align-items:center;
+                                margin-bottom:25px;
+                            ">
+
+                            <strong style="
+                                    font-size:20px;
+                                ">
+
+                                Total
+
+                            </strong>
+
+
+                            <strong style="
+                                    font-size:24px;
+                                    color:#e60000;
+                                ">
+
+                                Ksh.
+                                <?= number_format(
+                                    $cartTotal,
+                                    0
+                                ) ?>
+
+                            </strong>
+
+                        </div>
+
+
+                        <!-- =================================================
+                             TERMS
+                        ================================================== -->
+
+                        <div style="
+                                margin-bottom:20px;
+                            ">
+
+                            <label style="
+                                    display:flex;
+                                    align-items:flex-start;
+                                    gap:10px;
+                                    cursor:pointer;
+                                    font-size:14px;
+                                    color:#555;
+                                ">
+
+                                <input type="checkbox" name="terms" value="1" required style="
+                                        margin-top:4px;
+                                    ">
+
+                                <span>
+
+                                    I confirm that the information
+                                    provided is correct and I agree
+                                    to proceed with this order.
+
+                                </span>
+
+                            </label>
+
+                        </div>
+
+
+                        <!-- =================================================
+                             PLACE ORDER
+                        ================================================== -->
+
+                        <button type="submit" id="placeOrderButton" style="
+                                width:100%;
+                                border:none;
+                                background:#22c55e;
+                                color:#fff;
+                                padding:16px 20px;
+                                font-size:16px;
+                                font-weight:600;
+                                cursor:pointer;
+                                text-transform:uppercase;
+                            ">
+
+                            <i class="fa fa-check-circle" style="margin-right:7px;"></i>
+
+                            Place Order
+
+                        </button>
+
+
+                        <!-- BACK TO CART -->
+
+                        <a href="cart.php" style="
+                                display:block;
+                                text-align:center;
+                                margin-top:15px;
+                                color:#555;
+                                font-size:14px;
+                            ">
+
+                            <i class="fa fa-arrow-left" style="margin-right:5px;"></i>
+
+                            Back to Cart
+
                         </a>
+
                     </div>
-                    <a href="checkout.php" class="btn w-100 mt-3 shadow-sm">
+
                 </div>
+
             </div>
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
 
-                    const whatsappBtn = document.getElementById("whatsapp-order-btn");
+        </form>
 
-                    if (!whatsappBtn) return;
-
-                    whatsappBtn.addEventListener("click", async function(e) {
-
-                        e.preventDefault();
-
-                        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-                        if (cart.length === 0) {
-                            alert("Your cart is empty.");
-                            return;
-                        }
-
-                        let grandTotal = 0;
-                        let totalItems = 0;
-
-                        let message = `Hello CORE LTD,
-
-I'd like to place the following order:
-
-`;
-
-                        cart.forEach(function(item, index) {
-
-                            let itemTotal = item.price * item.quantity;
-
-                            grandTotal += itemTotal;
-                            totalItems += item.quantity;
-
-                            message += `${index + 1}. ${item.name}
-Quantity: ${item.quantity}
-Price: Ksh. ${item.price.toLocaleString()}
-Total: Ksh. ${itemTotal.toLocaleString()}
-
-`;
-                        });
-
-                        message += `----------------------------------
-Total Items: ${totalItems}
-Grand Total: Ksh. ${grandTotal.toLocaleString()}
-----------------------------------
-
-Thank you.`;
-
-                        try {
-
-                            const response = await fetch("whatsapp.php");
-
-                            if (!response.ok) {
-                                throw new Error("Unable to load whatsapp.php");
-                            }
-
-                            const phoneNumber = (await response.text()).trim();
-
-                            window.open(
-                                `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`,
-                                "_blank"
-                            );
-
-                        } catch (error) {
-                            alert(error.message);
-                        }
-
-                    });
-
-                });
-            </script>
-        </div>
-        <div class="payment-method">
-            <div class="payment-accordion">
-                <div id="accordion">
-                    <div class="card">
-                        <div class="card-header" id="#payment-1">
-                            <h5 class="panel-title">
-                                <a class="" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-                                    aria-controls="collapseOne">
-                                    Direct Bank Transfer.
-                                </a>
-                            </h5>
-                        </div>
-                        <div id="collapseOne" class="collapse show" data-parent="#accordion">
-                            <div class="card-body">
-                                <p>Make your payment directly into our bank account. Please use your Order ID as the
-                                    payment reference. Your order won’t be shipped until the funds have cleared in our
-                                    account.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="#payment-2">
-                            <h5 class="panel-title">
-                                <a class="collapsed" data-toggle="collapse" data-target="#collapseTwo"
-                                    aria-expanded="false" aria-controls="collapseTwo">
-                                    Cheque Payment
-                                </a>
-                            </h5>
-                        </div>
-                        <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                <p>Make your payment directly into our bank account. Please use your Order ID as the
-                                    payment reference. Your order won’t be shipped until the funds have cleared in our
-                                    account.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="#payment-3">
-                            <h5 class="panel-title">
-                                <a class="collapsed" data-toggle="collapse" data-target="#collapseThree"
-                                    aria-expanded="false" aria-controls="collapseThree">
-                                    PayPal
-                                </a>
-                            </h5>
-                        </div>
-                        <div id="collapseThree" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                <p>Make your payment directly into our bank account. Please use your Order ID as the
-                                    payment reference. Your order won’t be shipped until the funds have cleared in our
-                                    account.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="order-button-payment">
-                    <input value="Place order" type="submit">
-                </div>
-            </div>
-        </div>
     </div>
+
 </div>
-</div>
-</div>
-</div>
-<!--Checkout Area End-->
 
 
+<!-- =========================================================
+     CHECKOUT JAVASCRIPT
+========================================================= -->
 
-<?php
-include 'footer.php'; // Includes the footer file
-?>
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-        // ===== Save Cart to localStorage =====
-        function saveCart() {
-            localStorage.setItem("cart", JSON.stringify(cart));
+        const checkoutForm =
+            document.getElementById("checkout-form");
+
+        const cartInput =
+            document.getElementById("cart_json");
+
+
+        if (!checkoutForm || !cartInput) {
+            return;
         }
 
-        // ===== Update Mini Cart =====
-        function updateMiniCart() {
-            let cartContainer = $("#cart-items");
-            let cartTotal = $("#cart-total");
-            let cartSubtotal = $("#cart-subtotal");
-            let cartCount = $(".cart-item-count");
 
-            cartContainer.empty();
-            if (cart.length === 0) {
-                cartContainer.append('<li><p>Your cart is empty.</p></li>');
-                cartTotal.text("0");
-                cartSubtotal.text("0");
-                cartCount.text("0");
-                return;
+        checkoutForm.addEventListener("submit", function(event) {
+
+            /*
+            |--------------------------------------------------------------------------
+            | GET CURRENT CART
+            |--------------------------------------------------------------------------
+            */
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | SEND CART TO PHP
+            |--------------------------------------------------------------------------
+            */
+
+            cartInput.value =
+                JSON.stringify(cart);
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | PREVENT DOUBLE ORDER
+            |--------------------------------------------------------------------------
+            */
+
+            const button =
+                document.getElementById(
+                    "place-order-button"
+                );
+
+
+            if (button) {
+
+                button.disabled = true;
+
+                if (
+                    button.tagName.toLowerCase() ===
+                    "input"
+                ) {
+
+                    button.value =
+                        "Processing Order...";
+
+                } else {
+
+                    button.innerHTML =
+                        "Processing Order...";
+
+                }
+
             }
 
-            let totalCost = 0;
-            let totalItems = 0;
-            cart.forEach((item, index) => {
-                let itemTotal = item.price * item.quantity;
-                totalCost += itemTotal;
-                totalItems += item.quantity;
-
-                cartContainer.append(`
-                <li>
-                    <div class="minicart-product-details">
-                        <h6>${item.name}</h6>
-                        <span>Ksh. ${item.price.toLocaleString()} x ${item.quantity}</span>
-                    </div>
-                    <button class="close remove-item" data-index="${index}">
-                        <i class="fa fa-close"></i>
-                    </button>
-                </li>
-            `);
-            });
-
-            cartTotal.text(totalCost.toLocaleString());
-            cartSubtotal.text(totalCost.toLocaleString());
-            cartCount.text(totalItems);
-        }
-
-        // ===== Update Full Cart =====
-        function updateFullCart() {
-            let cartBody = $("#full-cart-body"); // adjusted to match your table
-            let fullSubtotal = $("#full-cart-subtotal");
-            let fullTotal = $("#full-cart-total");
-
-            cartBody.empty();
-
-            if (cart.length === 0) {
-                cartBody.append('<tr><td colspan="5" class="text-center">Your cart is empty.</td></tr>');
-                fullSubtotal.text("0");
-                fullTotal.text("0");
-                return;
-            }
-
-            let totalCost = 0;
-            cart.forEach((item, index) => {
-                let itemTotal = item.price * item.quantity;
-                totalCost += itemTotal;
-
-                cartBody.append(`
-                <tr>
-                    <td>${item.name}</td>                    
-                    <td>Ksh. ${item.price.toLocaleString()}</td>
-                    <td>Ksh. ${itemTotal.toLocaleString()}</td>                    
-                </tr>
-            `);
-            });
-
-            fullSubtotal.text(totalCost.toLocaleString());
-            fullTotal.text(totalCost.toLocaleString());
-        }
-
-        // ===== Combined update =====
-        function updateAllCarts() {
-            updateMiniCart();
-            updateFullCart();
-            saveCart();
-        }
-
-        // ===== Add to Cart =====
-        $(".add-to-cart").on("click", function(e) {
-            e.preventDefault();
-
-            let itemContainer = $(this).closest(".single-product-wrap");
-            let itemName = itemContainer.find(".product_name").first().text().trim();
-            let itemPriceText = itemContainer.find(".new-price").first().text().replace("Ksh.", "").replace(
-                ",", "").trim();
-            let itemImage = itemContainer.find("img").attr("src") || 'assets/images/default.png';
-            let itemPrice = parseInt(itemPriceText);
-
-            if (!itemName || isNaN(itemPrice)) {
-                alert("Error: Unable to add item to cart.");
-                return;
-            }
-
-            let existingItem = cart.find(item => item.name === itemName);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({
-                    name: itemName,
-                    price: itemPrice,
-                    quantity: 1,
-                    image: itemImage
-                });
-            }
-
-            updateAllCarts();
-            $("html, body").animate({
-                scrollTop: 0
-            }, 800);
         });
 
-        // ===== Remove Item from Cart (Both Mini & Full) =====
-        $(document).on("click", ".remove-item", function() {
-            let index = $(this).data("index");
-            cart.splice(index, 1);
-            updateAllCarts();
-        });
-
-        // ===== Quantity Change =====
-        $(document).on("change", ".quantity-input", function() {
-            let index = $(this).data("index");
-            let newQuantity = parseInt($(this).val());
-
-            if (newQuantity <= 0 || isNaN(newQuantity)) {
-                alert("Invalid quantity! Minimum is 1.");
-                $(this).val(cart[index].quantity);
-                return;
-            }
-
-            cart[index].quantity = newQuantity;
-            updateAllCarts();
-        });
-
-        // ===== Initial Load =====
-        updateAllCarts();
     });
 </script>
+
+include 'footer.php';
+
+?>
