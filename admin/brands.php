@@ -10,16 +10,136 @@ if (!isset($_SESSION['admin_id'])) {
 }
 
 
-/* =========================================================
-   SEARCH
-========================================================= */
+/*
+|--------------------------------------------------------------------------
+| SEARCH
+|--------------------------------------------------------------------------
+*/
 
 $search = trim($_GET['search'] ?? '');
 
 
-/* =========================================================
-   GET BRANDS + PRODUCT COUNT
-========================================================= */
+/*
+|--------------------------------------------------------------------------
+| PAGINATION
+|--------------------------------------------------------------------------
+*/
+
+$perPage = 8;
+
+$page = isset($_GET['page'])
+    ? (int) $_GET['page']
+    : 1;
+
+if ($page < 1) {
+    $page = 1;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| COUNT TOTAL BRANDS
+|--------------------------------------------------------------------------
+| This counts ALL brands matching the search.
+| It is NOT affected by LIMIT/OFFSET.
+|--------------------------------------------------------------------------
+*/
+
+$countSql = "
+    SELECT COUNT(*) AS total
+    FROM brands b
+";
+
+
+$countParams = [];
+$countTypes = "";
+
+
+if ($search !== '') {
+
+    $countSql .= "
+        WHERE
+            b.name LIKE ?
+            OR b.slug LIKE ?
+            OR b.description LIKE ?
+    ";
+
+    $term = "%" . $search . "%";
+
+    $countParams[] = $term;
+    $countParams[] = $term;
+    $countParams[] = $term;
+
+    $countTypes = "sss";
+}
+
+
+$countStmt = $conn->prepare($countSql);
+
+if (!$countStmt) {
+    die("Brand count query failed: " . $conn->error);
+}
+
+
+if (!empty($countParams)) {
+
+    $countStmt->bind_param(
+        $countTypes,
+        ...$countParams
+    );
+}
+
+
+$countStmt->execute();
+
+$countResult = $countStmt->get_result();
+
+$countRow = $countResult->fetch_assoc();
+
+$totalMatchingBrands = (int) ($countRow['total'] ?? 0);
+
+$countStmt->close();
+
+
+/*
+|--------------------------------------------------------------------------
+| TOTAL PAGES
+|--------------------------------------------------------------------------
+*/
+
+$totalPages = max(
+    1,
+    (int) ceil(
+        $totalMatchingBrands / $perPage
+    )
+);
+
+
+/*
+|--------------------------------------------------------------------------
+| MAKE SURE PAGE IS VALID
+|--------------------------------------------------------------------------
+*/
+
+if ($page > $totalPages) {
+    $page = $totalPages;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| OFFSET
+|--------------------------------------------------------------------------
+*/
+
+$offset = ($page - 1) * $perPage;
+
+
+/*
+|--------------------------------------------------------------------------
+| GET BRANDS + PRODUCT COUNT
+|--------------------------------------------------------------------------
+*/
 
 $sql = "
     SELECT
@@ -30,8 +150,11 @@ $sql = "
         b.logo,
         b.status,
         b.created_at,
+
         COUNT(p.id) AS product_count
+
     FROM brands b
+
     LEFT JOIN products p
         ON p.brand_id = b.id
 ";
@@ -40,6 +163,12 @@ $sql = "
 $params = [];
 $types = "";
 
+
+/*
+|--------------------------------------------------------------------------
+| SEARCH FILTER
+|--------------------------------------------------------------------------
+*/
 
 if ($search !== '') {
 
@@ -60,6 +189,12 @@ if ($search !== '') {
 }
 
 
+/*
+|--------------------------------------------------------------------------
+| GROUP + ORDER + PAGINATION
+|--------------------------------------------------------------------------
+*/
+
 $sql .= "
     GROUP BY
         b.id,
@@ -69,21 +204,36 @@ $sql .= "
         b.logo,
         b.status,
         b.created_at
+
     ORDER BY b.id DESC
+
+    LIMIT ? OFFSET ?
 ";
 
 
-$stmt = $conn->prepare($sql);
+$params[] = $perPage;
+$params[] = $offset;
 
+$types .= "ii";
+
+
+/*
+|--------------------------------------------------------------------------
+| EXECUTE BRAND QUERY
+|--------------------------------------------------------------------------
+*/
+
+$stmt = $conn->prepare($sql);
 
 if (!$stmt) {
     die("Database error: " . $conn->error);
 }
 
 
-if (!empty($params)) {
-    $stmt->bind_param($types, ...$params);
-}
+$stmt->bind_param(
+    $types,
+    ...$params
+);
 
 
 $stmt->execute();
@@ -91,11 +241,39 @@ $stmt->execute();
 $result = $stmt->get_result();
 
 
-/* =========================================================
-   STATISTICS
-========================================================= */
+/*
+|--------------------------------------------------------------------------
+| STORE CURRENT PAGE BRANDS
+|--------------------------------------------------------------------------
+*/
 
 $brands = [];
+
+
+while ($row = $result->fetch_assoc()) {
+
+    $brands[] = $row;
+}
+
+
+$stmt->close();
+
+
+/*
+|--------------------------------------------------------------------------
+| STATISTICS
+|--------------------------------------------------------------------------
+| These are calculated separately so they represent ALL brands,
+| not only the 8 currently displayed.
+|--------------------------------------------------------------------------
+*/
+
+
+/*
+|--------------------------------------------------------------------------
+| TOTAL BRANDS
+|--------------------------------------------------------------------------
+*/
 
 $totalBrands = 0;
 $activeBrands = 0;
@@ -103,23 +281,94 @@ $inactiveBrands = 0;
 $totalProducts = 0;
 
 
-while ($row = $result->fetch_assoc()) {
+$statsSql = "
+    SELECT
 
-    $brands[] = $row;
+        COUNT(DISTINCT b.id) AS total_brands,
 
-    $totalBrands++;
+        COUNT(
+            DISTINCT CASE
+                WHEN b.status = 1
+                THEN b.id
+            END
+        ) AS active_brands,
 
-    if ((int)$row['status'] === 1) {
-        $activeBrands++;
-    } else {
-        $inactiveBrands++;
-    }
+        COUNT(
+            DISTINCT CASE
+                WHEN b.status = 0
+                THEN b.id
+            END
+        ) AS inactive_brands,
 
-    $totalProducts += (int)$row['product_count'];
+        COUNT(p.id) AS total_products
+
+    FROM brands b
+
+    LEFT JOIN products p
+        ON p.brand_id = b.id
+";
+
+
+$statsStmt = $conn->prepare($statsSql);
+
+if (!$statsStmt) {
+    die("Statistics query failed: " . $conn->error);
 }
 
 
-$stmt->close();
+$statsStmt->execute();
+
+$statsResult = $statsStmt->get_result();
+
+$stats = $statsResult->fetch_assoc();
+
+
+$totalBrands =
+    (int) ($stats['total_brands'] ?? 0);
+
+$activeBrands =
+    (int) ($stats['active_brands'] ?? 0);
+
+$inactiveBrands =
+    (int) ($stats['inactive_brands'] ?? 0);
+
+$totalProducts =
+    (int) ($stats['total_products'] ?? 0);
+
+
+$statsStmt->close();
+
+
+/*
+|--------------------------------------------------------------------------
+| PAGINATION RANGE
+|--------------------------------------------------------------------------
+*/
+
+$startItem = 0;
+$endItem = 0;
+
+
+if ($totalMatchingBrands > 0) {
+
+    $startItem =
+        $offset + 1;
+
+    $endItem =
+        min(
+            $offset + $perPage,
+            $totalMatchingBrands
+        );
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| PAGE TITLE
+|--------------------------------------------------------------------------
+*/
+
+$pageTitle = "Brands | CORE LTD Admin";
 
 ?>
 
@@ -1228,6 +1477,99 @@ $stmt->close();
         }
 
     }
+
+    /* =====================================================
+   PAGINATION
+===================================================== */
+
+    .pagination-wrapper {
+        padding: 18px 22px;
+        border-top: 1px solid #edf1f5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .pagination-info {
+        color: #8493a3;
+        font-size: 11px;
+    }
+
+    .pagination-info strong {
+        color: #17365d;
+    }
+
+    .pagination {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .pagination a,
+    .pagination span {
+        min-width: 32px;
+        height: 32px;
+        padding: 0 9px;
+        border-radius: 7px;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        text-decoration: none;
+
+        font-size: 11px;
+        font-weight: 700;
+
+        border: 1px solid #e1e8ef;
+
+        background: #fff;
+        color: #526579;
+
+        transition: .2s;
+    }
+
+    .pagination a:hover {
+        background: #e8f2ff;
+        border-color: #0d6efd;
+        color: #0d6efd;
+    }
+
+    .pagination .active {
+        background: #0d6efd;
+        border-color: #0d6efd;
+        color: #fff;
+    }
+
+    .pagination .disabled {
+        opacity: .45;
+        cursor: not-allowed;
+    }
+
+    .pagination .dots {
+        border: none;
+        background: transparent;
+        min-width: 20px;
+    }
+
+    @media(max-width:650px) {
+
+        .pagination-wrapper {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .pagination {
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+    }
     </style>
 
 </head>
@@ -1329,42 +1671,9 @@ $stmt->close();
         </a>
 
 
-        <a href="customers.php">
-
-            <i class="fa-solid fa-users"></i>
-
-            <span>
-                Customers
-            </span>
-
-        </a>
 
 
-        <div class="nav-title">
-            Communication
-        </div>
 
-
-        <a href="inquiries.php">
-
-            <i class="fa-solid fa-envelope"></i>
-
-            <span>
-                Inquiries
-            </span>
-
-        </a>
-
-
-        <a href="reviews.php">
-
-            <i class="fa-solid fa-star"></i>
-
-            <span>
-                Reviews
-            </span>
-
-        </a>
 
 
         <div class="nav-title">
@@ -2026,15 +2335,202 @@ $stmt->close();
             </div>
 
 
-            <div class="table-footer">
+            <div class="pagination-wrapper">
 
-                Showing
+                <div class="pagination-info">
 
-                <strong>
-                    <?= count($brands) ?>
-                </strong>
+                    <?php if ($totalMatchingBrands > 0): ?>
 
-                brand(s).
+                    Showing
+                    <strong><?= $startItem; ?></strong>
+                    -
+                    <strong><?= $endItem; ?></strong>
+
+                    of
+
+                    <strong><?= $totalMatchingBrands; ?></strong>
+
+                    brand<?= $totalMatchingBrands === 1 ? '' : 's'; ?>
+
+                    <?php else: ?>
+
+                    No brands found.
+
+                    <?php endif; ?>
+
+                </div>
+
+
+                <?php if ($totalPages > 1): ?>
+
+                <ul class="pagination">
+
+                    <!-- PREVIOUS -->
+
+                    <?php if ($page > 1): ?>
+
+                    <li>
+                        <a href="?<?= http_build_query([
+                                                    'search' => $search,
+                                                    'page'   => $page - 1
+                                                ]); ?>">
+
+                            <i class="fa-solid fa-chevron-left"></i>
+
+                        </a>
+                    </li>
+
+                    <?php else: ?>
+
+                    <li>
+                        <span class="disabled">
+
+                            <i class="fa-solid fa-chevron-left"></i>
+
+                        </span>
+                    </li>
+
+                    <?php endif; ?>
+
+
+                    <?php
+
+                            /*
+            |--------------------------------------------------------------------------
+            | PAGE NUMBERS
+            |--------------------------------------------------------------------------
+            */
+
+                            $visiblePages = [];
+
+
+                            // Always show first page
+                            $visiblePages[] = 1;
+
+
+                            // Pages around current page
+                            for (
+                                $i = max(2, $page - 2);
+                                $i <= min($totalPages - 1, $page + 2);
+                                $i++
+                            ) {
+
+                                $visiblePages[] = $i;
+                            }
+
+
+                            // Always show last page
+                            if ($totalPages > 1) {
+
+                                $visiblePages[] = $totalPages;
+                            }
+
+
+                            $visiblePages = array_unique(
+                                $visiblePages
+                            );
+
+                            sort($visiblePages);
+
+
+                            $previousPage = 0;
+
+
+                            foreach ($visiblePages as $paginationPage):
+
+                                /*
+                |--------------------------------------------------------------------------
+                | DOTS
+                |--------------------------------------------------------------------------
+                */
+
+                                if (
+                                    $previousPage > 0 &&
+                                    $paginationPage > $previousPage + 1
+                                ):
+                            ?>
+
+                    <li>
+                        <span class="dots">
+                            ...
+                        </span>
+                    </li>
+
+                    <?php
+                                endif;
+                                ?>
+
+
+                    <!-- PAGE -->
+
+                    <li>
+
+                        <?php if ($paginationPage == $page): ?>
+
+                        <span class="active">
+
+                            <?= $paginationPage; ?>
+
+                        </span>
+
+                        <?php else: ?>
+
+                        <a href="?<?= http_build_query([
+                                                        'search' => $search,
+                                                        'page'   => $paginationPage
+                                                    ]); ?>">
+
+                            <?= $paginationPage; ?>
+
+                        </a>
+
+                        <?php endif; ?>
+
+                    </li>
+
+
+                    <?php
+
+                                $previousPage = $paginationPage;
+
+                            endforeach;
+                            ?>
+
+
+                    <!-- NEXT -->
+
+                    <?php if ($page < $totalPages): ?>
+
+                    <li>
+
+                        <a href="?<?= http_build_query([
+                                                    'search' => $search,
+                                                    'page'   => $page + 1
+                                                ]); ?>">
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </a>
+
+                    </li>
+
+                    <?php else: ?>
+
+                    <li>
+
+                        <span class="disabled">
+
+                            <i class="fa-solid fa-chevron-right"></i>
+
+                        </span>
+
+                    </li>
+
+                    <?php endif; ?>
+
+                </ul>
+
+                <?php endif; ?>
 
             </div>
 

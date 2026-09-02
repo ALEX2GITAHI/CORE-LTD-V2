@@ -1460,42 +1460,9 @@ $stmt->close();
         </a>
 
 
-        <a href="customers.php">
-
-            <i class="fa-solid fa-users"></i>
-
-            <span>
-                Customers
-            </span>
-
-        </a>
 
 
-        <div class="nav-title">
-            Communication
-        </div>
 
-
-        <a href="inquiries.php">
-
-            <i class="fa-solid fa-envelope"></i>
-
-            <span>
-                Inquiries
-            </span>
-
-        </a>
-
-
-        <a href="reviews.php">
-
-            <i class="fa-solid fa-star"></i>
-
-            <span>
-                Reviews
-            </span>
-
-        </a>
 
 
         <div class="nav-title">

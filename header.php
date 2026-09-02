@@ -1,10 +1,93 @@
 <?php
-
+/* CORE LTD - Database Driven Header */
 require_once __DIR__ . '/includes/cart-functions.php';
+
+/* Load the project database connection. */
+$dbFile = __DIR__ . '/includes/db.php';
+if (file_exists($dbFile)) {
+    require_once $dbFile;
+}
 
 $headerCartCount = getCartCount();
 $headerCartTotal = getCartTotal();
 
+/*
+|--------------------------------------------------------------------------
+| DATABASE CATALOGUE
+|--------------------------------------------------------------------------
+| categories: id, parent_id, name, slug, status, sort_order
+| products:   id, category_id, name, slug, price, old_price, main_image,
+|             featured, status
+|--------------------------------------------------------------------------
+*/
+$headerCategories = [];
+$headerProducts = [];
+
+if (isset($conn) && $conn instanceof mysqli) {
+    $categorySql = "SELECT id, parent_id, name, slug, status, sort_order
+                    FROM categories
+                    WHERE status = 1
+                    ORDER BY sort_order ASC, name ASC";
+    if ($result = $conn->query($categorySql)) {
+        while ($row = $result->fetch_assoc()) {
+            $headerCategories[] = $row;
+        }
+        $result->free();
+    }
+
+    $productSql = "SELECT id, category_id, name, slug, price, old_price, main_image
+                   FROM products
+                   WHERE status = 1
+                   ORDER BY name ASC";
+    if ($result = $conn->query($productSql)) {
+        while ($row = $result->fetch_assoc()) {
+            $headerProducts[] = $row;
+        }
+        $result->free();
+    }
+}
+
+/* Build a parent/child category tree. */
+$headerCategoryTree = [];
+foreach ($headerCategories as $category) {
+    $parentId = (int)($category['parent_id'] ?? 0);
+    $headerCategoryTree[$parentId][] = $category;
+}
+
+function renderHeaderCategories(array $tree, int $parentId = 0, int $level = 0): void
+{
+    if (empty($tree[$parentId])) {
+        return;
+    }
+
+    echo '<ul' . ($level === 0 ? ' class="header-db-category-list"' : '') . '>';
+
+    foreach ($tree[$parentId] as $category) {
+        $slug = rawurlencode($category['slug']);
+        $name = htmlspecialchars($category['name'], ENT_QUOTES, 'UTF-8');
+        $children = !empty($tree[(int)$category['id']]);
+        $class = $children ? ' class="header-db-has-children"' : '';
+
+        echo '<li' . $class . '>';
+        echo '<a href="category.php?slug=' . $slug . '">' . $name . '</a>';
+
+        if ($children) {
+            renderHeaderCategories($tree, (int)$category['id'], $level + 1);
+        }
+
+        echo '</li>';
+    }
+
+    echo '</ul>';
+}
+
+$headerSearchJson = [];
+foreach ($headerProducts as $product) {
+    $headerSearchJson[] = [
+        'name' => $product['name'],
+        'url' => 'product.php?slug=' . rawurlencode($product['slug'])
+    ];
+}
 ?>
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
@@ -25,7 +108,6 @@ $headerCartTotal = getCartTotal();
     <link rel="stylesheet" href="css/font-awesome.min.css" />
     <!-- Font Awesome Stars-->
     <link rel="stylesheet" href="css/fontawesome-stars.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <!-- Meanmenu CSS -->
     <link rel="stylesheet" href="css/meanmenu.css" />
     <!-- owl carousel CSS -->
@@ -48,10 +130,6 @@ $headerCartTotal = getCartTotal();
     <link rel="stylesheet" href="css/helper.css" />
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="css/responsive.css" />
     <!-- Modernizr js -->
@@ -89,19 +167,165 @@ $headerCartTotal = getCartTotal();
                     </div>
                     <!-- Header Logo Area End Here -->
                     <!-- Begin Header Middle Right Area -->
-                    <di class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
+                    <div class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
                         <!-- Begin Header Middle Searchbox Area -->
-                        <form action="#" class="hm-searchbox" onsubmit="return false;">
+                        <form action="#" class="hm-searchbox" id="header-search-form" onsubmit="return false;">
 
                             <input type="text" id="search-box" placeholder="Enter your search key ..."
                                 autocomplete="off" />
+
                             <button class="li-btn" type="submit">
                                 <i class="fa fa-search"></i>
                             </button>
+
                             <ul id="search-results"></ul>
+
                         </form>
 
-                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function() {
+
+                                const searchBox = document.getElementById("search-box");
+                                const searchResults = document.getElementById("search-results");
+                                const searchForm = document.getElementById("header-search-form");
+
+                                /* All products loaded from PHP */
+                                const allProducts = <?= json_encode(
+                                                        $headerSearchJson,
+                                                        JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+                                                    ) ?>;
+
+                                /*
+                                 * Display products
+                                 * If searchTerm is empty -> show ALL products
+                                 * If searchTerm has text -> filter products
+                                 */
+                                function displaySearchResults(searchTerm = "") {
+
+                                    const term = searchTerm.trim().toLowerCase();
+
+                                    let products = allProducts;
+
+                                    /* Filter when user types */
+                                    if (term !== "") {
+                                        products = allProducts.filter(function(product) {
+                                            return product.name.toLowerCase().includes(term);
+                                        });
+                                    }
+
+                                    /* Clear old results */
+                                    searchResults.innerHTML = "";
+
+                                    /* No results */
+                                    if (products.length === 0) {
+
+                                        const noResults = document.createElement("li");
+
+                                        noResults.className = "search-no-results";
+                                        noResults.textContent = "No products found.";
+
+                                        searchResults.appendChild(noResults);
+
+                                        searchResults.style.display = "block";
+
+                                        return;
+                                    }
+
+                                    /*
+                                     * Show count at the top
+                                     */
+                                    const count = document.createElement("li");
+
+                                    count.className = "search-count";
+
+                                    if (term === "") {
+                                        count.textContent = "All Products (" + products.length + ")";
+                                    } else {
+                                        count.textContent = products.length + " product(s) found";
+                                    }
+
+                                    searchResults.appendChild(count);
+
+                                    /*
+                                     * Show EVERY product
+                                     *
+                                     * IMPORTANT:
+                                     * There is NO array_slice()
+                                     * There is NO limit such as 10, 20 or 50.
+                                     */
+                                    products.forEach(function(product) {
+
+                                        const li = document.createElement("li");
+
+                                        const link = document.createElement("a");
+
+                                        link.href = product.url;
+                                        link.textContent = product.name;
+
+                                        li.appendChild(link);
+
+                                        searchResults.appendChild(li);
+                                    });
+
+                                    /* Show dropdown */
+                                    searchResults.style.display = "block";
+                                }
+
+
+                                /*
+                                 * When user clicks/focuses on search box,
+                                 * show ALL products.
+                                 */
+                                searchBox.addEventListener("focus", function() {
+                                    displaySearchResults(searchBox.value);
+                                });
+
+
+                                /*
+                                 * When user types,
+                                 * filter the complete product list.
+                                 */
+                                searchBox.addEventListener("input", function() {
+                                    displaySearchResults(searchBox.value);
+                                });
+
+
+                                /*
+                                 * Keep dropdown open when clicking inside it.
+                                 */
+                                searchResults.addEventListener("mousedown", function(event) {
+                                    event.preventDefault();
+                                });
+
+
+                                /*
+                                 * Hide results when clicking somewhere else.
+                                 */
+                                document.addEventListener("click", function(event) {
+
+                                    if (
+                                        !searchForm.contains(event.target)
+                                    ) {
+                                        searchResults.style.display = "none";
+                                    }
+
+                                });
+
+
+                                /*
+                                 * If user presses ESC, close the dropdown.
+                                 */
+                                searchBox.addEventListener("keydown", function(event) {
+
+                                    if (event.key === "Escape") {
+                                        searchResults.style.display = "none";
+                                        searchBox.blur();
+                                    }
+
+                                });
+
+                            });
+                        </script>
 
 
                         <!-- Header Middle Searchbox Area End Here -->
@@ -367,10 +591,10 @@ $headerCartTotal = getCartTotal();
                             </ul>
                         </div>
                         <!-- Header Middle Right Area End Here -->
+                    </div>
+                    <!-- Header Middle Right Area End Here -->
                 </div>
-                <!-- Header Middle Right Area End Here -->
             </div>
-        </div>
         </div>
         <!-- Header Middle Area End Here -->
         <!-- Begin Header Bottom Area -->
@@ -382,436 +606,521 @@ $headerCartTotal = getCartTotal();
                         <div class="hb-menu hb-menu-2 d-xl-block">
                             <nav>
                                 <ul>
-                                    <li class="">
-                                        <a href="index.php">Home</a>
-                                    </li>
-                                    <li class="megamenu-holder">
-                                        <a href="index.php">Shop</a>
-                                        <ul class="megamenu hb-megamenu">
-                                            <li>
-                                                <a href="index.php">Networking</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="routers.php">Routers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php">Switches</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="access-points.php">Access Points</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="miktrotik.php">Mikrotik</a>
-                                                    </li>
-                                                    <li><a href="index.php">Climbers</a></li>
-                                                    <li>
-                                                        <a href="index.php">Patch-Codes</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php">Safety Tools</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="index.php">Accessories</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="index.php">Mobile Accessories</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php">Computer
-                                                            Accessories</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php">CCTV Devices</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php">Tools</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php">Gaming</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="index.php">Stationery</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="index.php">Envelops</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php">Exercise Books</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php">Rim Papers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php">Sticker Papers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php">PVC Papers</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <!-- <li class=""><a href="blog-left-sidebar.html">Blog</a></li> -->
-                                    <li class="megamenu-static-holder">
-                                        <a href="index.php">Pages</a>
-                                        <ul class="megamenu hb-megamenu">
-                                            <li>
-                                                <a href="index.php">Networking</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="index.php">Mikrotik</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php">Access Points</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php">Routers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="cat6-cables.php">CAT-6 Cables</a>
-                                                    </li>
-                                                    <li><a href="index.php">Climbers</a></li>
-                                                    <li>
-                                                        <a href="index.php">Closures</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php">Switches</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li>
-                                                <a href="index.php">Stationaries</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="index.php">Mobile Accessories</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php">Computer Accessories
+                                    <li><a href="index.php">Home</a></li>
+                                    <li class="megamenu-holder core-shop-megamenu-holder">
+                                        <a href="products.php">Shop</a>
+
+                                        <ul class="megamenu hb-megamenu core-shop-megamenu">
+
+                                            <?php
+                                            /*
+        |--------------------------------------------------------------------------
+        | DATABASE DRIVEN SHOP MEGA MENU
+        |--------------------------------------------------------------------------
+        | Every active top-level category becomes a column.
+        | Every child category appears underneath it.
+        |--------------------------------------------------------------------------
+        */
+
+                                            if (!empty($headerCategoryTree[0])):
+
+                                                foreach ($headerCategoryTree[0] as $topCategory):
+
+                                                    $topId = (int)$topCategory['id'];
+                                                    $topName = htmlspecialchars(
+                                                        $topCategory['name'],
+                                                        ENT_QUOTES,
+                                                        'UTF-8'
+                                                    );
+
+                                                    $topSlug = rawurlencode($topCategory['slug']);
+
+                                                    /*
+                |--------------------------------------------------------------------------
+                | TOP CATEGORY COLUMN
+                |--------------------------------------------------------------------------
+                */
+                                            ?>
+
+                                                    <li class="core-shop-column">
+
+                                                        <a href="category.php?slug=<?= $topSlug ?>"
+                                                            class="core-shop-main-category">
+                                                            <?= $topName ?>
                                                         </a>
+
+                                                        <?php if (!empty($headerCategoryTree[$topId])): ?>
+
+                                                            <ul class="core-shop-subcategories">
+
+                                                                <?php
+                                                                foreach ($headerCategoryTree[$topId] as $childCategory):
+
+                                                                    $childId = (int)$childCategory['id'];
+
+                                                                    $childName = htmlspecialchars(
+                                                                        $childCategory['name'],
+                                                                        ENT_QUOTES,
+                                                                        'UTF-8'
+                                                                    );
+
+                                                                    $childSlug = rawurlencode(
+                                                                        $childCategory['slug']
+                                                                    );
+                                                                ?>
+
+                                                                    <li>
+
+                                                                        <a href="category.php?slug=<?= $childSlug ?>">
+                                                                            <?= $childName ?>
+                                                                        </a>
+
+                                                                        <?php
+                                                                        /*
+                                    |--------------------------------------------------------------------------
+                                    | THIRD LEVEL CATEGORIES
+                                    |--------------------------------------------------------------------------
+                                    */
+
+                                                                        if (!empty($headerCategoryTree[$childId])):
+                                                                        ?>
+
+                                                                            <ul class="core-shop-third-level">
+
+                                                                                <?php
+                                                                                foreach (
+                                                                                    $headerCategoryTree[$childId]
+                                                                                    as $grandChildCategory
+                                                                                ):
+
+                                                                                    $grandChildName =
+                                                                                        htmlspecialchars(
+                                                                                            $grandChildCategory['name'],
+                                                                                            ENT_QUOTES,
+                                                                                            'UTF-8'
+                                                                                        );
+
+                                                                                    $grandChildSlug =
+                                                                                        rawurlencode(
+                                                                                            $grandChildCategory['slug']
+                                                                                        );
+                                                                                ?>
+
+                                                                                    <li>
+                                                                                        <a href="category.php?slug=<?= $grandChildSlug ?>">
+                                                                                            <?= $grandChildName ?>
+                                                                                        </a>
+                                                                                    </li>
+
+                                                                                <?php endforeach; ?>
+
+                                                                            </ul>
+
+                                                                        <?php endif; ?>
+
+                                                                    </li>
+
+                                                                <?php endforeach; ?>
+
+                                                            </ul>
+
+                                                        <?php endif; ?>
+
                                                     </li>
-                                                    <li>
-                                                        <a href="index.php">Rim Papers</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php">Envelops</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="index.php">Gaming</a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <!-- <li>
-                                                <a href="index.php">Account</a>
-                                                <ul>
-                                                    <li>
-                                                        <a href="login-register.html">My Account</a>
-                                                    </li>
-                                                    <li><a href="checkout.html">Blog</a></li>
-                                                    <li><a href="checkout.php">Checkout</a></li>
-                                                    <li><a href="#">Wishlist</a></li>
-                                                    <li>
-                                                        <a href="shopping-cart.html">Shopping Cart</a>
-                                                    </li>
-                                                </ul>
-                                            </li> -->
-                                            <li>
-                                                <a href="index.php">Profile</a>
-                                                <ul>
-                                                    <li><a href="contact.php">Contact</a></li>
-                                                    <!--/<li><a href="about-us.php">About Us</a></li>-->
-                                                    <li><a href="cart.php">Shopping Cart</a></li>
-                                                    <li><a href="faq.php">FAQ</a></li>
-                                                </ul>
-                                            </li>
+
+                                                <?php endforeach; ?>
+
+                                            <?php else: ?>
+
+                                                <li class="core-shop-column">
+                                                    <a href="products.php">
+                                                        All Products
+                                                    </a>
+                                                </li>
+
+                                            <?php endif; ?>
+
                                         </ul>
+                                        <style>
+                                            /* =========================================================
+   CORE LTD SHOP MEGA MENU
+   ========================================================= */
+
+                                            .core-shop-megamenu-holder {
+                                                position: relative;
+                                            }
+
+
+                                            /* Main Mega Menu */
+
+                                            .core-shop-megamenu {
+                                                width: 100%;
+                                                min-width: 950px;
+                                                max-width: 1250px;
+
+                                                padding: 30px 25px !important;
+
+                                                display: grid !important;
+
+                                                grid-template-columns: repeat(4, minmax(180px, 1fr));
+
+                                                gap: 30px;
+
+                                                background: #ffffff;
+
+                                                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+
+                                                border-top: 3px solid #5ccdf0;
+
+                                                z-index: 9999;
+                                            }
+
+
+                                            /* Each Category Column */
+
+                                            .core-shop-column {
+                                                display: block !important;
+
+                                                width: auto !important;
+
+                                                padding: 0 !important;
+
+                                                margin: 0 !important;
+
+                                                position: relative;
+                                            }
+
+
+                                            /* Main Category */
+
+                                            .core-shop-main-category {
+                                                display: block !important;
+
+                                                padding: 0 0 12px 0 !important;
+
+                                                margin-bottom: 10px;
+
+                                                font-size: 16px !important;
+
+                                                font-weight: 700 !important;
+
+                                                color: #222 !important;
+
+                                                text-transform: uppercase;
+
+                                                border-bottom: 2px solid #eeeeee;
+
+                                                white-space: normal !important;
+                                            }
+
+
+                                            /* Main Category Hover */
+
+                                            .core-shop-main-category:hover {
+                                                color: #5ccdf0 !important;
+                                            }
+
+
+                                            /* Subcategories */
+
+                                            .core-shop-subcategories {
+                                                display: block !important;
+
+                                                position: static !important;
+
+                                                width: auto !important;
+
+                                                min-width: 0 !important;
+
+                                                padding: 0 !important;
+
+                                                margin: 0 !important;
+
+                                                background: transparent !important;
+
+                                                box-shadow: none !important;
+
+                                                border: none !important;
+                                            }
+
+
+                                            /* Individual Subcategory */
+
+                                            .core-shop-subcategories>li {
+                                                display: block !important;
+
+                                                width: 100% !important;
+
+                                                padding: 0 !important;
+
+                                                margin: 0 !important;
+
+                                                position: relative;
+                                            }
+
+
+                                            /* Subcategory Links */
+
+                                            .core-shop-subcategories>li>a {
+                                                display: block !important;
+
+                                                padding: 5px 0 !important;
+
+                                                font-size: 14px !important;
+
+                                                font-weight: 400 !important;
+
+                                                color: #555 !important;
+
+                                                text-transform: none !important;
+
+                                                white-space: normal !important;
+
+                                                transition: all 0.2s ease;
+                                            }
+
+
+                                            /* Subcategory Hover */
+
+                                            .core-shop-subcategories>li>a:hover {
+                                                color: #5ccdf0 !important;
+
+                                                padding-left: 6px !important;
+                                            }
+
+
+                                            /* =========================================================
+   THIRD LEVEL CATEGORY
+   ========================================================= */
+
+                                            .core-shop-third-level {
+                                                display: block !important;
+
+                                                position: static !important;
+
+                                                width: auto !important;
+
+                                                padding: 0 0 0 12px !important;
+
+                                                margin: 0 !important;
+
+                                                background: transparent !important;
+
+                                                box-shadow: none !important;
+
+                                                border: none !important;
+                                            }
+
+
+                                            .core-shop-third-level li {
+                                                display: block !important;
+
+                                                width: 100% !important;
+
+                                                padding: 0 !important;
+
+                                                margin: 0 !important;
+                                            }
+
+
+                                            .core-shop-third-level li a {
+                                                display: block !important;
+
+                                                padding: 4px 0 !important;
+
+                                                font-size: 13px !important;
+
+                                                color: #777 !important;
+
+                                                white-space: normal !important;
+                                            }
+
+
+                                            .core-shop-third-level li a:hover {
+                                                color: #5ccdf0 !important;
+
+                                                padding-left: 5px !important;
+                                            }
+
+
+                                            /* =========================================================
+   SHOP MENU HOVER
+   ========================================================= */
+
+                                            .core-shop-megamenu-holder:hover .core-shop-megamenu {
+                                                visibility: visible;
+
+                                                opacity: 1;
+
+                                                transform: translateY(0);
+                                            }
+
+
+                                            /* =========================================================
+   LARGE SCREEN
+   ========================================================= */
+
+                                            @media (min-width: 1200px) {
+
+                                                .core-shop-megamenu {
+                                                    grid-template-columns: repeat(4, minmax(190px, 1fr));
+
+                                                    min-width: 1050px;
+                                                }
+
+                                            }
+
+
+                                            /* =========================================================
+   MEDIUM SCREEN
+   ========================================================= */
+
+                                            @media (min-width: 992px) and (max-width: 1199px) {
+
+                                                .core-shop-megamenu {
+                                                    grid-template-columns: repeat(3, minmax(180px, 1fr));
+
+                                                    min-width: 850px;
+
+                                                    gap: 20px;
+
+                                                    padding: 25px 20px !important;
+                                                }
+
+                                            }
+
+
+                                            /* =========================================================
+   MOBILE
+   ========================================================= */
+
+                                            @media (max-width: 991px) {
+
+                                                .core-shop-megamenu {
+                                                    display: block !important;
+
+                                                    width: 100% !important;
+
+                                                    min-width: 0 !important;
+
+                                                    max-width: none !important;
+
+                                                    padding: 10px !important;
+                                                }
+
+
+                                                .core-shop-column {
+                                                    margin-bottom: 20px !important;
+                                                }
+
+
+                                                .core-shop-main-category {
+                                                    font-size: 15px !important;
+                                                }
+
+                                            }
+                                        </style>
                                     </li>
-                                    <!--<li><a href="about-us.php">About Us</a></li>-->
+                                    <li><a href="about.php">About Us</a></li>
+                                    <li><a href="services.php">Service </a></li>
                                     <li><a href="contact.php">Contact</a></li>
-                                    <!-- Begin Header Bottom Menu Information Area -->
-                                    <!-- Header Bottom Menu Information Area End Here -->
+                                    <li><a href="events.php">Events</a></li>
                                 </ul>
                             </nav>
                         </div>
-                        <!-- Header Bottom Menu Area End Here -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Header Bottom Area End Here -->
-        <!-- Begin Mobile Menu Area -->
-        <div class="mobile-menu-area d-lg-none d-xl-none col-12">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="mobile-menu"></div>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu Area End Here -->
+                        <!-- Header Bottom Area End Here -->
+                        <!-- Begin Mobile Menu Area -->
+                        <div class="mobile-menu-area d-lg-none d-xl-none col-12">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="mobile-menu"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu Area End Here -->
     </header>
     <!-- Header Area End Here -->
     <!-- Begin Slider With Category Menu Area -->
     <script>
         $(document).ready(function() {
-            let items = [{
-                    name: "Routers",
-                    url: "routers.php"
-                },
-                {
-                    name: "Easenet Cat 6 Indoor Cable",
-                    url: "easenet.php"
-                },
-                {
-                    name: "RDCOM Cat 6 Indoor Cable",
-                    url: "rdcom.php"
-                },
-                {
-                    name: "Splicing Machine",
-                    url: "Optical-Fusion-splicer.php"
-                },
-                {
-                    name: "CP Cat 6 Indoor Cable",
-                    url: "cp-cable.php"
-                },
-                {
-                    name: "RDCOM Cat 6 Outdoor Cable",
-                    url: "rdcom-oudoor.php"
-                },
-                {
-                    name: "TP-Link EAP-255 outdoor",
-                    url: "tp-link-eap255-outdoor.php"
-                },
-                {
-                    name: "SHK Cat 6 Indoor Cable",
-                    url: "shk-cable.php"
-                },
-                {
-                    name: "Gigalan Cat 6 Indoor Cable",
-                    url: "gigalan-cable.php"
-                },
-                {
-                    name: "Tenda OAP-1200",
-                    url: "tenda-oap1200.php"
-                },
-                {
-                    name: "Scoop Cat 6 Indoor Cable",
-                    url: "scoop-cable.php"
-                },
-                {
-                    name: "Drop Cable 1KM",
-                    url: "drop-cable-1km.php"
-                },
-                {
-                    name: "Drop Cable 1KM (4 Core)",
-                    url: "drop-cable-1km-4core.php"
-                },
-                {
-                    name: "Drop Cable 1KM (8 Core)",
-                    url: "drop-cable-1km-8core.php"
-                },
-                {
-                    name: "ADSS 12-CORE",
-                    url: "adss-12-core.php"
-                },
-                {
-                    name: "ADSS 24-CORE",
-                    url: "adss-24-core.php"
-                },
-                {
-                    name: "Drop Cable 2KM (Indoor)",
-                    url: "drop-cable-2km-indoor.php"
-                },
-                {
-                    name: "Starlink Gen 3 (Standard Kit)",
-                    url: "startlink-gen-3.php"
-                },
-                {
-                    name: "Drop Cable 2KM",
-                    url: "drop-cable-2km.php"
-                },
+            const items =
+                <?php echo json_encode($headerSearchJson, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>;
+            const $searchBox = $('#search-box');
+            const $results = $('#search-results');
 
-                {
-                    name: "Drop Cable 2KM (4 Core)",
-                    url: "drop-cable-2km-4core.php"
-                },
-                {
-                    name: "Drop Cable 2KM (8 Core)",
-                    url: "drop-cable-2km-8core.php"
-                },
-                {
-                    name: "Tenda-F3",
-                    url: "tenda-f3.php"
-                },
-                {
-                    name: "Tenda-F6",
-                    url: "tenda-f6.php"
-                },
-                {
-                    name: "Ruijie RG-EW300N Router",
-                    url: "ruijie-router.php"
-                },
-                {
-                    name: "Ruijie RAP62-OD AX3000",
-                    url: "ruijie-rap-62od.php"
-                },
-                {
-                    name: "Tenda-AC5",
-                    url: "tenda-ac5.php"
-                },
-                {
-                    name: "Tenda-AC8",
-                    url: "tenda-ac8.php"
-                },
-                {
-                    name: "LiteBeam M5",
-                    url: "lite-beam-m5.php"
-                },
-                {
-                    name: "Ruijie-RAP6262(G)",
-                    url: "ruijie-6262g.php"
-                },
-                {
-                    name: "Power Beam",
-                    url: "power-beam.php"
-                },
-                {
-                    name: "Tenda-AC10",
-                    url: "tenda-ac10.php"
-                },
-                {
-                    name: "Access Points",
-                    url: "access-points.php"
-                },
-                {
-                    name: "Tenda-4G Lite",
-                    url: "tenda-4g.php"
-                },
-                {
-                    name: "D-Link Router",
-                    url: "d-link.php"
-                },
-                {
-                    name: "Tp-Link 844N",
-                    url: "tp-link-844.php"
-                },
-                {
-                    name: "Tp-Link 840N",
-                    url: "tp-link-840.php"
-                },
-                {
-                    name: "Huawei-Gpon",
-                    url: "huawei-expon.php"
-                },
-                {
-                    name: "Huawei EPon",
-                    url: "huawei-expon.php"
-                },
-
-                {
-                    name: "TP-Link EAP225-Indoor",
-                    url: "tp-link-eap255-indoor.php"
-                },
-                {
-                    name: "Mikrotik RB951",
-                    url: "rb951.php"
-                },
-                {
-                    name: "TP-Link EAP110-Indoor",
-                    url: "tp-link-eap110-indoor.php"
-                },
-                {
-                    name: "Mikrotik RB941-Hap-Lite",
-                    url: "rb941.php"
-                },
-                {
-                    name: "TP-Link EAP110-Outdoor",
-                    url: "tp-link-eap110-0utdoor.php"
-                },
-                {
-                    name: "Mikrotik RB760-IGS",
-                    url: "rb760-igs.php"
-                },
-                {
-                    name: "Mikrotik RB4011",
-                    url: "rb4011.php"
-                },
-                {
-                    name: "Crimping Tools",
-                    url: "crimping-tools.php"
-                },
-                {
-                    name: "Jakemy Crimping Tool",
-                    url: "jakemy-crimping-tool.php"
-                },
-                {
-                    name: "Dual-Modular Crimping Tool",
-                    url: "dual-modular-crimping-tool.php"
-                },
-                {
-                    name: "Mikrotik RB260GS",
-                    url: "rbs60gs.php"
-                },
-                {
-                    name: "Mikrotik SXTSQ Series",
-                    url: "ssxtsq-series.php"
-                },
-                {
-                    name: "Mikrotiks",
-                    url: "mikrotik.php"
-                },
-                {
-                    name: "Mikrotik L009",
-                    url: "mikrotik-l009.php"
-                }
-            ];
-
-            function showResults(query = "") {
-                let resultsContainer = $("#search-results");
-                resultsContainer.empty();
-
-                // Always sort alphabetically before displaying
-                let sortedItems = [...items].sort((a, b) => a.name.localeCompare(b.name));
-                let filteredItems = sortedItems.filter(item => item.name.toLowerCase().includes(query));
-
-                if (filteredItems.length > 0) {
-                    filteredItems.forEach(item => {
-                        resultsContainer.append(
-                            `<li class="search-item" data-url="${item.url}">${item.name}</li>`);
-                    });
-                    resultsContainer.show();
-                } else {
-                    resultsContainer.hide();
-                }
+            function escapeHtml(value) {
+                return $('<div>').text(value || '').html();
             }
 
-            // Show all items in alphabetical order when clicking inside search box
-            $("#search-box").on("focus", function() {
-                showResults();
+            function showResults(query = '') {
+                const cleanQuery = query.trim().toLowerCase();
+                const filtered = items
+                    .filter(item => item.name.toLowerCase().includes(cleanQuery))
+                    .slice(0, 15);
+
+                $results.empty();
+
+                if (!filtered.length) {
+                    $results.hide();
+                    return;
+                }
+
+                filtered.forEach(item => {
+                    $results.append(
+                        `<li class="search-item" data-url="${escapeHtml(item.url)}">${escapeHtml(item.name)}</li>`
+                    );
+                });
+
+                $results.show();
+            }
+
+            $searchBox.on('focus input', function() {
+                showResults($(this).val());
             });
 
-            // Filter results while typing, still in alphabetical order
-            $("#search-box").on("input", function() {
-                let query = $(this).val().toLowerCase();
-                showResults(query);
+            $(document).on('click', '.search-item', function(e) {
+                e.preventDefault();
+                window.location.href = $(this).data('url');
             });
 
-            // Navigate when clicking a search result
-            $(document).on("click", ".search-item", function() {
-                window.location.href = $(this).data("url");
-            });
-
-            // Hide search results when clicking outside
-            $(document).click(function(event) {
-                if (!$(event.target).closest("#search-box, #search-results").length) {
-                    $("#search-results").hide();
+            $(document).on('click', function(event) {
+                if (!$(event.target).closest('#search-box, #search-results').length) {
+                    $results.hide();
                 }
             });
         });
     </script>
     <style>
+        .header-db-shop-menu {
+            min-width: 100%;
+        }
+
+        .header-db-shop-menu>li>a {
+            font-weight: 600;
+        }
+
+        .header-db-shop-menu li a {
+            white-space: nowrap;
+        }
+
+        .header-db-shop-menu ul {
+            margin-top: 5px;
+        }
+
+        .header-db-shop-menu li ul li a {
+            display: block;
+        }
+
+        .header-db-category-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header-db-category-list li {
+            position: relative;
+        }
+
         .hm-searchbox {
             position: relative;
             width: 60%;
@@ -844,6 +1153,113 @@ $headerCartTotal = getCartTotal();
             background: #5ccdf0;
             color: white;
         }
+
+        /* =========================================================
+   CORE LTD HEADER SEARCH
+   ========================================================= */
+
+        .hm-searchbox {
+            position: relative;
+        }
+
+        #search-results {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+
+            margin: 0;
+            padding: 0;
+
+            background: #fff;
+            border: 1px solid #e5e5e5;
+
+            max-height: 420px;
+            overflow-y: auto;
+            overflow-x: hidden;
+
+            z-index: 99999;
+
+            list-style: none;
+
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Each product */
+        #search-results li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        /* Product link */
+        #search-results li a {
+            display: block;
+
+            padding: 12px 16px;
+
+            color: #333;
+            background: #fff;
+
+            font-size: 14px;
+            line-height: 1.4;
+
+            text-decoration: none;
+
+            transition: background 0.2s ease;
+        }
+
+        /* Hover */
+        #search-results li a:hover {
+            background: #f5f5f5;
+            color: #007bff;
+        }
+
+        /* Scrollbar */
+        #search-results::-webkit-scrollbar {
+            width: 7px;
+        }
+
+        #search-results::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        #search-results::-webkit-scrollbar-thumb {
+            background: #bbb;
+            border-radius: 10px;
+        }
+
+        #search-results::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+
+        /* Firefox */
+        #search-results {
+            scrollbar-width: thin;
+        }
+
+        /* No results */
+        #search-results li.search-no-results {
+            padding: 14px 16px;
+            color: #777;
+            font-size: 14px;
+            background: #fff;
+        }
+
+        /* Number of results */
+        #search-results li.search-count {
+            padding: 9px 16px;
+            background: #f8f8f8;
+            color: #888;
+            font-size: 12px;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+    </style>
     </style>
     <script>
         (function() {

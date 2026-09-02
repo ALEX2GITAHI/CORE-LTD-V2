@@ -272,667 +272,667 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     <style>
-    * {
-        box-sizing: border-box;
-    }
-
-
-    body {
-
-        margin: 0;
-
-        font-family:
-            "Segoe UI",
-            Arial,
-            sans-serif;
-
-        background: #f4f7fb;
-
-        color: #26364a;
-    }
-
-
-    /* =====================================================
-           SIDEBAR
-        ===================================================== */
-
-    .sidebar {
-
-        position: fixed;
-
-        top: 0;
-        left: 0;
-
-        width: 245px;
-
-        height: 100vh;
-
-        background:
-            linear-gradient(180deg,
-                #073b75 0%,
-                #0b5cad 55%,
-                #0878d1 100%);
-
-        color: white;
-
-        padding: 25px 15px;
-
-        box-shadow:
-            4px 0 18px rgba(0, 61, 120, .12);
-
-        z-index: 1000;
-    }
-
-
-    .brand {
-
-        text-align: center;
-
-        padding:
-            5px 10px 25px;
-
-        border-bottom:
-            1px solid rgba(255, 255, 255, .15);
-
-        margin-bottom: 20px;
-    }
-
-
-    .brand-icon {
-
-        width: 55px;
-        height: 55px;
-
-        margin:
-            0 auto 10px;
-
-        border-radius: 15px;
-
-        background:
-            rgba(255, 255, 255, .15);
-
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-
-        font-size: 25px;
-    }
-
-
-    .brand h2 {
-
-        font-size: 20px;
-
-        font-weight: 800;
-
-        margin: 0;
-    }
-
-
-    .brand span {
-
-        display: block;
-
-        margin-top: 4px;
-
-        font-size: 11px;
-
-        opacity: .75;
-
-        letter-spacing: 1px;
-    }
-
-
-    .nav-title {
-
-        font-size: 10px;
-
-        text-transform: uppercase;
-
-        letter-spacing: 1.5px;
-
-        opacity: .6;
-
-        margin:
-            20px 10px 8px;
-    }
-
-
-    .sidebar a {
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 12px;
-
-        color:
-            rgba(255, 255, 255, .85);
-
-        text-decoration: none;
-
-        padding:
-            11px 13px;
-
-        border-radius: 9px;
-
-        margin-bottom: 5px;
-
-        font-size: 14px;
-
-        transition: .2s;
-    }
-
-
-    .sidebar a i {
-
-        width: 20px;
-
-        text-align: center;
-    }
-
-
-    .sidebar a:hover {
-
-        background:
-            rgba(255, 255, 255, .12);
-
-        color: white;
-    }
-
-
-    .sidebar a.active {
-
-        background: white;
-
-        color: #07549a;
-
-        font-weight: 700;
-    }
-
-
-    /* =====================================================
-           MAIN
-        ===================================================== */
-
-    .main {
-
-        margin-left: 245px;
-
-        min-height: 100vh;
-
-        padding: 28px;
-    }
-
-
-    /* =====================================================
-           TOPBAR
-        ===================================================== */
-
-    .topbar {
-
-        background: white;
-
-        border-radius: 14px;
-
-        padding:
-            18px 22px;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: space-between;
-
-        margin-bottom: 25px;
-
-        box-shadow:
-            0 5px 25px rgba(25, 65, 100, .06);
-    }
-
-
-    .page-title {
-
-        margin: 0;
-
-        font-size: 25px;
-
-        font-weight: 800;
-
-        color: #17365d;
-    }
-
-
-    .page-subtitle {
-
-        margin:
-            4px 0 0;
-
-        color: #7a8998;
-
-        font-size: 13px;
-    }
-
-
-    /* =====================================================
-           FORM CARD
-        ===================================================== */
-
-    .form-card {
-
-        max-width: 760px;
-
-        margin:
-            30px auto;
-
-        background: white;
-
-        border-radius: 17px;
-
-        box-shadow:
-            0 8px 30px rgba(25, 65, 100, .07);
-
-        overflow: hidden;
-    }
-
-
-    .form-header {
-
-        padding:
-            22px 25px;
-
-        border-bottom:
-            1px solid #edf1f5;
-
-        background:
-            linear-gradient(135deg,
-                #f8fbff,
-                #ffffff);
-    }
-
-
-    .form-header h2 {
-
-        margin: 0;
-
-        font-size: 18px;
-
-        color: #17365d;
-
-        font-weight: 800;
-    }
-
-
-    .form-header p {
-
-        margin:
-            5px 0 0;
-
-        font-size: 12px;
-
-        color: #8493a3;
-    }
-
-
-    .form-body {
-
-        padding: 28px 25px;
-    }
-
-
-    .form-group {
-
-        margin-bottom: 22px;
-    }
-
-
-    .form-label {
-
-        display: block;
-
-        margin-bottom: 8px;
-
-        font-size: 12px;
-
-        color: #344f6c;
-
-        font-weight: 750;
-    }
-
-
-    .required {
-
-        color: #dc3545;
-    }
-
-
-    .form-control-custom {
-
-        width: 100%;
-
-        border:
-            1px solid #dbe4ed;
-
-        border-radius: 9px;
-
-        padding:
-            12px 13px;
-
-        outline: none;
-
-        font-size: 13px;
-
-        color: #26364a;
-
-        transition: .2s;
-
-        background: #fff;
-    }
-
-
-    .form-control-custom:focus {
-
-        border-color: #0d6efd;
-
-        box-shadow:
-            0 0 0 3px rgba(13, 110, 253, .08);
-    }
-
-
-    .slug-preview {
-
-        margin-top: 8px;
-
-        padding:
-            9px 11px;
-
-        border-radius: 7px;
-
-        background: #f5f8fb;
-
-        border:
-            1px solid #e5ebf1;
-
-        font-family:
-            Consolas,
-            monospace;
-
-        font-size: 11px;
-
-        color: #6f8194;
-    }
-
-
-    .slug-preview strong {
-
-        color: #0d6efd;
-    }
-
-
-    .tag-meta {
-
-        display: flex;
-
-        flex-wrap: wrap;
-
-        gap: 8px;
-
-        margin-top: 12px;
-    }
-
-
-    .meta-badge {
-
-        display: inline-flex;
-
-        align-items: center;
-
-        gap: 6px;
-
-        background: #edf5ff;
-
-        color: #28669e;
-
-        border-radius: 20px;
-
-        padding:
-            6px 10px;
-
-        font-size: 10px;
-
-        font-weight: 650;
-    }
-
-
-    .info-box {
-
-        background: #edf6ff;
-
-        border:
-            1px solid #d5e9ff;
-
-        border-radius: 9px;
-
-        padding:
-            13px 15px;
-
-        color: #28669e;
-
-        font-size: 11px;
-
-        line-height: 1.6;
-
-        margin-bottom: 25px;
-    }
-
-
-    .info-box i {
-
-        margin-right: 6px;
-    }
-
-
-    /* =====================================================
-           BUTTONS
-        ===================================================== */
-
-    .form-actions {
-
-        display: flex;
-
-        justify-content: flex-end;
-
-        gap: 10px;
-
-        padding-top: 8px;
-    }
-
-
-    .btn-custom {
-
-        display: inline-flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        gap: 7px;
-
-        border: none;
-
-        border-radius: 8px;
-
-        padding:
-            11px 17px;
-
-        font-size: 12px;
-
-        font-weight: 700;
-
-        text-decoration: none;
-
-        cursor: pointer;
-
-        transition: .2s;
-    }
-
-
-    .btn-cancel {
-
-        background: #eef2f6;
-
-        color: #52677d;
-    }
-
-
-    .btn-cancel:hover {
-
-        background: #e2e7ec;
-
-        color: #40566c;
-    }
-
-
-    .btn-save {
-
-        background:
-            linear-gradient(135deg,
-                #0d6efd,
-                #0754b8);
-
-        color: white;
-
-        box-shadow:
-            0 4px 12px rgba(13, 110, 253, .18);
-    }
-
-
-    .btn-save:hover {
-
-        color: white;
-
-        transform:
-            translateY(-1px);
-
-        box-shadow:
-            0 6px 16px rgba(13, 110, 253, .25);
-    }
-
-
-    /* =====================================================
-           ERROR
-        ===================================================== */
-
-    .error-box {
-
-        background: #fff0f1;
-
-        border:
-            1px solid #ffd2d7;
-
-        color: #b42332;
-
-        border-radius: 9px;
-
-        padding:
-            12px 14px;
-
-        font-size: 12px;
-
-        margin-bottom: 20px;
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 9px;
-    }
-
-
-    /* =====================================================
-           RESPONSIVE
-        ===================================================== */
-
-    @media(max-width:900px) {
-
-        .sidebar {
-
-            width: 70px;
-
-            padding:
-                20px 8px;
+        * {
+            box-sizing: border-box;
         }
 
 
-        .brand h2,
-        .brand span,
-        .sidebar a span,
-        .nav-title {
+        body {
 
-            display: none;
+            margin: 0;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            background: #f4f7fb;
+
+            color: #26364a;
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            width: 245px;
+
+            height: 100vh;
+
+            background:
+                linear-gradient(180deg,
+                    #073b75 0%,
+                    #0b5cad 55%,
+                    #0878d1 100%);
+
+            color: white;
+
+            padding: 25px 15px;
+
+            box-shadow:
+                4px 0 18px rgba(0, 61, 120, .12);
+
+            z-index: 1000;
         }
 
 
         .brand {
 
-            border: none;
+            text-align: center;
+
+            padding:
+                5px 10px 25px;
+
+            border-bottom:
+                1px solid rgba(255, 255, 255, .15);
+
+            margin-bottom: 20px;
+        }
+
+
+        .brand-icon {
+
+            width: 55px;
+            height: 55px;
+
+            margin:
+                0 auto 10px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(255, 255, 255, .15);
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+        }
+
+
+        .brand h2 {
+
+            font-size: 20px;
+
+            font-weight: 800;
+
+            margin: 0;
+        }
+
+
+        .brand span {
+
+            display: block;
+
+            margin-top: 4px;
+
+            font-size: 11px;
+
+            opacity: .75;
+
+            letter-spacing: 1px;
+        }
+
+
+        .nav-title {
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            opacity: .6;
+
+            margin:
+                20px 10px 8px;
         }
 
 
         .sidebar a {
 
-            justify-content: center;
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            color:
+                rgba(255, 255, 255, .85);
+
+            text-decoration: none;
+
+            padding:
+                11px 13px;
+
+            border-radius: 9px;
+
+            margin-bottom: 5px;
+
+            font-size: 14px;
+
+            transition: .2s;
         }
 
 
         .sidebar a i {
 
-            width: auto;
+            width: 20px;
+
+            text-align: center;
         }
 
+
+        .sidebar a:hover {
+
+            background:
+                rgba(255, 255, 255, .12);
+
+            color: white;
+        }
+
+
+        .sidebar a.active {
+
+            background: white;
+
+            color: #07549a;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
 
         .main {
 
-            margin-left: 70px;
+            margin-left: 245px;
 
-            padding: 18px;
+            min-height: 100vh;
+
+            padding: 28px;
         }
 
-    }
 
-
-    @media(max-width:600px) {
+        /* =====================================================
+           TOPBAR
+        ===================================================== */
 
         .topbar {
 
-            flex-direction: column;
+            background: white;
 
-            align-items: flex-start;
+            border-radius: 14px;
 
-            gap: 10px;
+            padding:
+                18px 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 5px 25px rgba(25, 65, 100, .06);
+        }
+
+
+        .page-title {
+
+            margin: 0;
+
+            font-size: 25px;
+
+            font-weight: 800;
+
+            color: #17365d;
+        }
+
+
+        .page-subtitle {
+
+            margin:
+                4px 0 0;
+
+            color: #7a8998;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+           FORM CARD
+        ===================================================== */
+
+        .form-card {
+
+            max-width: 760px;
+
+            margin:
+                30px auto;
+
+            background: white;
+
+            border-radius: 17px;
+
+            box-shadow:
+                0 8px 30px rgba(25, 65, 100, .07);
+
+            overflow: hidden;
+        }
+
+
+        .form-header {
+
+            padding:
+                22px 25px;
+
+            border-bottom:
+                1px solid #edf1f5;
+
+            background:
+                linear-gradient(135deg,
+                    #f8fbff,
+                    #ffffff);
+        }
+
+
+        .form-header h2 {
+
+            margin: 0;
+
+            font-size: 18px;
+
+            color: #17365d;
+
+            font-weight: 800;
+        }
+
+
+        .form-header p {
+
+            margin:
+                5px 0 0;
+
+            font-size: 12px;
+
+            color: #8493a3;
         }
 
 
         .form-body {
 
-            padding:
-                22px 18px;
+            padding: 28px 25px;
         }
 
 
+        .form-group {
+
+            margin-bottom: 22px;
+        }
+
+
+        .form-label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 12px;
+
+            color: #344f6c;
+
+            font-weight: 750;
+        }
+
+
+        .required {
+
+            color: #dc3545;
+        }
+
+
+        .form-control-custom {
+
+            width: 100%;
+
+            border:
+                1px solid #dbe4ed;
+
+            border-radius: 9px;
+
+            padding:
+                12px 13px;
+
+            outline: none;
+
+            font-size: 13px;
+
+            color: #26364a;
+
+            transition: .2s;
+
+            background: #fff;
+        }
+
+
+        .form-control-custom:focus {
+
+            border-color: #0d6efd;
+
+            box-shadow:
+                0 0 0 3px rgba(13, 110, 253, .08);
+        }
+
+
+        .slug-preview {
+
+            margin-top: 8px;
+
+            padding:
+                9px 11px;
+
+            border-radius: 7px;
+
+            background: #f5f8fb;
+
+            border:
+                1px solid #e5ebf1;
+
+            font-family:
+                Consolas,
+                monospace;
+
+            font-size: 11px;
+
+            color: #6f8194;
+        }
+
+
+        .slug-preview strong {
+
+            color: #0d6efd;
+        }
+
+
+        .tag-meta {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            margin-top: 12px;
+        }
+
+
+        .meta-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            background: #edf5ff;
+
+            color: #28669e;
+
+            border-radius: 20px;
+
+            padding:
+                6px 10px;
+
+            font-size: 10px;
+
+            font-weight: 650;
+        }
+
+
+        .info-box {
+
+            background: #edf6ff;
+
+            border:
+                1px solid #d5e9ff;
+
+            border-radius: 9px;
+
+            padding:
+                13px 15px;
+
+            color: #28669e;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+
+            margin-bottom: 25px;
+        }
+
+
+        .info-box i {
+
+            margin-right: 6px;
+        }
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
         .form-actions {
 
-            flex-direction: column-reverse;
+            display: flex;
+
+            justify-content: flex-end;
+
+            gap: 10px;
+
+            padding-top: 8px;
         }
 
 
         .btn-custom {
 
-            width: 100%;
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 7px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            padding:
+                11px 17px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            cursor: pointer;
+
+            transition: .2s;
         }
 
-    }
+
+        .btn-cancel {
+
+            background: #eef2f6;
+
+            color: #52677d;
+        }
+
+
+        .btn-cancel:hover {
+
+            background: #e2e7ec;
+
+            color: #40566c;
+        }
+
+
+        .btn-save {
+
+            background:
+                linear-gradient(135deg,
+                    #0d6efd,
+                    #0754b8);
+
+            color: white;
+
+            box-shadow:
+                0 4px 12px rgba(13, 110, 253, .18);
+        }
+
+
+        .btn-save:hover {
+
+            color: white;
+
+            transform:
+                translateY(-1px);
+
+            box-shadow:
+                0 6px 16px rgba(13, 110, 253, .25);
+        }
+
+
+        /* =====================================================
+           ERROR
+        ===================================================== */
+
+        .error-box {
+
+            background: #fff0f1;
+
+            border:
+                1px solid #ffd2d7;
+
+            color: #b42332;
+
+            border-radius: 9px;
+
+            padding:
+                12px 14px;
+
+            font-size: 12px;
+
+            margin-bottom: 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width:900px) {
+
+            .sidebar {
+
+                width: 70px;
+
+                padding:
+                    20px 8px;
+            }
+
+
+            .brand h2,
+            .brand span,
+            .sidebar a span,
+            .nav-title {
+
+                display: none;
+            }
+
+
+            .brand {
+
+                border: none;
+            }
+
+
+            .sidebar a {
+
+                justify-content: center;
+            }
+
+
+            .sidebar a i {
+
+                width: auto;
+            }
+
+
+            .main {
+
+                margin-left: 70px;
+
+                padding: 18px;
+            }
+
+        }
+
+
+        @media(max-width:600px) {
+
+            .topbar {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 10px;
+            }
+
+
+            .form-body {
+
+                padding:
+                    22px 18px;
+            }
+
+
+            .form-actions {
+
+                flex-direction: column-reverse;
+            }
+
+
+            .btn-custom {
+
+                width: 100%;
+            }
+
+        }
     </style>
 
 </head>
@@ -1045,42 +1045,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </a>
 
 
-        <a href="customers.php">
-
-            <i class="fa-solid fa-users"></i>
-
-            <span>
-                Customers
-            </span>
-
-        </a>
 
 
-        <div class="nav-title">
-            Communication
-        </div>
 
-
-        <a href="inquiries.php">
-
-            <i class="fa-solid fa-envelope"></i>
-
-            <span>
-                Inquiries
-            </span>
-
-        </a>
-
-
-        <a href="reviews.php">
-
-            <i class="fa-solid fa-star"></i>
-
-            <span>
-                Reviews
-            </span>
-
-        </a>
 
 
         <div class="nav-title">
@@ -1175,17 +1142,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     <?php if (!empty($tag['created_at'])): ?>
 
-                    <span class="meta-badge">
+                        <span class="meta-badge">
 
-                        <i class="fa-regular fa-calendar"></i>
+                            <i class="fa-regular fa-calendar"></i>
 
-                        Created
-                        <?= date(
+                            Created
+                            <?= date(
                                 'd M Y',
                                 strtotime($tag['created_at'])
                             ) ?>
 
-                    </span>
+                        </span>
 
                     <?php endif; ?>
 
@@ -1200,13 +1167,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <?php if ($error !== ''): ?>
 
-                <div class="error-box">
+                    <div class="error-box">
 
-                    <i class="fa-solid fa-circle-exclamation"></i>
+                        <i class="fa-solid fa-circle-exclamation"></i>
 
-                    <?= htmlspecialchars($error) ?>
+                        <?= htmlspecialchars($error) ?>
 
-                </div>
+                    </div>
 
                 <?php endif; ?>
 
@@ -1301,36 +1268,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     <script>
-    const nameInput =
-        document.getElementById('name');
+        const nameInput =
+            document.getElementById('name');
 
-    const slugPreview =
-        document.getElementById('slugPreview');
-
-
-    function createSlug(text) {
-
-        return text
-            .toLowerCase()
-            .trim()
-            .replace(/[^a-z0-9]+/g, '-')
-            .replace(/^-+|-+$/g, '');
-
-    }
+        const slugPreview =
+            document.getElementById('slugPreview');
 
 
-    nameInput.addEventListener(
-        'input',
-        function() {
+        function createSlug(text) {
 
-            const slug =
-                createSlug(this.value);
-
-            slugPreview.textContent =
-                slug || 'your-tag-slug';
+            return text
+                .toLowerCase()
+                .trim()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '');
 
         }
-    );
+
+
+        nameInput.addEventListener(
+            'input',
+            function() {
+
+                const slug =
+                    createSlug(this.value);
+
+                slugPreview.textContent =
+                    slug || 'your-tag-slug';
+
+            }
+        );
     </script>
 
 

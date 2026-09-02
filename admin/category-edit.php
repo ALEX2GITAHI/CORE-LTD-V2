@@ -1258,42 +1258,9 @@ $countStmt->close();
         </a>
 
 
-        <a href="customers.php">
-
-            <i class="fa-solid fa-users"></i>
-
-            <span>
-                Customers
-            </span>
-
-        </a>
 
 
-        <div class="nav-title">
-            Communication
-        </div>
 
-
-        <a href="inquiries.php">
-
-            <i class="fa-solid fa-envelope"></i>
-
-            <span>
-                Inquiries
-            </span>
-
-        </a>
-
-
-        <a href="reviews.php">
-
-            <i class="fa-solid fa-star"></i>
-
-            <span>
-                Reviews
-            </span>
-
-        </a>
 
 
         <div class="nav-title">
@@ -1612,8 +1579,8 @@ $countStmt->close();
 
 
                                 <input type="radio" name="status" id="active" value="1" <?= $status === 1
-                                        ? 'checked'
-                                        : '' ?>>
+                                                                                            ? 'checked'
+                                                                                            : '' ?>>
 
 
                                 <label for="active">
@@ -1633,8 +1600,8 @@ $countStmt->close();
 
 
                                 <input type="radio" name="status" id="inactive" value="0" <?= $status === 0
-                                        ? 'checked'
-                                        : '' ?>>
+                                                                                                ? 'checked'
+                                                                                                : '' ?>>
 
 
                                 <label for="inactive">

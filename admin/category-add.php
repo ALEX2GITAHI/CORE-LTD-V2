@@ -268,889 +268,889 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     <style>
-    * {
-        box-sizing: border-box;
-    }
+        * {
+            box-sizing: border-box;
+        }
 
 
-    body {
+        body {
 
-        margin: 0;
+            margin: 0;
 
-        font-family:
-            "Segoe UI",
-            Arial,
-            sans-serif;
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
 
-        background:
-            #f4f7fb;
+            background:
+                #f4f7fb;
 
-        color:
-            #26364a;
-    }
+            color:
+                #26364a;
+        }
 
 
-    /*
+        /*
         |--------------------------------------------------------------------------
         | SIDEBAR
         |--------------------------------------------------------------------------
         */
 
-    .sidebar {
-
-        position: fixed;
-
-        top: 0;
-        left: 0;
-
-        width: 245px;
-
-        height: 100vh;
-
-        background:
-            linear-gradient(180deg,
-                #073b75 0%,
-                #0b5cad 55%,
-                #0878d1 100%);
-
-        color: #ffffff;
-
-        padding: 25px 15px;
-
-        box-shadow:
-            4px 0 18px rgba(0, 61, 120, 0.12);
-
-        z-index: 1000;
-    }
-
-
-    .brand {
-
-        text-align: center;
-
-        padding:
-            5px 10px 25px;
-
-        border-bottom:
-            1px solid rgba(255, 255, 255, .15);
-
-        margin-bottom: 20px;
-    }
-
-
-    .brand-icon {
-
-        width: 55px;
-        height: 55px;
-
-        margin:
-            0 auto 10px;
-
-        border-radius: 15px;
-
-        background:
-            rgba(255, 255, 255, .15);
-
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-
-        font-size: 25px;
-    }
-
-
-    .brand h2 {
-
-        font-size: 20px;
-
-        font-weight: 800;
-
-        margin: 0;
-    }
-
-
-    .brand span {
-
-        display: block;
-
-        margin-top: 4px;
-
-        font-size: 11px;
-
-        opacity: .75;
-
-        letter-spacing: 1px;
-    }
-
-
-    .nav-title {
-
-        font-size: 10px;
-
-        text-transform: uppercase;
-
-        letter-spacing: 1.5px;
-
-        opacity: .6;
-
-        margin:
-            20px 10px 8px;
-    }
-
-
-    .sidebar a {
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 12px;
-
-        color:
-            rgba(255, 255, 255, .85);
-
-        text-decoration: none;
-
-        padding:
-            11px 13px;
-
-        border-radius: 9px;
-
-        margin-bottom: 5px;
-
-        font-size: 14px;
-
-        transition: .2s;
-    }
-
-
-    .sidebar a i {
-
-        width: 20px;
-
-        text-align: center;
-    }
-
-
-    .sidebar a:hover {
-
-        background:
-            rgba(255, 255, 255, .12);
-
-        color: #ffffff;
-    }
-
-
-    .sidebar a.active {
-
-        background:
-            #ffffff;
-
-        color:
-            #07549a;
-
-        font-weight: 700;
-
-        box-shadow:
-            0 5px 15px rgba(0, 0, 0, .08);
-    }
-
-
-    /*
-        |--------------------------------------------------------------------------
-        | MAIN
-        |--------------------------------------------------------------------------
-        */
-
-    .main {
-
-        margin-left:
-            245px;
-
-        min-height:
-            100vh;
-
-        padding:
-            28px;
-    }
-
-
-    /*
-        |--------------------------------------------------------------------------
-        | TOP BAR
-        |--------------------------------------------------------------------------
-        */
-
-    .topbar {
-
-        background:
-            #ffffff;
-
-        border-radius:
-            14px;
-
-        padding:
-            18px 22px;
-
-        display:
-            flex;
-
-        align-items:
-            center;
-
-        justify-content:
-            space-between;
-
-        box-shadow:
-            0 5px 25px rgba(25, 65, 100, .06);
-
-        margin-bottom:
-            25px;
-    }
-
-
-    .page-title {
-
-        margin: 0;
-
-        font-size:
-            25px;
-
-        font-weight:
-            800;
-
-        color:
-            #17365d;
-    }
-
-
-    .page-subtitle {
-
-        margin:
-            4px 0 0;
-
-        color:
-            #7a8998;
-
-        font-size:
-            13px;
-    }
-
-
-    .admin-user {
-
-        display:
-            flex;
-
-        align-items:
-            center;
-
-        gap:
-            10px;
-    }
-
-
-    .admin-avatar {
-
-        width:
-            42px;
-
-        height:
-            42px;
-
-        border-radius:
-            50%;
-
-        background:
-            linear-gradient(135deg,
-                #0d6efd,
-                #0a58ca);
-
-        color:
-            #ffffff;
-
-        display:
-            flex;
-
-        align-items:
-            center;
-
-        justify-content:
-            center;
-
-        font-weight:
-            700;
-    }
-
-
-    /*
-        |--------------------------------------------------------------------------
-        | FORM CARD
-        |--------------------------------------------------------------------------
-        */
-
-    .form-card {
-
-        max-width:
-            900px;
-
-        margin:
-            0 auto;
-
-        background:
-            #ffffff;
-
-        border-radius:
-            15px;
-
-        box-shadow:
-            0 5px 25px rgba(25, 65, 100, .06);
-
-        overflow:
-            hidden;
-    }
-
-
-    .form-header {
-
-        padding:
-            22px 25px;
-
-        border-bottom:
-            1px solid #edf1f5;
-
-        display:
-            flex;
-
-        align-items:
-            center;
-
-        gap:
-            15px;
-    }
-
-
-    .form-header-icon {
-
-        width:
-            48px;
-
-        height:
-            48px;
-
-        border-radius:
-            12px;
-
-        background:
-            #e8f2ff;
-
-        color:
-            #0d6efd;
-
-        display:
-            flex;
-
-        align-items:
-            center;
-
-        justify-content:
-            center;
-
-        font-size:
-            19px;
-    }
-
-
-    .form-header h3 {
-
-        margin:
-            0;
-
-        color:
-            #17365d;
-
-        font-size:
-            19px;
-
-        font-weight:
-            750;
-    }
-
-
-    .form-header p {
-
-        margin:
-            3px 0 0;
-
-        color:
-            #8493a3;
-
-        font-size:
-            12px;
-    }
-
-
-    .form-body {
-
-        padding:
-            30px;
-    }
-
-
-    /*
-        |--------------------------------------------------------------------------
-        | FORM ELEMENTS
-        |--------------------------------------------------------------------------
-        */
-
-    .form-label {
-
-        font-size:
-            13px;
-
-        font-weight:
-            700;
-
-        color:
-            #34495e;
-
-        margin-bottom:
-            7px;
-    }
-
-
-    .required {
-
-        color:
-            #dc3545;
-    }
-
-
-    .form-control {
-
-        border:
-            1px solid #dce5ee;
-
-        border-radius:
-            8px;
-
-        padding:
-            11px 13px;
-
-        font-size:
-            13px;
-
-        color:
-            #26364a;
-    }
-
-
-    .form-control:focus {
-
-        border-color:
-            #0d6efd;
-
-        box-shadow:
-            0 0 0 3px rgba(13, 110, 253, .08);
-    }
-
-
-    textarea.form-control {
-
-        min-height:
-            130px;
-
-        resize:
-            vertical;
-    }
-
-
-    .form-help {
-
-        display:
-            block;
-
-        margin-top:
-            6px;
-
-        font-size:
-            11px;
-
-        color:
-            #8a98a8;
-    }
-
-
-    .slug-preview {
-
-        margin-top:
-            8px;
-
-        padding:
-            9px 12px;
-
-        background:
-            #f7faff;
-
-        border:
-            1px solid #e5edf7;
-
-        border-radius:
-            7px;
-
-        font-size:
-            12px;
-
-        color:
-            #60758c;
-    }
-
-
-    .slug-preview strong {
-
-        color:
-            #0d6efd;
-    }
-
-
-    /*
-        |--------------------------------------------------------------------------
-        | STATUS
-        |--------------------------------------------------------------------------
-        */
-
-    .status-options {
-
-        display:
-            flex;
-
-        gap:
-            10px;
-
-        flex-wrap:
-            wrap;
-    }
-
-
-    .status-option {
-
-        position:
-            relative;
-    }
-
-
-    .status-option input {
-
-        position:
-            absolute;
-
-        opacity:
-            0;
-    }
-
-
-    .status-option label {
-
-        display:
-            flex;
-
-        align-items:
-            center;
-
-        gap:
-            8px;
-
-        padding:
-            10px 15px;
-
-        border:
-            1px solid #dce5ee;
-
-        border-radius:
-            8px;
-
-        cursor:
-            pointer;
-
-        font-size:
-            13px;
-
-        transition:
-            .2s;
-    }
-
-
-    .status-option input:checked+label {
-
-        border-color:
-            #0d6efd;
-
-        background:
-            #eaf3ff;
-
-        color:
-            #0754b8;
-
-        font-weight:
-            700;
-    }
-
-
-    /*
-        |--------------------------------------------------------------------------
-        | BUTTONS
-        |--------------------------------------------------------------------------
-        */
-
-    .form-actions {
-
-        margin-top:
-            30px;
-
-        padding-top:
-            22px;
-
-        border-top:
-            1px solid #edf1f5;
-
-        display:
-            flex;
-
-        justify-content:
-            flex-end;
-
-        gap:
-            10px;
-    }
-
-
-    .btn-cancel {
-
-        padding:
-            11px 18px;
-
-        border-radius:
-            8px;
-
-        background:
-            #f1f3f5;
-
-        color:
-            #566574;
-
-        text-decoration:
-            none;
-
-        font-size:
-            13px;
-
-        font-weight:
-            600;
-    }
-
-
-    .btn-cancel:hover {
-
-        background:
-            #e2e6ea;
-
-        color:
-            #343a40;
-    }
-
-
-    .btn-save {
-
-        border:
-            none;
-
-        padding:
-            11px 20px;
-
-        border-radius:
-            8px;
-
-        background:
-            linear-gradient(135deg,
-                #0d6efd,
-                #0754b8);
-
-        color:
-            #ffffff;
-
-        font-size:
-            13px;
-
-        font-weight:
-            700;
-
-        display:
-            inline-flex;
-
-        align-items:
-            center;
-
-        gap:
-            7px;
-
-        cursor:
-            pointer;
-    }
-
-
-    .btn-save:hover {
-
-        transform:
-            translateY(-1px);
-
-        box-shadow:
-            0 5px 15px rgba(13, 110, 253, .18);
-    }
-
-
-    /*
-        |--------------------------------------------------------------------------
-        | ERROR
-        |--------------------------------------------------------------------------
-        */
-
-    .error-box {
-
-        background:
-            #fff0f1;
-
-        border:
-            1px solid #f4c7cb;
-
-        color:
-            #b02a37;
-
-        padding:
-            14px 17px;
-
-        border-radius:
-            9px;
-
-        margin-bottom:
-            22px;
-
-        font-size:
-            13px;
-    }
-
-
-    .error-box ul {
-
-        margin:
-            7px 0 0;
-
-        padding-left:
-            20px;
-    }
-
-
-    /*
-        |--------------------------------------------------------------------------
-        | RESPONSIVE
-        |--------------------------------------------------------------------------
-        */
-
-    @media (max-width: 900px) {
-
         .sidebar {
 
-            width:
-                70px;
+            position: fixed;
 
-            padding:
-                20px 8px;
-        }
+            top: 0;
+            left: 0;
 
+            width: 245px;
 
-        .brand h2,
-        .brand span,
-        .sidebar a span,
-        .nav-title {
+            height: 100vh;
 
-            display:
-                none;
+            background:
+                linear-gradient(180deg,
+                    #073b75 0%,
+                    #0b5cad 55%,
+                    #0878d1 100%);
+
+            color: #ffffff;
+
+            padding: 25px 15px;
+
+            box-shadow:
+                4px 0 18px rgba(0, 61, 120, 0.12);
+
+            z-index: 1000;
         }
 
 
         .brand {
 
-            border:
-                none;
+            text-align: center;
+
+            padding:
+                5px 10px 25px;
+
+            border-bottom:
+                1px solid rgba(255, 255, 255, .15);
+
+            margin-bottom: 20px;
+        }
+
+
+        .brand-icon {
+
+            width: 55px;
+            height: 55px;
+
+            margin:
+                0 auto 10px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(255, 255, 255, .15);
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 25px;
+        }
+
+
+        .brand h2 {
+
+            font-size: 20px;
+
+            font-weight: 800;
+
+            margin: 0;
+        }
+
+
+        .brand span {
+
+            display: block;
+
+            margin-top: 4px;
+
+            font-size: 11px;
+
+            opacity: .75;
+
+            letter-spacing: 1px;
+        }
+
+
+        .nav-title {
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+
+            opacity: .6;
+
+            margin:
+                20px 10px 8px;
         }
 
 
         .sidebar a {
 
-            justify-content:
-                center;
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            color:
+                rgba(255, 255, 255, .85);
+
+            text-decoration: none;
+
+            padding:
+                11px 13px;
+
+            border-radius: 9px;
+
+            margin-bottom: 5px;
+
+            font-size: 14px;
+
+            transition: .2s;
         }
 
 
         .sidebar a i {
 
-            width:
-                auto;
+            width: 20px;
+
+            text-align: center;
         }
 
+
+        .sidebar a:hover {
+
+            background:
+                rgba(255, 255, 255, .12);
+
+            color: #ffffff;
+        }
+
+
+        .sidebar a.active {
+
+            background:
+                #ffffff;
+
+            color:
+                #07549a;
+
+            font-weight: 700;
+
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, .08);
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | MAIN
+        |--------------------------------------------------------------------------
+        */
 
         .main {
 
             margin-left:
-                70px;
+                245px;
+
+            min-height:
+                100vh;
 
             padding:
-                18px;
+                28px;
         }
 
-    }
 
-
-    @media (max-width: 600px) {
+        /*
+        |--------------------------------------------------------------------------
+        | TOP BAR
+        |--------------------------------------------------------------------------
+        */
 
         .topbar {
 
-            align-items:
-                flex-start;
+            background:
+                #ffffff;
 
-            flex-direction:
-                column;
+            border-radius:
+                14px;
+
+            padding:
+                18px 22px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            box-shadow:
+                0 5px 25px rgba(25, 65, 100, .06);
+
+            margin-bottom:
+                25px;
+        }
+
+
+        .page-title {
+
+            margin: 0;
+
+            font-size:
+                25px;
+
+            font-weight:
+                800;
+
+            color:
+                #17365d;
+        }
+
+
+        .page-subtitle {
+
+            margin:
+                4px 0 0;
+
+            color:
+                #7a8998;
+
+            font-size:
+                13px;
+        }
+
+
+        .admin-user {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+        }
+
+
+        .admin-avatar {
+
+            width:
+                42px;
+
+            height:
+                42px;
+
+            border-radius:
+                50%;
+
+            background:
+                linear-gradient(135deg,
+                    #0d6efd,
+                    #0a58ca);
+
+            color:
+                #ffffff;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            font-weight:
+                700;
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | FORM CARD
+        |--------------------------------------------------------------------------
+        */
+
+        .form-card {
+
+            max-width:
+                900px;
+
+            margin:
+                0 auto;
+
+            background:
+                #ffffff;
+
+            border-radius:
+                15px;
+
+            box-shadow:
+                0 5px 25px rgba(25, 65, 100, .06);
+
+            overflow:
+                hidden;
+        }
+
+
+        .form-header {
+
+            padding:
+                22px 25px;
+
+            border-bottom:
+                1px solid #edf1f5;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                15px;
+        }
+
+
+        .form-header-icon {
+
+            width:
+                48px;
+
+            height:
+                48px;
+
+            border-radius:
+                12px;
+
+            background:
+                #e8f2ff;
+
+            color:
+                #0d6efd;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            font-size:
+                19px;
+        }
+
+
+        .form-header h3 {
+
+            margin:
+                0;
+
+            color:
+                #17365d;
+
+            font-size:
+                19px;
+
+            font-weight:
+                750;
+        }
+
+
+        .form-header p {
+
+            margin:
+                3px 0 0;
+
+            color:
+                #8493a3;
+
+            font-size:
+                12px;
         }
 
 
         .form-body {
 
             padding:
+                30px;
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | FORM ELEMENTS
+        |--------------------------------------------------------------------------
+        */
+
+        .form-label {
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+
+            color:
+                #34495e;
+
+            margin-bottom:
+                7px;
+        }
+
+
+        .required {
+
+            color:
+                #dc3545;
+        }
+
+
+        .form-control {
+
+            border:
+                1px solid #dce5ee;
+
+            border-radius:
+                8px;
+
+            padding:
+                11px 13px;
+
+            font-size:
+                13px;
+
+            color:
+                #26364a;
+        }
+
+
+        .form-control:focus {
+
+            border-color:
+                #0d6efd;
+
+            box-shadow:
+                0 0 0 3px rgba(13, 110, 253, .08);
+        }
+
+
+        textarea.form-control {
+
+            min-height:
+                130px;
+
+            resize:
+                vertical;
+        }
+
+
+        .form-help {
+
+            display:
+                block;
+
+            margin-top:
+                6px;
+
+            font-size:
+                11px;
+
+            color:
+                #8a98a8;
+        }
+
+
+        .slug-preview {
+
+            margin-top:
+                8px;
+
+            padding:
+                9px 12px;
+
+            background:
+                #f7faff;
+
+            border:
+                1px solid #e5edf7;
+
+            border-radius:
+                7px;
+
+            font-size:
+                12px;
+
+            color:
+                #60758c;
+        }
+
+
+        .slug-preview strong {
+
+            color:
+                #0d6efd;
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | STATUS
+        |--------------------------------------------------------------------------
+        */
+
+        .status-options {
+
+            display:
+                flex;
+
+            gap:
+                10px;
+
+            flex-wrap:
+                wrap;
+        }
+
+
+        .status-option {
+
+            position:
+                relative;
+        }
+
+
+        .status-option input {
+
+            position:
+                absolute;
+
+            opacity:
+                0;
+        }
+
+
+        .status-option label {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                8px;
+
+            padding:
+                10px 15px;
+
+            border:
+                1px solid #dce5ee;
+
+            border-radius:
+                8px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                13px;
+
+            transition:
+                .2s;
+        }
+
+
+        .status-option input:checked+label {
+
+            border-color:
+                #0d6efd;
+
+            background:
+                #eaf3ff;
+
+            color:
+                #0754b8;
+
+            font-weight:
+                700;
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | BUTTONS
+        |--------------------------------------------------------------------------
+        */
+
+        .form-actions {
+
+            margin-top:
+                30px;
+
+            padding-top:
+                22px;
+
+            border-top:
+                1px solid #edf1f5;
+
+            display:
+                flex;
+
+            justify-content:
+                flex-end;
+
+            gap:
+                10px;
+        }
+
+
+        .btn-cancel {
+
+            padding:
+                11px 18px;
+
+            border-radius:
+                8px;
+
+            background:
+                #f1f3f5;
+
+            color:
+                #566574;
+
+            text-decoration:
+                none;
+
+            font-size:
+                13px;
+
+            font-weight:
+                600;
+        }
+
+
+        .btn-cancel:hover {
+
+            background:
+                #e2e6ea;
+
+            color:
+                #343a40;
+        }
+
+
+        .btn-save {
+
+            border:
+                none;
+
+            padding:
+                11px 20px;
+
+            border-radius:
+                8px;
+
+            background:
+                linear-gradient(135deg,
+                    #0d6efd,
+                    #0754b8);
+
+            color:
+                #ffffff;
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            cursor:
+                pointer;
+        }
+
+
+        .btn-save:hover {
+
+            transform:
+                translateY(-1px);
+
+            box-shadow:
+                0 5px 15px rgba(13, 110, 253, .18);
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | ERROR
+        |--------------------------------------------------------------------------
+        */
+
+        .error-box {
+
+            background:
+                #fff0f1;
+
+            border:
+                1px solid #f4c7cb;
+
+            color:
+                #b02a37;
+
+            padding:
+                14px 17px;
+
+            border-radius:
+                9px;
+
+            margin-bottom:
+                22px;
+
+            font-size:
+                13px;
+        }
+
+
+        .error-box ul {
+
+            margin:
+                7px 0 0;
+
+            padding-left:
                 20px;
         }
 
 
-        .form-actions {
+        /*
+        |--------------------------------------------------------------------------
+        | RESPONSIVE
+        |--------------------------------------------------------------------------
+        */
 
-            flex-direction:
-                column-reverse;
+        @media (max-width: 900px) {
+
+            .sidebar {
+
+                width:
+                    70px;
+
+                padding:
+                    20px 8px;
+            }
+
+
+            .brand h2,
+            .brand span,
+            .sidebar a span,
+            .nav-title {
+
+                display:
+                    none;
+            }
+
+
+            .brand {
+
+                border:
+                    none;
+            }
+
+
+            .sidebar a {
+
+                justify-content:
+                    center;
+            }
+
+
+            .sidebar a i {
+
+                width:
+                    auto;
+            }
+
+
+            .main {
+
+                margin-left:
+                    70px;
+
+                padding:
+                    18px;
+            }
+
         }
 
 
-        .btn-save,
-        .btn-cancel {
+        @media (max-width: 600px) {
 
-            width:
-                100%;
+            .topbar {
 
-            justify-content:
-                center;
+                align-items:
+                    flex-start;
 
-            text-align:
-                center;
+                flex-direction:
+                    column;
+            }
+
+
+            .form-body {
+
+                padding:
+                    20px;
+            }
+
+
+            .form-actions {
+
+                flex-direction:
+                    column-reverse;
+            }
+
+
+            .btn-save,
+            .btn-cancel {
+
+                width:
+                    100%;
+
+                justify-content:
+                    center;
+
+                text-align:
+                    center;
+            }
+
         }
-
-    }
     </style>
 
 </head>
@@ -1252,42 +1252,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </a>
 
 
-        <a href="customers.php">
-
-            <i class="fa-solid fa-users"></i>
-
-            <span>
-                Customers
-            </span>
-
-        </a>
 
 
-        <div class="nav-title">
-            Communication
-        </div>
 
-
-        <a href="inquiries.php">
-
-            <i class="fa-solid fa-envelope"></i>
-
-            <span>
-                Inquiries
-            </span>
-
-        </a>
-
-
-        <a href="reviews.php">
-
-            <i class="fa-solid fa-star"></i>
-
-            <span>
-                Reviews
-            </span>
-
-        </a>
 
 
         <div class="nav-title">
@@ -1431,30 +1398,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <?php if (!empty($errors)): ?>
 
-                <div class="error-box">
+                    <div class="error-box">
 
-                    <strong>
+                        <strong>
 
-                        <i class="fa-solid fa-circle-exclamation"></i>
+                            <i class="fa-solid fa-circle-exclamation"></i>
 
-                        Please correct the following:
+                            Please correct the following:
 
-                    </strong>
+                        </strong>
 
 
-                    <ul>
+                        <ul>
 
-                        <?php foreach ($errors as $error): ?>
+                            <?php foreach ($errors as $error): ?>
 
-                        <li>
-                            <?= htmlspecialchars($error) ?>
-                        </li>
+                                <li>
+                                    <?= htmlspecialchars($error) ?>
+                                </li>
 
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
 
-                    </ul>
+                        </ul>
 
-                </div>
+                    </div>
 
                 <?php endif; ?>
 
@@ -1669,94 +1636,94 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     <script>
-    /*
+        /*
 |--------------------------------------------------------------------------
 | AUTOMATIC SLUG GENERATION
 |--------------------------------------------------------------------------
 */
 
-    const nameInput =
-        document.getElementById("name");
+        const nameInput =
+            document.getElementById("name");
 
-    const slugInput =
-        document.getElementById("slug");
+        const slugInput =
+            document.getElementById("slug");
 
-    const slugPreview =
-        document.getElementById("slugPreview");
-
-
-    let slugManuallyChanged = false;
+        const slugPreview =
+            document.getElementById("slugPreview");
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | DETECT MANUAL SLUG EDIT
-    |--------------------------------------------------------------------------
-    */
-
-    slugInput.addEventListener(
-        "input",
-        function() {
-
-            slugManuallyChanged = true;
-
-            updateSlugPreview();
-
-        }
-    );
+        let slugManuallyChanged = false;
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | GENERATE SLUG FROM NAME
-    |--------------------------------------------------------------------------
-    */
+        /*
+        |--------------------------------------------------------------------------
+        | DETECT MANUAL SLUG EDIT
+        |--------------------------------------------------------------------------
+        */
 
-    nameInput.addEventListener(
-        "input",
-        function() {
+        slugInput.addEventListener(
+            "input",
+            function() {
 
-            if (!slugManuallyChanged) {
+                slugManuallyChanged = true;
 
-                let slug =
-                    this.value
-                    .toLowerCase()
-                    .trim()
-                    .replace(
-                        /[^a-z0-9]+/g,
-                        "-"
-                    )
-                    .replace(
-                        /^-+|-+$/g,
-                        ""
-                    );
-
-                slugInput.value =
-                    slug;
+                updateSlugPreview();
 
             }
+        );
 
-            updateSlugPreview();
 
+        /*
+        |--------------------------------------------------------------------------
+        | GENERATE SLUG FROM NAME
+        |--------------------------------------------------------------------------
+        */
+
+        nameInput.addEventListener(
+            "input",
+            function() {
+
+                if (!slugManuallyChanged) {
+
+                    let slug =
+                        this.value
+                        .toLowerCase()
+                        .trim()
+                        .replace(
+                            /[^a-z0-9]+/g,
+                            "-"
+                        )
+                        .replace(
+                            /^-+|-+$/g,
+                            ""
+                        );
+
+                    slugInput.value =
+                        slug;
+
+                }
+
+                updateSlugPreview();
+
+            }
+        );
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | PREVIEW
+        |--------------------------------------------------------------------------
+        */
+
+        function updateSlugPreview() {
+
+            slugPreview.textContent =
+                slugInput.value ||
+                "category-name";
         }
-    );
 
 
-    /*
-    |--------------------------------------------------------------------------
-    | PREVIEW
-    |--------------------------------------------------------------------------
-    */
-
-    function updateSlugPreview() {
-
-        slugPreview.textContent =
-            slugInput.value ||
-            "category-name";
-    }
-
-
-    updateSlugPreview();
+        updateSlugPreview();
     </script>
 
 

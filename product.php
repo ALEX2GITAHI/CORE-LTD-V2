@@ -9,6 +9,15 @@
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/product-data.php';
 
+// IMPORTANT: product-data.php loads the requested product using the URL slug.
+// Keep a protected copy before loading header.php because included files may use
+// the generic $product variable and overwrite it.
+$currentProduct = $product;
+$currentImages = $images;
+$currentFeatures = $features;
+$currentSpecifications = $specifications;
+$currentRelatedProducts = $relatedProducts;
+
 include 'header.php';
 
 ?>
@@ -26,11 +35,11 @@ include 'header.php';
                     <a href="index.php">Home</a>
                 </li>
 
-                <?php if (!empty($product['category_name'])): ?>
+                <?php if (!empty($currentProduct['category_name'])): ?>
 
                     <li>
-                        <a href="category.php?slug=<?= urlencode($product['category_slug']) ?>">
-                            <?= htmlspecialchars($product['category_name']) ?>
+                        <a href="category.php?slug=<?= urlencode($currentProduct['category_slug']) ?>">
+                            <?= htmlspecialchars($currentProduct['category_name']) ?>
                         </a>
                     </li>
 
@@ -38,7 +47,7 @@ include 'header.php';
 
                 <li class="active">
 
-                    <?= htmlspecialchars($product['name']) ?>
+                    <?= htmlspecialchars($currentProduct['name']) ?>
 
                 </li>
 
@@ -76,19 +85,18 @@ include 'header.php';
 
                     <div class="product-details-images slider-navigation-1">
 
-                        <?php foreach ($images as $image): ?>
+                        <?php foreach ($currentImages as $image): ?>
 
                             <div class="lg-image">
 
                                 <a class="popup-img venobox vbox-item"
                                     href="uploads/products/<?= htmlspecialchars($image['image']) ?>" data-gall="myGallery">
 
-                                    <img src="uploads/products/<?= htmlspecialchars($image['image']) ?>"
-                                        alt="<?= htmlspecialchars(
-                                                    !empty($image['alt_text'])
-                                                        ? $image['alt_text']
-                                                        : $product['name']
-                                                ) ?>" />
+                                    <img src="uploads/products/<?= htmlspecialchars($image['image']) ?>" alt="<?= htmlspecialchars(
+                                                                                                                    !empty($image['alt_text'])
+                                                                                                                        ? $image['alt_text']
+                                                                                                                        : $currentProduct['name']
+                                                                                                                ) ?>" />
 
                                 </a>
 
@@ -103,14 +111,14 @@ include 'header.php';
 
                     <div class="product-details-thumbs slider-thumbs-1">
 
-                        <?php foreach ($images as $image): ?>
+                        <?php foreach ($currentImages as $image): ?>
 
                             <div class="sm-image">
 
-                                <img src="uploads/products//<?= htmlspecialchars($image['image']) ?>" alt="<?= htmlspecialchars(
+                                <img src="uploads/products/<?= htmlspecialchars($image['image']) ?>" alt="<?= htmlspecialchars(
                                                                                                                 !empty($image['alt_text'])
                                                                                                                     ? $image['alt_text']
-                                                                                                                    : $product['name']
+                                                                                                                    : $currentProduct['name']
                                                                                                             ) ?>" />
 
                             </div>
@@ -144,7 +152,7 @@ include 'header.php';
 
                             <a class="product_name">
 
-                                <?= htmlspecialchars($product['name']) ?>
+                                <?= htmlspecialchars($currentProduct['name']) ?>
 
                             </a>
 
@@ -153,12 +161,12 @@ include 'header.php';
 
                         <!-- REFERENCE -->
 
-                        <?php if (!empty($product['sku'])): ?>
+                        <?php if (!empty($currentProduct['sku'])): ?>
 
                             <span class="product-details-ref">
 
                                 Reference:
-                                <?= htmlspecialchars($product['sku']) ?>
+                                <?= htmlspecialchars($currentProduct['sku']) ?>
 
                             </span>
 
@@ -223,23 +231,23 @@ include 'header.php';
                             <span class="new-price new-price-2">
 
                                 Ksh.
-                                <?= number_format($product['price'], 0) ?>
+                                <?= number_format($currentProduct['price'], 0) ?>
 
                             </span>
 
-                            <?php if (
-                                !empty($product['old_price']) &&
-                                $product['old_price'] > $product['price']
-                            ): ?>
+                            <!-- <?php if (
+                                        !empty($currentProduct['old_price']) &&
+                                        $currentProduct['old_price'] > $currentProduct['price']
+                                    ): ?>
 
                                 <span class="old-price">
 
                                     Ksh.
-                                    <?= number_format($product['old_price'], 0) ?>
+                                    <?= number_format($currentProduct['old_price'], 0) ?>
 
-                                </span>
+                                </span> -->
 
-                            <?php endif; ?>
+                        <?php endif; ?>
 
                         </div>
 
@@ -248,7 +256,7 @@ include 'header.php';
                              FEATURES
                         ================================================== -->
 
-                        <?php if (!empty($features)): ?>
+                        <?php if (!empty($currentFeatures)): ?>
 
                             <div class="product-desc">
 
@@ -259,7 +267,7 @@ include 'header.php';
                                         <b>
 
                                             Features:
-                                            <?= htmlspecialchars($product['name']) ?>
+                                            <?= htmlspecialchars($currentProduct['name']) ?>
 
                                         </b>
 
@@ -307,7 +315,7 @@ include 'header.php';
 
                                         <tbody>
 
-                                            <?php foreach ($features as $index => $feature): ?>
+                                            <?php foreach ($currentFeatures as $index => $feature): ?>
 
                                                 <tr class="product-feature-row" style="
                                                     <?= $index >= 5
@@ -351,7 +359,7 @@ include 'header.php';
                                     </table>
 
 
-                                    <?php if (count($features) > 5): ?>
+                                    <?php if (count($currentFeatures) > 5): ?>
 
                                         <div style="
                                             text-align:center;
@@ -391,7 +399,7 @@ include 'header.php';
                         <div class="add-to-cart-area pt-30">
 
                             <button type="button" class="single-product-add-to-cart" id="addToCartButton"
-                                data-product-id="<?= (int) $product['id'] ?>">
+                                data-product-id="<?= (int) $currentProduct['id'] ?>">
 
                                 <i class="fa fa-shopping-cart"></i>
 
@@ -584,7 +592,7 @@ Link: ${currentPageURL}`
      RELATED PRODUCTS
 ========================================================= -->
 
-<?php if (!empty($relatedProducts)): ?>
+<?php if (!empty($currentRelatedProducts)): ?>
 
     <section class="product-area li-laptop-product pt-30 pb-50">
 
@@ -612,7 +620,7 @@ Link: ${currentPageURL}`
                         <div class="product-active owl-carousel">
 
 
-                            <?php foreach ($relatedProducts as $related): ?>
+                            <?php foreach ($currentRelatedProducts as $related): ?>
 
                                 <div class="col-lg-12">
 
@@ -632,8 +640,8 @@ Link: ${currentPageURL}`
                                                     <img src="uploads/products/<?= htmlspecialchars(
                                                                                     $related['main_image']
                                                                                 ) ?>" alt="<?= htmlspecialchars(
-                                                                                                        $related['name']
-                                                                                                    ) ?>" />
+                                                                                                $related['name']
+                                                                                            ) ?>" />
 
                                                 <?php endif; ?>
 
@@ -660,11 +668,11 @@ Link: ${currentPageURL}`
                                                     <h5 class="manufacturer">
 
                                                         <a href="category.php?slug=<?= urlencode(
-                                                                                        $product['category_slug']
+                                                                                        $currentProduct['category_slug']
                                                                                     ) ?>">
 
                                                             <?= htmlspecialchars(
-                                                                $product['category_name']
+                                                                $currentProduct['category_name']
                                                             ) ?>
 
                                                         </a>

@@ -260,1329 +260,1470 @@ if ($notificationCountResult) {
 
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+    * {
+        box-sizing: border-box;
+    }
 
 
-        body {
+    body {
 
-            margin: 0;
+        margin: 0;
 
-            font-family:
-                Arial,
-                Helvetica,
-                sans-serif;
+        font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
 
-            background: #f4f7fb;
+        background: #f4f7fb;
 
-            color: #172033;
-        }
-
-
-        a {
-            text-decoration: none;
-        }
+        color: #172033;
+    }
 
 
-        /*
+    a {
+        text-decoration: none;
+    }
+
+
+    /*
         |--------------------------------------------------------------------------
         | SIDEBAR
         |--------------------------------------------------------------------------
         */
 
-        .sidebar {
+    .sidebar {
 
-            position: fixed;
+        position: fixed;
 
-            top: 0;
-            left: 0;
+        top: 0;
+        left: 0;
 
-            width: 250px;
+        width: 250px;
 
-            height: 100vh;
+        height: 100vh;
 
-            background:
-                linear-gradient(180deg,
-                    #082b5c 0%,
-                    #0b4d96 52%,
-                    #06376e 100%);
+        background:
+            linear-gradient(180deg,
+                #082b5c 0%,
+                #0b4d96 52%,
+                #06376e 100%);
 
-            color: #fff;
+        color: #fff;
 
-            padding: 22px 14px;
+        padding: 22px 14px;
 
-            overflow-y: auto;
+        overflow-y: auto;
 
-            box-shadow:
-                4px 0 18px rgba(8, 43, 92, 0.15);
+        box-shadow:
+            4px 0 18px rgba(8, 43, 92, 0.15);
 
-            z-index: 1000;
-        }
+        z-index: 1000;
+    }
 
 
-        /*
+    /*
         |--------------------------------------------------------------------------
         | LOGO
         |--------------------------------------------------------------------------
         */
 
-        .logo {
+    .logo {
 
-            padding:
-                10px 12px 25px;
+        padding:
+            10px 12px 25px;
 
-            text-align: center;
+        text-align: center;
 
-            border-bottom:
-                1px solid rgba(255, 255, 255, 0.12);
-        }
-
-
-        .logo-main {
-
-            font-size: 27px;
-
-            font-weight: 800;
-
-            letter-spacing: 1.5px;
-        }
+        border-bottom:
+            1px solid rgba(255, 255, 255, 0.12);
+    }
 
 
-        .logo-sub {
+    .logo-main {
 
-            margin-top: 5px;
+        font-size: 27px;
 
-            font-size: 10px;
+        font-weight: 800;
 
-            color:
-                rgba(255, 255, 255, 0.65);
-
-            letter-spacing: 2px;
-        }
+        letter-spacing: 1.5px;
+    }
 
 
-        /*
+    .logo-sub {
+
+        margin-top: 5px;
+
+        font-size: 10px;
+
+        color:
+            rgba(255, 255, 255, 0.65);
+
+        letter-spacing: 2px;
+    }
+
+
+    /*
         |--------------------------------------------------------------------------
         | MENU
         |--------------------------------------------------------------------------
         */
 
-        .menu-title {
+    .menu-title {
 
-            margin:
-                25px 12px 9px;
+        margin:
+            25px 12px 9px;
 
-            font-size: 10px;
+        font-size: 10px;
 
-            text-transform: uppercase;
+        text-transform: uppercase;
 
-            letter-spacing: 1.4px;
+        letter-spacing: 1.4px;
 
-            color:
-                rgba(255, 255, 255, 0.50);
-        }
-
-
-        .menu a {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 12px;
-
-            padding:
-                12px 13px;
-
-            margin-bottom: 4px;
-
-            border-radius: 8px;
-
-            color:
-                rgba(255, 255, 255, 0.78);
-
-            font-size: 13px;
-
-            transition:
-                0.2s ease;
-        }
+        color:
+            rgba(255, 255, 255, 0.50);
+    }
 
 
-        .menu a:hover {
+    .menu a {
 
-            background:
-                rgba(255, 255, 255, 0.11);
+        display: flex;
 
-            color: #fff;
+        align-items: center;
 
-            transform:
-                translateX(2px);
-        }
+        gap: 12px;
 
+        padding:
+            12px 13px;
 
-        .menu a.active {
+        margin-bottom: 4px;
 
-            background: #fff;
+        border-radius: 8px;
 
-            color: #0a4d98;
+        color:
+            rgba(255, 255, 255, 0.78);
 
-            font-weight: 700;
+        font-size: 13px;
 
-            box-shadow:
-                0 5px 15px rgba(0, 0, 0, 0.12);
-        }
-
-
-        .menu-icon {
-
-            width: 24px;
-
-            height: 24px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            border-radius: 6px;
-
-            font-size: 15px;
-        }
+        transition:
+            0.2s ease;
+    }
 
 
-        .menu a.active .menu-icon {
+    .menu a:hover {
 
-            background: #eaf3ff;
-        }
+        background:
+            rgba(255, 255, 255, 0.11);
+
+        color: #fff;
+
+        transform:
+            translateX(2px);
+    }
 
 
-        /*
+    .menu a.active {
+
+        background: #fff;
+
+        color: #0a4d98;
+
+        font-weight: 700;
+
+        box-shadow:
+            0 5px 15px rgba(0, 0, 0, 0.12);
+    }
+
+
+    .menu-icon {
+
+        width: 24px;
+
+        height: 24px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        border-radius: 6px;
+
+        font-size: 15px;
+    }
+
+
+    .menu a.active .menu-icon {
+
+        background: #eaf3ff;
+    }
+
+
+    /*
         |--------------------------------------------------------------------------
         | MAIN
         |--------------------------------------------------------------------------
         */
 
-        .main {
+    .main {
 
-            margin-left: 250px;
+        margin-left: 250px;
 
-            min-height: 100vh;
-        }
+        min-height: 100vh;
+    }
 
 
-        /*
+    /*
         |--------------------------------------------------------------------------
         | TOPBAR
         |--------------------------------------------------------------------------
         */
 
-        .topbar {
+    .topbar {
 
-            height: 72px;
+        height: 72px;
 
-            background: #fff;
+        background: #fff;
 
-            border-bottom:
-                1px solid #e6ebf2;
+        border-bottom:
+            1px solid #e6ebf2;
 
-            padding:
-                0 30px;
+        padding:
+            0 30px;
 
-            display: flex;
+        display: flex;
 
-            align-items: center;
+        align-items: center;
 
-            justify-content: space-between;
+        justify-content: space-between;
 
-            position: sticky;
+        position: sticky;
 
-            top: 0;
+        top: 0;
 
-            z-index: 900;
-        }
-
-
-        .top-title h1 {
-
-            margin: 0;
-
-            font-size: 20px;
-
-            color: #152238;
-        }
+        z-index: 900;
+    }
 
 
-        .top-title p {
+    .top-title h1 {
 
-            margin:
-                4px 0 0;
+        margin: 0;
 
-            color: #8491a5;
+        font-size: 20px;
 
-            font-size: 12px;
-        }
-
-
-        .admin-profile {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 11px;
-        }
+        color: #152238;
+    }
 
 
-        .avatar {
+    .top-title p {
 
-            width: 40px;
+        margin:
+            4px 0 0;
 
-            height: 40px;
+        color: #8491a5;
 
-            border-radius: 50%;
-
-            background:
-                linear-gradient(135deg,
-                    #087cf0,
-                    #063b83);
-
-            color: #fff;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-weight: 800;
-
-            box-shadow:
-                0 4px 12px rgba(0, 91, 190, 0.25);
-        }
+        font-size: 12px;
+    }
 
 
-        .profile-name strong {
+    .admin-profile {
 
-            display: block;
+        display: flex;
 
-            font-size: 12px;
+        align-items: center;
 
-            color: #1c2940;
-        }
-
-
-        .profile-name span {
-
-            display: block;
-
-            margin-top: 2px;
-
-            color: #8a96a8;
-
-            font-size: 10px;
-        }
+        gap: 11px;
+    }
 
 
-        /*
+    .avatar {
+
+        width: 40px;
+
+        height: 40px;
+
+        border-radius: 50%;
+
+        background:
+            linear-gradient(135deg,
+                #087cf0,
+                #063b83);
+
+        color: #fff;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-weight: 800;
+
+        box-shadow:
+            0 4px 12px rgba(0, 91, 190, 0.25);
+    }
+
+
+    .profile-name strong {
+
+        display: block;
+
+        font-size: 12px;
+
+        color: #1c2940;
+    }
+
+
+    .profile-name span {
+
+        display: block;
+
+        margin-top: 2px;
+
+        color: #8a96a8;
+
+        font-size: 10px;
+    }
+
+
+    /*
         |--------------------------------------------------------------------------
         | CONTENT
         |--------------------------------------------------------------------------
         */
 
-        .content {
+    .content {
 
-            padding: 30px;
-        }
+        padding: 30px;
+    }
 
 
-        /*
+    /*
         |--------------------------------------------------------------------------
         | WELCOME BANNER
         |--------------------------------------------------------------------------
         */
 
-        .welcome {
+    .welcome {
 
-            position: relative;
+        position: relative;
 
-            overflow: hidden;
+        overflow: hidden;
 
-            background:
-                linear-gradient(120deg,
-                    #0755a5,
-                    #087fe8);
+        background:
+            linear-gradient(120deg,
+                #0755a5,
+                #087fe8);
 
-            color: #fff;
+        color: #fff;
 
-            border-radius: 14px;
+        border-radius: 14px;
 
-            padding:
-                27px 30px;
+        padding:
+            27px 30px;
 
-            margin-bottom: 25px;
+        margin-bottom: 25px;
 
-            box-shadow:
-                0 10px 28px rgba(5, 83, 163, 0.18);
-        }
-
-
-        .welcome:after {
-
-            content: "";
-
-            position: absolute;
-
-            width: 220px;
-
-            height: 220px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(255, 255, 255, 0.08);
-
-            right: -60px;
-
-            top: -90px;
-        }
+        box-shadow:
+            0 10px 28px rgba(5, 83, 163, 0.18);
+    }
 
 
-        .welcome:before {
+    .welcome:after {
 
-            content: "";
+        content: "";
 
-            position: absolute;
+        position: absolute;
 
-            width: 130px;
+        width: 220px;
 
-            height: 130px;
+        height: 220px;
 
-            border-radius: 50%;
+        border-radius: 50%;
 
-            background:
-                rgba(255, 255, 255, 0.06);
+        background:
+            rgba(255, 255, 255, 0.08);
 
-            right: 110px;
+        right: -60px;
 
-            bottom: -75px;
-        }
-
-
-        .welcome-content {
-
-            position: relative;
-
-            z-index: 2;
-        }
+        top: -90px;
+    }
 
 
-        .welcome h2 {
+    .welcome:before {
 
-            margin: 0;
+        content: "";
 
-            font-size: 25px;
-        }
+        position: absolute;
+
+        width: 130px;
+
+        height: 130px;
+
+        border-radius: 50%;
+
+        background:
+            rgba(255, 255, 255, 0.06);
+
+        right: 110px;
+
+        bottom: -75px;
+    }
 
 
-        .welcome p {
+    .welcome-content {
 
-            margin:
-                8px 0 0;
+        position: relative;
 
-            color:
-                rgba(255, 255, 255, 0.82);
-
-            font-size: 13px;
-        }
+        z-index: 2;
+    }
 
 
-        /*
+    .welcome h2 {
+
+        margin: 0;
+
+        font-size: 25px;
+    }
+
+
+    .welcome p {
+
+        margin:
+            8px 0 0;
+
+        color:
+            rgba(255, 255, 255, 0.82);
+
+        font-size: 13px;
+    }
+
+
+    /*
         |--------------------------------------------------------------------------
         | STAT CARDS
         |--------------------------------------------------------------------------
         */
 
-        .stats {
+    .stats {
 
-            display: grid;
+        display: grid;
 
-            grid-template-columns:
-                repeat(4, 1fr);
+        grid-template-columns:
+            repeat(4, 1fr);
 
-            gap: 17px;
+        gap: 17px;
 
-            margin-bottom: 25px;
-        }
+        margin-bottom: 25px;
+    }
 
 
-        .stat-card {
+    .stat-card {
 
-            position: relative;
+        position: relative;
 
-            overflow: hidden;
+        overflow: hidden;
 
-            background: #fff;
+        background: #fff;
 
-            border-radius: 12px;
+        border-radius: 12px;
 
-            padding: 20px;
+        padding: 20px;
 
-            border:
-                1px solid #e8edf4;
+        border:
+            1px solid #e8edf4;
 
-            box-shadow:
-                0 4px 16px rgba(25, 60, 100, 0.05);
-        }
+        box-shadow:
+            0 4px 16px rgba(25, 60, 100, 0.05);
+    }
 
 
-        .stat-card:after {
+    .stat-card:after {
 
-            content: "";
+        content: "";
 
-            position: absolute;
+        position: absolute;
 
-            right: -30px;
+        right: -30px;
 
-            top: -35px;
+        top: -35px;
 
-            width: 90px;
+        width: 90px;
 
-            height: 90px;
+        height: 90px;
 
-            border-radius: 50%;
+        border-radius: 50%;
 
-            opacity: 0.10;
-        }
+        opacity: 0.10;
+    }
 
 
-        .stat-top {
+    .stat-top {
 
-            display: flex;
+        display: flex;
 
-            align-items: center;
+        align-items: center;
 
-            justify-content: space-between;
+        justify-content: space-between;
 
-            margin-bottom: 16px;
-        }
+        margin-bottom: 16px;
+    }
 
 
-        .stat-icon {
+    .stat-icon {
 
-            width: 43px;
+        width: 43px;
 
-            height: 43px;
+        height: 43px;
 
-            border-radius: 10px;
+        border-radius: 10px;
 
-            display: flex;
+        display: flex;
 
-            align-items: center;
+        align-items: center;
 
-            justify-content: center;
+        justify-content: center;
 
-            font-size: 19px;
+        font-size: 19px;
 
-            font-weight: 700;
-        }
+        font-weight: 700;
+    }
 
 
-        .stat-label {
+    .stat-label {
 
-            color: #7e8a9d;
+        color: #7e8a9d;
 
-            font-size: 11px;
+        font-size: 11px;
 
-            font-weight: 700;
+        font-weight: 700;
 
-            text-transform: uppercase;
+        text-transform: uppercase;
 
-            letter-spacing: .5px;
-        }
+        letter-spacing: .5px;
+    }
 
 
-        .stat-value {
+    .stat-value {
 
-            font-size: 27px;
+        font-size: 27px;
 
-            font-weight: 800;
+        font-weight: 800;
 
-            color: #162338;
-        }
+        color: #162338;
+    }
 
 
-        .stat-blue .stat-icon {
+    .stat-blue .stat-icon {
 
-            background: #e8f3ff;
+        background: #e8f3ff;
 
-            color: #0875df;
-        }
+        color: #0875df;
+    }
 
 
-        .stat-blue:after {
-            background: #0875df;
-        }
+    .stat-blue:after {
+        background: #0875df;
+    }
 
 
-        .stat-green .stat-icon {
+    .stat-green .stat-icon {
 
-            background: #e9f8f0;
+        background: #e9f8f0;
 
-            color: #169b57;
-        }
+        color: #169b57;
+    }
 
 
-        .stat-green:after {
-            background: #169b57;
-        }
+    .stat-green:after {
+        background: #169b57;
+    }
 
 
-        .stat-orange .stat-icon {
+    .stat-orange .stat-icon {
 
-            background: #fff4df;
+        background: #fff4df;
 
-            color: #e38a08;
-        }
+        color: #e38a08;
+    }
 
 
-        .stat-orange:after {
-            background: #e38a08;
-        }
+    .stat-orange:after {
+        background: #e38a08;
+    }
 
 
-        .stat-red .stat-icon {
+    .stat-red .stat-icon {
 
-            background: #ffebeb;
+        background: #ffebeb;
 
-            color: #d93030;
-        }
+        color: #d93030;
+    }
 
 
-        .stat-red:after {
-            background: #d93030;
-        }
+    .stat-red:after {
+        background: #d93030;
+    }
 
 
-        .stat-purple .stat-icon {
+    .stat-purple .stat-icon {
 
-            background: #f1eaff;
+        background: #f1eaff;
 
-            color: #7648d8;
-        }
+        color: #7648d8;
+    }
 
 
-        .stat-cyan .stat-icon {
+    .stat-cyan .stat-icon {
 
-            background: #e5f8fb;
+        background: #e5f8fb;
 
-            color: #008da4;
-        }
+        color: #008da4;
+    }
 
 
-        /*
+    /*
         |--------------------------------------------------------------------------
         | SECONDARY STATS
         |--------------------------------------------------------------------------
         */
 
-        .secondary-stats {
+    .secondary-stats {
 
-            display: grid;
+        display: grid;
 
-            grid-template-columns:
-                repeat(4, 1fr);
+        grid-template-columns:
+            repeat(4, 1fr);
 
-            gap: 17px;
+        gap: 17px;
 
-            margin-bottom: 25px;
-        }
-
-
-        .small-stat {
-
-            background: #fff;
-
-            border:
-                1px solid #e8edf4;
-
-            border-radius: 11px;
-
-            padding: 17px;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 13px;
-        }
+        margin-bottom: 25px;
+    }
 
 
-        .small-icon {
+    .small-stat {
 
-            width: 42px;
+        background: #fff;
 
-            height: 42px;
+        border:
+            1px solid #e8edf4;
 
-            border-radius: 10px;
+        border-radius: 11px;
 
-            display: flex;
+        padding: 17px;
 
-            align-items: center;
+        display: flex;
 
-            justify-content: center;
+        align-items: center;
 
-            font-size: 17px;
-        }
-
-
-        .small-info span {
-
-            display: block;
-
-            color: #8894a7;
-
-            font-size: 11px;
-
-            margin-bottom: 4px;
-        }
+        gap: 13px;
+    }
 
 
-        .small-info strong {
+    .small-icon {
 
-            font-size: 20px;
+        width: 42px;
 
-            color: #1a2940;
-        }
+        height: 42px;
+
+        border-radius: 10px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 17px;
+    }
 
 
-        /*
+    .small-info span {
+
+        display: block;
+
+        color: #8894a7;
+
+        font-size: 11px;
+
+        margin-bottom: 4px;
+    }
+
+
+    .small-info strong {
+
+        font-size: 20px;
+
+        color: #1a2940;
+    }
+
+
+    /*
         |--------------------------------------------------------------------------
         | DASHBOARD GRID
         |--------------------------------------------------------------------------
         */
 
-        .dashboard-grid {
+    .dashboard-grid {
 
-            display: grid;
+        display: grid;
 
-            grid-template-columns:
-                1.45fr 1fr;
+        grid-template-columns:
+            1.45fr 1fr;
 
-            gap: 20px;
+        gap: 20px;
 
-            margin-bottom: 25px;
-        }
-
-
-        .panel {
-
-            background: #fff;
-
-            border:
-                1px solid #e7edf4;
-
-            border-radius: 12px;
-
-            overflow: hidden;
-
-            box-shadow:
-                0 4px 15px rgba(25, 60, 100, 0.04);
-        }
+        margin-bottom: 25px;
+    }
 
 
-        .panel-header {
+    .panel {
 
-            padding:
-                17px 20px;
+        background: #fff;
 
-            border-bottom:
-                1px solid #edf0f4;
+        border:
+            1px solid #e7edf4;
 
-            display: flex;
+        border-radius: 12px;
 
-            align-items: center;
+        overflow: hidden;
 
-            justify-content: space-between;
-        }
-
-
-        .panel-header h3 {
-
-            margin: 0;
-
-            font-size: 14px;
-
-            color: #1c2a40;
-        }
+        box-shadow:
+            0 4px 15px rgba(25, 60, 100, 0.04);
+    }
 
 
-        .panel-header a {
+    .panel-header {
 
-            font-size: 11px;
+        padding:
+            17px 20px;
 
-            color: #0875df;
+        border-bottom:
+            1px solid #edf0f4;
 
-            font-weight: 700;
-        }
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+    }
 
 
-        /*
+    .panel-header h3 {
+
+        margin: 0;
+
+        font-size: 14px;
+
+        color: #1c2a40;
+    }
+
+
+    .panel-header a {
+
+        font-size: 11px;
+
+        color: #0875df;
+
+        font-weight: 700;
+    }
+
+
+    /*
         |--------------------------------------------------------------------------
         | PRODUCTS
         |--------------------------------------------------------------------------
         */
 
-        .product-list {
+    .product-list {
 
-            padding: 5px 20px;
-        }
-
-
-        .product-row {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 12px;
-
-            padding: 13px 0;
-
-            border-bottom:
-                1px solid #f0f2f5;
-        }
+        padding: 5px 20px;
+    }
 
 
-        .product-row:last-child {
+    .product-row {
 
-            border-bottom: none;
-        }
+        display: flex;
 
+        align-items: center;
 
-        .product-image {
+        gap: 12px;
 
-            width: 48px;
+        padding: 13px 0;
 
-            height: 48px;
-
-            border-radius: 8px;
-
-            border:
-                1px solid #e8edf3;
-
-            background: #f8fafc;
-
-            object-fit: contain;
-
-            flex-shrink: 0;
-        }
+        border-bottom:
+            1px solid #f0f2f5;
+    }
 
 
-        .no-image {
+    .product-row:last-child {
 
-            width: 48px;
-
-            height: 48px;
-
-            border-radius: 8px;
-
-            background: #edf3f9;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            color: #8b9aab;
-
-            font-size: 9px;
-
-            flex-shrink: 0;
-        }
+        border-bottom: none;
+    }
 
 
-        .product-details {
+    .product-image {
 
-            flex: 1;
+        width: 48px;
 
-            min-width: 0;
-        }
+        height: 48px;
 
+        border-radius: 8px;
 
-        .product-name {
+        border:
+            1px solid #e8edf3;
 
-            font-size: 12px;
+        background: #f8fafc;
 
-            font-weight: 700;
+        object-fit: contain;
 
-            color: #24334a;
-
-            white-space: nowrap;
-
-            overflow: hidden;
-
-            text-overflow: ellipsis;
-        }
+        flex-shrink: 0;
+    }
 
 
-        .product-meta {
+    .no-image {
 
-            color: #8a96a7;
+        width: 48px;
 
-            font-size: 10px;
+        height: 48px;
 
-            margin-top: 4px;
-        }
+        border-radius: 8px;
+
+        background: #edf3f9;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        color: #8b9aab;
+
+        font-size: 9px;
+
+        flex-shrink: 0;
+    }
 
 
-        .product-price {
+    .product-details {
 
-            text-align: right;
+        flex: 1;
 
-            font-size: 12px;
-
-            font-weight: 800;
-
-            color: #0869c8;
-
-            white-space: nowrap;
-        }
+        min-width: 0;
+    }
 
 
-        /*
+    .product-name {
+
+        font-size: 12px;
+
+        font-weight: 700;
+
+        color: #24334a;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+
+    .product-meta {
+
+        color: #8a96a7;
+
+        font-size: 10px;
+
+        margin-top: 4px;
+    }
+
+
+    .product-price {
+
+        text-align: right;
+
+        font-size: 12px;
+
+        font-weight: 800;
+
+        color: #0869c8;
+
+        white-space: nowrap;
+    }
+
+
+    /*
         |--------------------------------------------------------------------------
         | ORDERS
         |--------------------------------------------------------------------------
         */
 
-        .order-list {
+    .order-list {
 
-            padding: 5px 20px;
-        }
+        padding: 5px 20px;
+    }
 
 
-        .order-row {
+    .order-row {
 
-            display: flex;
+        display: flex;
 
-            align-items: center;
+        align-items: center;
 
-            gap: 12px;
+        gap: 12px;
 
-            padding: 13px 0;
+        padding: 13px 0;
 
-            border-bottom:
-                1px solid #f0f2f5;
-        }
+        border-bottom:
+            1px solid #f0f2f5;
+    }
 
 
-        .order-row:last-child {
+    .order-row:last-child {
 
-            border-bottom: none;
-        }
+        border-bottom: none;
+    }
 
 
-        .order-icon {
+    .order-icon {
 
-            width: 42px;
+        width: 42px;
 
-            height: 42px;
+        height: 42px;
 
-            border-radius: 9px;
+        border-radius: 9px;
 
-            background: #eaf3ff;
+        background: #eaf3ff;
 
-            color: #0875df;
+        color: #0875df;
 
-            display: flex;
+        display: flex;
 
-            align-items: center;
+        align-items: center;
 
-            justify-content: center;
+        justify-content: center;
 
-            font-weight: 800;
+        font-weight: 800;
 
-            font-size: 15px;
+        font-size: 15px;
 
-            flex-shrink: 0;
-        }
+        flex-shrink: 0;
+    }
 
 
-        .order-info {
+    .order-info {
 
-            flex: 1;
+        flex: 1;
 
-            min-width: 0;
-        }
+        min-width: 0;
+    }
 
 
-        .order-number {
+    .order-number {
 
-            font-size: 11px;
+        font-size: 11px;
 
-            font-weight: 800;
+        font-weight: 800;
 
-            color: #23334a;
-        }
+        color: #23334a;
+    }
 
 
-        .customer-name {
+    .customer-name {
 
-            font-size: 10px;
+        font-size: 10px;
 
-            color: #8a96a7;
+        color: #8a96a7;
 
-            margin-top: 4px;
+        margin-top: 4px;
 
-            white-space: nowrap;
+        white-space: nowrap;
 
-            overflow: hidden;
+        overflow: hidden;
 
-            text-overflow: ellipsis;
-        }
+        text-overflow: ellipsis;
+    }
 
 
-        .order-right {
+    .order-right {
 
-            text-align: right;
-        }
+        text-align: right;
+    }
 
 
-        .order-amount {
+    .order-amount {
 
-            font-size: 11px;
+        font-size: 11px;
 
-            font-weight: 800;
+        font-weight: 800;
 
-            color: #17263d;
-        }
+        color: #17263d;
+    }
 
 
-        .order-status {
+    .order-status {
 
-            display: inline-block;
+        display: inline-block;
 
-            margin-top: 4px;
+        margin-top: 4px;
 
-            padding: 4px 7px;
+        padding: 4px 7px;
 
-            border-radius: 20px;
+        border-radius: 20px;
 
-            font-size: 8px;
+        font-size: 8px;
 
-            font-weight: 800;
+        font-weight: 800;
 
-            text-transform: uppercase;
-        }
+        text-transform: uppercase;
+    }
 
 
-        .status-pending {
+    .status-pending {
 
-            background: #fff3dc;
+        background: #fff3dc;
 
-            color: #bb7200;
-        }
+        color: #bb7200;
+    }
 
 
-        .status-completed {
+    .status-completed {
 
-            background: #e6f7ed;
+        background: #e6f7ed;
 
-            color: #19864a;
-        }
+        color: #19864a;
+    }
 
 
-        .status-cancelled {
+    .status-cancelled {
 
-            background: #ffebeb;
+        background: #ffebeb;
 
-            color: #c72b2b;
-        }
+        color: #c72b2b;
+    }
 
 
-        .status-processing {
+    .status-processing {
 
-            background: #e7f1ff;
+        background: #e7f1ff;
 
-            color: #1767b1;
-        }
+        color: #1767b1;
+    }
 
 
-        .status-default {
+    .status-default {
 
-            background: #f0f2f5;
+        background: #f0f2f5;
 
-            color: #687586;
-        }
+        color: #687586;
+    }
 
 
-        /*
+    /*
         |--------------------------------------------------------------------------
         | QUICK ACTIONS
         |--------------------------------------------------------------------------
         */
 
-        .quick-actions {
+    .quick-actions {
 
-            display: grid;
+        display: grid;
 
-            grid-template-columns:
-                repeat(4, 1fr);
+        grid-template-columns:
+            repeat(4, 1fr);
 
-            gap: 14px;
+        gap: 14px;
 
-            margin-top: 20px;
-        }
-
-
-        .quick-action {
-
-            background: #fff;
-
-            border:
-                1px solid #e7edf4;
-
-            border-radius: 10px;
-
-            padding: 18px;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 12px;
-
-            color: #26354b;
-
-            transition: .2s ease;
-        }
+        margin-top: 20px;
+    }
 
 
-        .quick-action:hover {
+    .quick-action {
 
-            border-color: #a9cef3;
+        background: #fff;
 
-            transform:
-                translateY(-2px);
+        border:
+            1px solid #e7edf4;
 
-            box-shadow:
-                0 8px 18px rgba(10, 90, 170, 0.08);
-        }
+        border-radius: 10px;
 
+        padding: 18px;
 
-        .quick-icon {
+        display: flex;
 
-            width: 40px;
+        align-items: center;
 
-            height: 40px;
+        gap: 12px;
 
-            background: #eaf3ff;
+        color: #26354b;
 
-            color: #0875df;
-
-            border-radius: 9px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-size: 17px;
-        }
+        transition: .2s ease;
+    }
 
 
-        .quick-action strong {
+    .quick-action:hover {
 
-            display: block;
+        border-color: #a9cef3;
 
-            font-size: 11px;
-        }
+        transform:
+            translateY(-2px);
 
-
-        .quick-action span {
-
-            display: block;
-
-            color: #8a96a7;
-
-            font-size: 9px;
-
-            margin-top: 3px;
-        }
+        box-shadow:
+            0 8px 18px rgba(10, 90, 170, 0.08);
+    }
 
 
-        /*
+    .quick-icon {
+
+        width: 40px;
+
+        height: 40px;
+
+        background: #eaf3ff;
+
+        color: #0875df;
+
+        border-radius: 9px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 17px;
+    }
+
+
+    .quick-action strong {
+
+        display: block;
+
+        font-size: 11px;
+    }
+
+
+    .quick-action span {
+
+        display: block;
+
+        color: #8a96a7;
+
+        font-size: 9px;
+
+        margin-top: 3px;
+    }
+
+
+    /*
         |--------------------------------------------------------------------------
         | EMPTY
         |--------------------------------------------------------------------------
         */
 
-        .empty {
+    .empty {
 
-            padding: 35px 20px;
+        padding: 35px 20px;
 
-            text-align: center;
+        text-align: center;
 
-            color: #96a1b0;
+        color: #96a1b0;
 
-            font-size: 12px;
-        }
+        font-size: 12px;
+    }
 
 
-        /*
+    /*
         |--------------------------------------------------------------------------
         | NOTIFICATIONS
         |--------------------------------------------------------------------------
         */
-        .topbar-actions { display:flex; align-items:center; gap:18px; }
-        .notification-wrap { position:relative; }
-        .notification-btn { position:relative; width:42px; height:42px; border:1px solid #e5ebf2; border-radius:10px; background:#fff; color:#31516f; display:flex; align-items:center; justify-content:center; font-size:19px; cursor:pointer; }
-        .notification-btn:hover,.notification-btn.open { background:#eaf3ff; border-color:#bcd9f6; color:#0875df; }
-        .notification-badge { position:absolute; top:-5px; right:-5px; min-width:18px; height:18px; padding:0 5px; border-radius:20px; background:#e53935; color:#fff; display:flex; align-items:center; justify-content:center; font-size:9px; font-weight:800; border:2px solid #fff; }
-        .notification-badge.hidden { display:none; }
-        .notification-dropdown { position:absolute; top:51px; right:0; width:360px; background:#fff; border:1px solid #e2e9f1; border-radius:12px; box-shadow:0 14px 35px rgba(20,54,90,.16); overflow:hidden; display:none; z-index:1200; }
-        .notification-dropdown.show { display:block; }
-        .notification-head { padding:15px 16px; border-bottom:1px solid #edf1f5; display:flex; justify-content:space-between; align-items:center; }
-        .notification-head strong { color:#1c2a40; font-size:12px; }
-        .notification-head a,.notification-footer a { color:#0875df; font-size:9px; font-weight:800; }
-        .notification-list { max-height:350px; overflow-y:auto; }
-        .notification-item { display:flex; gap:11px; padding:13px 16px; border-bottom:1px solid #f0f3f6; color:inherit; }
-        .notification-item:hover { background:#f7fbff; }
-        .notification-item.unread { background:#f2f8ff; }
-        .notification-dot { flex:0 0 34px; width:34px; height:34px; border-radius:9px; background:#eaf3ff; color:#0875df; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:13px; }
-        .notification-content { min-width:0; flex:1; }
-        .notification-title { color:#24344b; font-size:10px; font-weight:800; }
-        .notification-message { margin-top:4px; color:#7d8da0; font-size:9px; line-height:1.45; }
-        .notification-time { margin-top:5px; color:#a0adba; font-size:8px; }
-        .notification-empty { padding:30px 18px; text-align:center; color:#8c9bab; font-size:10px; }
-        .notification-footer { border-top:1px solid #edf1f5; padding:11px 16px; text-align:center; }
+    .topbar-actions {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+    }
 
-        /*
+    .notification-wrap {
+        position: relative;
+    }
+
+    .notification-btn {
+        position: relative;
+        width: 42px;
+        height: 42px;
+        border: 1px solid #e5ebf2;
+        border-radius: 10px;
+        background: #fff;
+        color: #31516f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 19px;
+        cursor: pointer;
+    }
+
+    .notification-btn:hover,
+    .notification-btn.open {
+        background: #eaf3ff;
+        border-color: #bcd9f6;
+        color: #0875df;
+    }
+
+    .notification-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        min-width: 18px;
+        height: 18px;
+        padding: 0 5px;
+        border-radius: 20px;
+        background: #e53935;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 9px;
+        font-weight: 800;
+        border: 2px solid #fff;
+    }
+
+    .notification-badge.hidden {
+        display: none;
+    }
+
+    .notification-dropdown {
+        position: absolute;
+        top: 51px;
+        right: 0;
+        width: 360px;
+        background: #fff;
+        border: 1px solid #e2e9f1;
+        border-radius: 12px;
+        box-shadow: 0 14px 35px rgba(20, 54, 90, .16);
+        overflow: hidden;
+        display: none;
+        z-index: 1200;
+    }
+
+    .notification-dropdown.show {
+        display: block;
+    }
+
+    .notification-head {
+        padding: 15px 16px;
+        border-bottom: 1px solid #edf1f5;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .notification-head strong {
+        color: #1c2a40;
+        font-size: 12px;
+    }
+
+    .notification-head a,
+    .notification-footer a {
+        color: #0875df;
+        font-size: 9px;
+        font-weight: 800;
+    }
+
+    .notification-list {
+        max-height: 350px;
+        overflow-y: auto;
+    }
+
+    .notification-item {
+        display: flex;
+        gap: 11px;
+        padding: 13px 16px;
+        border-bottom: 1px solid #f0f3f6;
+        color: inherit;
+    }
+
+    .notification-item:hover {
+        background: #f7fbff;
+    }
+
+    .notification-item.unread {
+        background: #f2f8ff;
+    }
+
+    .notification-dot {
+        flex: 0 0 34px;
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        background: #eaf3ff;
+        color: #0875df;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        font-size: 13px;
+    }
+
+    .notification-content {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .notification-title {
+        color: #24344b;
+        font-size: 10px;
+        font-weight: 800;
+    }
+
+    .notification-message {
+        margin-top: 4px;
+        color: #7d8da0;
+        font-size: 9px;
+        line-height: 1.45;
+    }
+
+    .notification-time {
+        margin-top: 5px;
+        color: #a0adba;
+        font-size: 8px;
+    }
+
+    .notification-empty {
+        padding: 30px 18px;
+        text-align: center;
+        color: #8c9bab;
+        font-size: 10px;
+    }
+
+    .notification-footer {
+        border-top: 1px solid #edf1f5;
+        padding: 11px 16px;
+        text-align: center;
+    }
+
+    /*
         |--------------------------------------------------------------------------
         | MOBILE
         |--------------------------------------------------------------------------
         */
 
-        @media (max-width: 1150px) {
+    @media (max-width: 1150px) {
 
-            .stats {
+        .stats {
 
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
-
-            .secondary-stats {
-
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
-
-            .dashboard-grid {
-
-                grid-template-columns: 1fr;
-            }
-
-
-            .quick-actions {
-
-                grid-template-columns:
-                    repeat(2, 1fr);
-            }
-
+            grid-template-columns:
+                repeat(2, 1fr);
         }
 
 
-        @media (max-width: 800px) {
+        .secondary-stats {
 
-            .sidebar {
-
-                width: 72px;
-
-                padding:
-                    18px 8px;
-            }
-
-
-            .logo-main {
-
-                font-size: 14px;
-            }
-
-
-            .logo-sub,
-            .menu-title,
-            .menu a span:last-child {
-
-                display: none;
-            }
-
-
-            .menu a {
-
-                justify-content: center;
-            }
-
-
-            .main {
-
-                margin-left: 72px;
-            }
-
-
-            .topbar {
-
-                padding:
-                    0 18px;
-            }
-
-
-            .content {
-
-                padding: 18px;
-            }
-
-
-            .profile-name {
-
-                display: none;
-            }
-
+            grid-template-columns:
+                repeat(2, 1fr);
         }
 
 
-        @media (max-width: 560px) {
+        .dashboard-grid {
 
-            .stats,
-            .secondary-stats {
-
-                grid-template-columns: 1fr;
-            }
-
-
-            .quick-actions {
-
-                grid-template-columns: 1fr;
-            }
-
-
-            .welcome h2 {
-
-                font-size: 20px;
-            }
-
-
-            .top-title p {
-
-                display: none;
-            }
-
+            grid-template-columns: 1fr;
         }
+
+
+        .quick-actions {
+
+            grid-template-columns:
+                repeat(2, 1fr);
+        }
+
+    }
+
+
+    @media (max-width: 800px) {
+
+        .sidebar {
+
+            width: 72px;
+
+            padding:
+                18px 8px;
+        }
+
+
+        .logo-main {
+
+            font-size: 14px;
+        }
+
+
+        .logo-sub,
+        .menu-title,
+        .menu a span:last-child {
+
+            display: none;
+        }
+
+
+        .menu a {
+
+            justify-content: center;
+        }
+
+
+        .main {
+
+            margin-left: 72px;
+        }
+
+
+        .topbar {
+
+            padding:
+                0 18px;
+        }
+
+
+        .content {
+
+            padding: 18px;
+        }
+
+
+        .profile-name {
+
+            display: none;
+        }
+
+    }
+
+
+    @media (max-width: 560px) {
+
+        .stats,
+        .secondary-stats {
+
+            grid-template-columns: 1fr;
+        }
+
+
+        .quick-actions {
+
+            grid-template-columns: 1fr;
+        }
+
+
+        .welcome h2 {
+
+            font-size: 20px;
+        }
+
+
+        .top-title p {
+
+            display: none;
+        }
+
+    }
     </style>
 
 </head>
@@ -1624,7 +1765,7 @@ if ($notificationCountResult) {
             <a href="index.php" class="active">
 
                 <span class="menu-icon">
-                    ▦
+                    📊
                 </span>
 
                 <span>
@@ -1637,7 +1778,7 @@ if ($notificationCountResult) {
             <a href="products.php">
 
                 <span class="menu-icon">
-                    ▣
+                    📦
                 </span>
 
                 <span>
@@ -1650,7 +1791,7 @@ if ($notificationCountResult) {
             <a href="product-add.php">
 
                 <span class="menu-icon">
-                    ＋
+                    ➕
                 </span>
 
                 <span>
@@ -1668,7 +1809,7 @@ if ($notificationCountResult) {
             <a href="categories.php">
 
                 <span class="menu-icon">
-                    ◫
+                    📁
                 </span>
 
                 <span>
@@ -1681,7 +1822,7 @@ if ($notificationCountResult) {
             <a href="brands.php">
 
                 <span class="menu-icon">
-                    ◇
+                    🏷️
                 </span>
 
                 <span>
@@ -1694,7 +1835,7 @@ if ($notificationCountResult) {
             <a href="tags.php">
 
                 <span class="menu-icon">
-                    #
+                    #️⃣
                 </span>
 
                 <span>
@@ -1712,7 +1853,7 @@ if ($notificationCountResult) {
             <a href="orders.php">
 
                 <span class="menu-icon">
-                    ▤
+                    🛒
                 </span>
 
                 <span>
@@ -1725,11 +1866,24 @@ if ($notificationCountResult) {
             <a href="reviews.php">
 
                 <span class="menu-icon">
-                    ☆
+                    ⭐
                 </span>
 
                 <span>
                     Reviews
+                </span>
+
+            </a>
+
+
+            <a href="events.php">
+
+                <span class="menu-icon">
+                    📅
+                </span>
+
+                <span>
+                    Events
                 </span>
 
             </a>
@@ -1803,9 +1957,11 @@ if ($notificationCountResult) {
             <div class="topbar-actions">
 
                 <div class="notification-wrap">
-                    <button type="button" class="notification-btn" id="notificationBtn" aria-label="Notifications" aria-expanded="false">
+                    <button type="button" class="notification-btn" id="notificationBtn" aria-label="Notifications"
+                        aria-expanded="false">
                         🔔
-                        <span class="notification-badge <?= $unreadNotifications > 0 ? '' : 'hidden' ?>" id="notificationBadge">
+                        <span class="notification-badge <?= $unreadNotifications > 0 ? '' : 'hidden' ?>"
+                            id="notificationBadge">
                             <?= $unreadNotifications > 99 ? '99+' : $unreadNotifications ?>
                         </span>
                     </button>
@@ -1827,29 +1983,29 @@ if ($notificationCountResult) {
                 <div class="admin-profile">
 
 
-                <div class="avatar">
+                    <div class="avatar">
 
-                    <?= htmlspecialchars($adminInitial) ?>
+                        <?= htmlspecialchars($adminInitial) ?>
+
+                    </div>
+
+
+                    <div class="profile-name">
+
+                        <strong>
+
+                            <?= htmlspecialchars($adminName) ?>
+
+                        </strong>
+
+                        <span>
+                            Administrator
+                        </span>
+
+                    </div>
+
 
                 </div>
-
-
-                <div class="profile-name">
-
-                    <strong>
-
-                        <?= htmlspecialchars($adminName) ?>
-
-                    </strong>
-
-                    <span>
-                        Administrator
-                    </span>
-
-                </div>
-
-
-            </div>
 
             </div>
 
@@ -1899,7 +2055,7 @@ if ($notificationCountResult) {
                         </span>
 
                         <div class="stat-icon">
-                            ▣
+                            📦
                         </div>
 
                     </div>
@@ -1992,7 +2148,7 @@ if ($notificationCountResult) {
                         background:#f0eaff;
                         color:#7044d4;
                     ">
-                        ◫
+                        📁
                     </div>
 
                     <div class="small-info">
@@ -2017,7 +2173,7 @@ if ($notificationCountResult) {
                         background:#e4f8fb;
                         color:#008ca3;
                     ">
-                        ◇
+                        🏷️
                     </div>
 
                     <div class="small-info">
@@ -2042,7 +2198,7 @@ if ($notificationCountResult) {
                         background:#e7f1ff;
                         color:#0875df;
                     ">
-                        ▤
+                        🛒
                     </div>
 
                     <div class="small-info">
@@ -2118,13 +2274,13 @@ if ($notificationCountResult) {
                         <?php if (!empty($recentProducts)): ?>
 
 
-                            <?php foreach ($recentProducts as $product): ?>
+                        <?php foreach ($recentProducts as $product): ?>
 
 
-                                <div class="product-row">
+                        <div class="product-row">
 
 
-                                    <?php
+                            <?php
 
                                     $imageName =
                                         trim(
@@ -2154,94 +2310,94 @@ if ($notificationCountResult) {
                                     ?>
 
 
-                                    <?php if ($imageUrl !== ''): ?>
+                            <?php if ($imageUrl !== ''): ?>
 
 
-                                        <img src="<?= htmlspecialchars($imageUrl) ?>" class="product-image"
-                                            alt="<?= htmlspecialchars($product['name']) ?>" onerror="
+                            <img src="<?= htmlspecialchars($imageUrl) ?>" class="product-image"
+                                alt="<?= htmlspecialchars($product['name']) ?>" onerror="
                                             this.style.display='none';
                                             this.nextElementSibling.style.display='flex';
                                         ">
 
 
-                                        <div class="no-image" style="display:none;">
-                                            IMG
-                                        </div>
+                            <div class="no-image" style="display:none;">
+                                IMG
+                            </div>
 
 
-                                    <?php else: ?>
+                            <?php else: ?>
 
 
-                                        <div class="no-image">
-                                            IMG
-                                        </div>
+                            <div class="no-image">
+                                IMG
+                            </div>
 
 
-                                    <?php endif; ?>
+                            <?php endif; ?>
 
 
-                                    <div class="product-details">
+                            <div class="product-details">
 
 
-                                        <div class="product-name">
+                                <div class="product-name">
 
-                                            <?= htmlspecialchars(
+                                    <?= htmlspecialchars(
                                                 $product['name']
                                             ) ?>
-
-                                        </div>
-
-
-                                        <div class="product-meta">
-
-                                            <?= htmlspecialchars(
-                                                $product['brand_name']
-                                                    ?? 'No Brand'
-                                            ) ?>
-
-                                            &nbsp; • &nbsp;
-
-                                            <?= htmlspecialchars(
-                                                $product['category_name']
-                                                    ?? 'Uncategorized'
-                                            ) ?>
-
-                                            &nbsp; • &nbsp;
-
-                                            Stock:
-                                            <?= (int)$product['stock_quantity'] ?>
-
-                                        </div>
-
-
-                                    </div>
-
-
-                                    <div class="product-price">
-
-                                        Ksh.
-                                        <?= number_format(
-                                            (float)$product['price'],
-                                            0
-                                        ) ?>
-
-                                    </div>
-
 
                                 </div>
 
 
-                            <?php endforeach; ?>
+                                <div class="product-meta">
+
+                                    <?= htmlspecialchars(
+                                                $product['brand_name']
+                                                    ?? 'No Brand'
+                                            ) ?>
+
+                                    &nbsp; • &nbsp;
+
+                                    <?= htmlspecialchars(
+                                                $product['category_name']
+                                                    ?? 'Uncategorized'
+                                            ) ?>
+
+                                    &nbsp; • &nbsp;
+
+                                    Stock:
+                                    <?= (int)$product['stock_quantity'] ?>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="product-price">
+
+                                Ksh.
+                                <?= number_format(
+                                            (float)$product['price'],
+                                            0
+                                        ) ?>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <?php endforeach; ?>
 
 
                         <?php else: ?>
 
 
-                            <div class="empty">
+                        <div class="empty">
 
-                                No products have been added yet.
+                            No products have been added yet.
 
-                            </div>
+                        </div>
 
 
                         <?php endif; ?>
@@ -2278,10 +2434,10 @@ if ($notificationCountResult) {
                         <?php if (!empty($recentOrders)): ?>
 
 
-                            <?php foreach ($recentOrders as $order): ?>
+                        <?php foreach ($recentOrders as $order): ?>
 
 
-                                <?php
+                        <?php
 
                                 $orderStatus =
                                     strtolower(
@@ -2327,74 +2483,74 @@ if ($notificationCountResult) {
                                 ?>
 
 
-                                <div class="order-row">
+                        <div class="order-row">
 
 
-                                    <div class="order-icon">
-                                        #
-                                    </div>
+                            <div class="order-icon">
+                                #
+                            </div>
 
 
-                                    <div class="order-info">
+                            <div class="order-info">
 
-                                        <div class="order-number">
+                                <div class="order-number">
 
-                                            <?= htmlspecialchars(
+                                    <?= htmlspecialchars(
                                                 $order['order_number']
                                             ) ?>
-
-                                        </div>
-
-
-                                        <div class="customer-name">
-
-                                            <?= htmlspecialchars(
-                                                $order['customer_name']
-                                            ) ?>
-
-                                        </div>
-
-                                    </div>
-
-
-                                    <div class="order-right">
-
-                                        <div class="order-amount">
-
-                                            Ksh.
-                                            <?= number_format(
-                                                (float)$order['total_amount'],
-                                                0
-                                            ) ?>
-
-                                        </div>
-
-
-                                        <span class="order-status <?= $statusClass ?>">
-
-                                            <?= htmlspecialchars(
-                                                $order['order_status']
-                                            ) ?>
-
-                                        </span>
-
-                                    </div>
-
 
                                 </div>
 
 
-                            <?php endforeach; ?>
+                                <div class="customer-name">
+
+                                    <?= htmlspecialchars(
+                                                $order['customer_name']
+                                            ) ?>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="order-right">
+
+                                <div class="order-amount">
+
+                                    Ksh.
+                                    <?= number_format(
+                                                (float)$order['total_amount'],
+                                                0
+                                            ) ?>
+
+                                </div>
+
+
+                                <span class="order-status <?= $statusClass ?>">
+
+                                    <?= htmlspecialchars(
+                                                $order['order_status']
+                                            ) ?>
+
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <?php endforeach; ?>
 
 
                         <?php else: ?>
 
 
-                            <div class="empty">
+                        <div class="empty">
 
-                                No orders have been placed yet.
+                            No orders have been placed yet.
 
-                            </div>
+                        </div>
 
 
                         <?php endif; ?>
@@ -2435,7 +2591,7 @@ if ($notificationCountResult) {
                         <a href="product-add.php" class="quick-action">
 
                             <div class="quick-icon">
-                                ＋
+                                ➕
                             </div>
 
                             <div>
@@ -2457,7 +2613,7 @@ if ($notificationCountResult) {
                         <a href="products.php" class="quick-action">
 
                             <div class="quick-icon">
-                                ▣
+                                📦
                             </div>
 
                             <div>
@@ -2479,7 +2635,7 @@ if ($notificationCountResult) {
                         <a href="orders.php" class="quick-action">
 
                             <div class="quick-icon">
-                                ▤
+                                🛒
                             </div>
 
                             <div>
@@ -2534,61 +2690,64 @@ if ($notificationCountResult) {
     </main>
 
 
-<script>
-(function () {
-    const btn = document.getElementById('notificationBtn');
-    const dropdown = document.getElementById('notificationDropdown');
-    const list = document.getElementById('notificationList');
-    const badge = document.getElementById('notificationBadge');
+    <script>
+    (function() {
+        const btn = document.getElementById('notificationBtn');
+        const dropdown = document.getElementById('notificationDropdown');
+        const list = document.getElementById('notificationList');
+        const badge = document.getElementById('notificationBadge');
 
-    if (!btn || !dropdown || !list) return;
+        if (!btn || !dropdown || !list) return;
 
-    function escapeHtml(value) {
-        const div = document.createElement('div');
-        div.textContent = value == null ? '' : String(value);
-        return div.innerHTML;
-    }
+        function escapeHtml(value) {
+            const div = document.createElement('div');
+            div.textContent = value == null ? '' : String(value);
+            return div.innerHTML;
+        }
 
-    function formatDate(value) {
-        if (!value) return '';
-        const d = new Date(value.replace(' ', 'T'));
-        if (Number.isNaN(d.getTime())) return value;
-        return d.toLocaleString('en-GB', {
-            day: '2-digit', month: 'short', year: 'numeric',
-            hour: '2-digit', minute: '2-digit'
-        });
-    }
-
-    async function loadNotifications() {
-        try {
-            const response = await fetch('notification-api.php', {
-                method: 'GET',
-                credentials: 'same-origin',
-                cache: 'no-store'
+        function formatDate(value) {
+            if (!value) return '';
+            const d = new Date(value.replace(' ', 'T'));
+            if (Number.isNaN(d.getTime())) return value;
+            return d.toLocaleString('en-GB', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
             });
+        }
 
-            if (!response.ok) throw new Error('Notification request failed');
+        async function loadNotifications() {
+            try {
+                const response = await fetch('notification-api.php', {
+                    method: 'GET',
+                    credentials: 'same-origin',
+                    cache: 'no-store'
+                });
 
-            const data = await response.json();
-            if (!data.success) throw new Error(data.message || 'Unable to load notifications');
+                if (!response.ok) throw new Error('Notification request failed');
 
-            const unread = Number(data.unread || 0);
-            if (badge) {
-                badge.textContent = unread > 99 ? '99+' : unread;
-                badge.classList.toggle('hidden', unread === 0);
-            }
+                const data = await response.json();
+                if (!data.success) throw new Error(data.message || 'Unable to load notifications');
 
-            if (!Array.isArray(data.notifications) || data.notifications.length === 0) {
-                list.innerHTML = '<div class="notification-empty">No notifications yet.</div>';
-                return;
-            }
+                const unread = Number(data.unread || 0);
+                if (badge) {
+                    badge.textContent = unread > 99 ? '99+' : unread;
+                    badge.classList.toggle('hidden', unread === 0);
+                }
 
-            list.innerHTML = data.notifications.map(n => {
-                const orderUrl = n.order_id
-                    ? 'order-view.php?id=' + encodeURIComponent(n.order_id)
-                    : 'notifications.php';
+                if (!Array.isArray(data.notifications) || data.notifications.length === 0) {
+                    list.innerHTML = '<div class="notification-empty">No notifications yet.</div>';
+                    return;
+                }
 
-                return `
+                list.innerHTML = data.notifications.map(n => {
+                    const orderUrl = n.order_id ?
+                        'order-view.php?id=' + encodeURIComponent(n.order_id) :
+                        'notifications.php';
+
+                    return `
                     <a href="${orderUrl}" class="notification-item ${Number(n.is_read) === 0 ? 'unread' : ''}">
                         <div class="notification-item-icon">🔔</div>
                         <div class="notification-item-body">
@@ -2598,36 +2757,37 @@ if ($notificationCountResult) {
                         </div>
                     </a>
                 `;
-            }).join('');
-        } catch (error) {
-            console.error('Notification error:', error);
-            list.innerHTML = '<div class="notification-empty">Unable to load notifications. Check notification-api.php.</div>';
+                }).join('');
+            } catch (error) {
+                console.error('Notification error:', error);
+                list.innerHTML =
+                    '<div class="notification-empty">Unable to load notifications. Check notification-api.php.</div>';
+            }
         }
-    }
 
-    btn.addEventListener('click', function (event) {
-        event.stopPropagation();
-        const isOpen = dropdown.classList.toggle('show');
-        btn.classList.toggle('open', isOpen);
-        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        btn.addEventListener('click', function(event) {
+            event.stopPropagation();
+            const isOpen = dropdown.classList.toggle('show');
+            btn.classList.toggle('open', isOpen);
+            btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 
-        if (isOpen) loadNotifications();
-    });
+            if (isOpen) loadNotifications();
+        });
 
-    dropdown.addEventListener('click', function (event) {
-        event.stopPropagation();
-    });
+        dropdown.addEventListener('click', function(event) {
+            event.stopPropagation();
+        });
 
-    document.addEventListener('click', function () {
-        dropdown.classList.remove('show');
-        btn.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
-    });
+        document.addEventListener('click', function() {
+            dropdown.classList.remove('show');
+            btn.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+        });
 
-    loadNotifications();
-    setInterval(loadNotifications, 30000);
-})();
-</script>
+        loadNotifications();
+        setInterval(loadNotifications, 30000);
+    })();
+    </script>
 </body>
 
 </html>
