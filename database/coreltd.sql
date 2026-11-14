@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 02, 2026 at 05:27 PM
+-- Generation Time: Nov 14, 2026 at 01:49 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -99,7 +99,8 @@ INSERT INTO `brands` (`id`, `name`, `slug`, `description`, `logo`, `website`, `s
 (12, 'Fiber', 'fiber', '', NULL, '', 1, '2026-08-14 05:27:24', '2026-08-14 05:27:24'),
 (13, 'Cat-6 Cable', 'cp', '', NULL, '', 1, '2026-08-14 05:41:42', '2026-08-14 14:16:35'),
 (14, 'Drop', 'drop', '', NULL, '', 1, '2026-08-14 05:48:16', '2026-08-14 05:48:16'),
-(15, 'Crimping Tool', 'crimping-tool', '', NULL, '', 1, '2026-08-14 14:05:44', '2026-08-14 14:05:44');
+(15, 'Crimping Tool', 'crimping-tool', '', NULL, '', 1, '2026-08-14 14:05:44', '2026-08-14 14:05:44'),
+(16, 'Starlink', 'starlink', '', '1791631298_0f3711f41c.webp', 'https://starlink.com/?srsltid=AU7gw4X4tIPSdQEf383kitYFPhP7T3aZWU-U6ppJT7Sg_guCSOE3FaCR', 1, '2026-10-10 11:21:38', '2026-10-10 11:21:38');
 
 -- --------------------------------------------------------
 
@@ -133,7 +134,10 @@ INSERT INTO `categories` (`id`, `parent_id`, `name`, `slug`, `description`, `ima
 (6, NULL, 'CCTV & Security', 'cctv-security', 'CCTV cameras, DVRs, NVRs and security equipment', NULL, 1, 0, '2026-08-07 09:45:40', '2026-08-07 09:45:40'),
 (7, NULL, 'Tools', 'tools', 'Networking and fiber installation tools', NULL, 1, 0, '2026-08-07 09:45:40', '2026-08-07 09:45:40'),
 (8, NULL, 'Accessories', 'accessories', 'Networking accessories and installation accessories', NULL, 1, 0, '2026-08-07 09:45:40', '2026-08-07 09:45:40'),
-(10, NULL, 'Receiver', 'receiver', '', NULL, 1, 0, '2026-08-22 12:48:24', '2026-08-22 12:48:24');
+(10, NULL, 'Receiver', 'receiver', '', NULL, 1, 0, '2026-08-22 12:48:24', '2026-08-22 12:48:24'),
+(11, NULL, 'Stand-Alone Camera', 'atand-alone-camera', '', NULL, 1, 0, '2026-10-31 09:23:46', '2026-10-31 09:28:06'),
+(12, NULL, 'Normal DVR Cameras', 'normal-dvr-cameras', '', NULL, 1, 0, '2026-10-31 09:24:25', '2026-10-31 09:24:25'),
+(13, NULL, 'IP-NVR Cameras', 'ip-nvr-cameras', '', NULL, 1, 0, '2026-10-31 09:24:45', '2026-10-31 09:24:45');
 
 -- --------------------------------------------------------
 
@@ -177,7 +181,8 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `title`, `slug`, `event_date`, `event_time`, `venue`, `description`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Ruijie Certified Training', 'ruijie-certified-training', '2026-07-25', '6:30 PM', 'PCEA Githurai Church School Hall', 'Ruijie Certified Training\r\n\r\nJoin us for an exciting Ruijie Certified Training designed for networking professionals, technicians, students, entrepreneurs, and anyone interested in building practical skills in modern networking solutions.\r\n\r\nThe training will provide an opportunity to learn, connect, and grow while exploring Ruijie/Reyee networking products and the Ruijie Cloud platform. Participants will gain practical insights into cloud-based network management, product configuration, deployment, monitoring, and solutions for Wi-Fi businesses and hotspots.\r\n\r\nWhether you are looking to improve your networking skills, start a Wi-Fi or hotspot business, or learn more about Ruijie/Reyee technologies, this training offers a valuable opportunity to interact with networking experts and discover real-world solutions.\r\n\r\nTopics & Highlights:\r\n\r\nRuijie/Reyee networking products and solutions\r\nRuijie Cloud network management\r\nWi-Fi and hotspot business opportunities\r\nPractical networking skills and deployment\r\nNetwork monitoring and management\r\nBuilding and growing your networking business\r\nInteraction with Ruijie products and solutions\r\n\r\nDate: 25th July 2025\r\nTime: From 6:00 PM\r\nVenue: PCEA Githurai Progressive School Hall\r\nAdmission: 100% FREE\r\n\r\nCome and learn, connect, and grow with Ruijie/Reyee and CORE LTD. Don\'t miss this opportunity to expand your networking knowledge and discover new business opportunities.', 'uploads/events/ruijie-certified-training-1787604867.jpg', 1, '2026-08-24 20:54:27', '2026-08-24 20:54:27');
+(1, 'Ruijie Certified Training', 'ruijie-certified-training', '2026-07-25', '6:30 PM', 'PCEA Githurai Church School Hall', 'Ruijie Certified Training\r\n\r\nJoin us for an exciting Ruijie Certified Training designed for networking professionals, technicians, students, entrepreneurs, and anyone interested in building practical skills in modern networking solutions.\r\n\r\nThe training will provide an opportunity to learn, connect, and grow while exploring Ruijie/Reyee networking products and the Ruijie Cloud platform. Participants will gain practical insights into cloud-based network management, product configuration, deployment, monitoring, and solutions for Wi-Fi businesses and hotspots.\r\n\r\nWhether you are looking to improve your networking skills, start a Wi-Fi or hotspot business, or learn more about Ruijie/Reyee technologies, this training offers a valuable opportunity to interact with networking experts and discover real-world solutions.\r\n\r\nTopics & Highlights:\r\n\r\nRuijie/Reyee networking products and solutions\r\nRuijie Cloud network management\r\nWi-Fi and hotspot business opportunities\r\nPractical networking skills and deployment\r\nNetwork monitoring and management\r\nBuilding and growing your networking business\r\nInteraction with Ruijie products and solutions\r\n\r\nDate: 25th July 2025\r\nTime: From 6:00 PM\r\nVenue: PCEA Githurai Progressive School Hall\r\nAdmission: 100% FREE\r\n\r\nCome and learn, connect, and grow with Ruijie/Reyee and CORE LTD. Don\'t miss this opportunity to expand your networking knowledge and discover new business opportunities.', 'uploads/events/ruijie-certified-training-1787604867.jpg', 1, '2026-08-24 20:54:27', '2026-08-24 20:54:27'),
+(2, 'Ruijie Certified Training 2.0', 'ruijie-certified-training-2-0', '2026-10-31', '6:30 PM', 'PCEA Githurai Church School Hall', 'CORE LTD invites you to an exciting FREE RUIJIE CERTIFIED TRAINING!\r\n\r\nCome and learn, explore Ruijie products, discover Ruijie Cloud management and sharpen your networking skills.', 'uploads/events/ruijie-certified-training-2-0-1794647275.png', 1, '2026-11-14 09:07:55', '2026-11-14 09:07:55');
 
 -- --------------------------------------------------------
 
@@ -306,6 +311,53 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `product_name`, `prod
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `module` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `description`, `module`, `created_at`) VALUES
+(1, 'view_products', 'View products', 'Products', '2026-09-07 06:07:17'),
+(2, 'add_products', 'Add products', 'Products', '2026-09-07 06:07:17'),
+(3, 'edit_products', 'Edit products', 'Products', '2026-09-07 06:07:17'),
+(4, 'delete_products', 'Delete products', 'Products', '2026-09-07 06:07:17'),
+(5, 'view_categories', 'View categories', 'Categories', '2026-09-07 06:07:17'),
+(6, 'add_categories', 'Add categories', 'Categories', '2026-09-07 06:07:17'),
+(7, 'edit_categories', 'Edit categories', 'Categories', '2026-09-07 06:07:17'),
+(8, 'delete_categories', 'Delete categories', 'Categories', '2026-09-07 06:07:17'),
+(9, 'view_brands', 'View brands', 'Brands', '2026-09-07 06:07:17'),
+(10, 'add_brands', 'Add brands', 'Brands', '2026-09-07 06:07:17'),
+(11, 'edit_brands', 'Edit brands', 'Brands', '2026-09-07 06:07:17'),
+(12, 'delete_brands', 'Delete brands', 'Brands', '2026-09-07 06:07:17'),
+(13, 'view_orders', 'View orders', 'Orders', '2026-09-07 06:07:17'),
+(14, 'edit_orders', 'Edit orders', 'Orders', '2026-09-07 06:07:17'),
+(15, 'delete_orders', 'Delete orders', 'Orders', '2026-09-07 06:07:17'),
+(16, 'view_reviews', 'View reviews', 'Reviews', '2026-09-07 06:07:17'),
+(17, 'manage_reviews', 'Manage reviews', 'Reviews', '2026-09-07 06:07:17'),
+(18, 'view_events', 'View events', 'Events', '2026-09-07 06:07:17'),
+(19, 'add_events', 'Add events', 'Events', '2026-09-07 06:07:17'),
+(20, 'edit_events', 'Edit events', 'Events', '2026-09-07 06:07:17'),
+(21, 'delete_events', 'Delete events', 'Events', '2026-09-07 06:07:17'),
+(22, 'view_users', 'View users', 'Users', '2026-09-07 06:07:17'),
+(23, 'add_users', 'Add users', 'Users', '2026-09-07 06:07:17'),
+(24, 'edit_users', 'Edit users', 'Users', '2026-09-07 06:07:17'),
+(25, 'delete_users', 'Delete users', 'Users', '2026-09-07 06:07:17'),
+(26, 'manage_permissions', 'Assign and manage user permissions', 'System', '2026-09-07 06:07:17'),
+(27, 'system_settings', 'Manage system settings', 'System', '2026-09-07 06:07:17');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
@@ -345,7 +397,7 @@ INSERT INTO `products` (`id`, `category_id`, `brand_id`, `name`, `slug`, `sku`, 
 (10, 5, 12, 'ADSS Fiber Cable 12 Core 4KM', 'adss-fiber-cable-12-core-4km', 'ADSS', '', '', 200000.00, NULL, NULL, 10, 5, '1786685544_b15751479818.webp', 1, 1, 0, 'ADSS 12-CORE', '', 'ADSS', '2026-08-14 05:32:24', '2026-08-14 05:32:24'),
 (11, 5, 12, 'ADSS Fiber Cable 24 Core 4KM', 'adss-fiber-cable-24-core-4km', 'ADSS-24-CORE', '', '', 240000.00, NULL, NULL, 10, 5, '1786687102_69290e3433c3.webp', 1, 1, 0, 'ADSS 24-CORE', '', 'ADSS', '2026-08-14 05:37:43', '2026-08-14 05:58:22'),
 (12, 1, 13, 'CP Cat 6 Indoor Cable', 'cp-cat-6-indoor-cable', 'CP Cable', '', '', 4000.00, NULL, NULL, 0, 5, '1786686432_bbb705bd5ad7.jpg', 0, 1, 0, 'CP Cable', '', 'Cat 6 Cable', '2026-08-14 05:47:12', '2026-08-14 05:47:12'),
-(13, 5, 14, 'Drop Cable 1KM 2 Core', 'drop-cable-1km-2-core', 'Drop 1KM', '', '', 9500.00, NULL, NULL, 16, 5, '1786687027_a780df006ccc.webp', 0, 1, 0, 'Drop 1KM', '', 'Drop', '2026-08-14 05:57:07', '2026-08-14 05:57:07'),
+(13, 5, 14, 'Drop Cable 1KM 2 Core', 'drop-cable-1km-2-core', 'Drop 1KM', '', '', 12500.00, NULL, NULL, 16, 5, '1786687027_a780df006ccc.webp', 0, 1, 0, 'Drop 1KM', '', 'Drop', '2026-08-14 05:57:07', '2026-09-05 06:17:51'),
 (14, 5, 14, 'Drop Cable 1KM 4 Core', 'drop-cable-1km-4-core', 'Drop 1KM 4Core', '', '', 15500.00, NULL, NULL, 10, 5, '1786687728_cdd9269d45c8.jpg', 0, 1, 0, 'Drop 1KM 4Core', '', 'Drop', '2026-08-14 06:08:48', '2026-08-14 06:08:48'),
 (15, 5, 14, 'Drop Cable 1KM 8 Core', 'drop-cable-1km-8-core', 'Drop 1KM 8Core', '', '', 19500.00, NULL, NULL, 10, 5, '1786688027_4cd325187c46.jpg', 1, 1, 0, 'Drop 1KM 8Core', '', 'Drop', '2026-08-14 06:13:47', '2026-08-14 06:13:47'),
 (16, 5, 14, 'Drop Cable 2KM 2 Core', 'drop-cable-2km-2-core', 'Drop 2KM', '', '', 18500.00, NULL, NULL, 10, 5, '1786713198_a141830117f6.jpg', 0, 1, 0, 'Drop 2KM', '', 'Drop', '2026-08-14 13:13:18', '2026-08-14 13:13:18'),
@@ -363,7 +415,25 @@ INSERT INTO `products` (`id`, `category_id`, `brand_id`, `name`, `slug`, `sku`, 
 (28, 1, 1, 'MikroTik RB4011iGS+RM Ethernet Router', 'mikrotik-rb4011igs-rm-ethernet-router', 'MikroTik RB4011', '', '', 30000.00, NULL, NULL, 10, 5, '1787411338_dbf5ed274a57.jpg', 1, 1, 0, 'MikroTik RB4011', '', 'Mikrotik', '2026-08-22 15:08:58', '2026-08-22 15:08:58'),
 (30, 1, 1, 'Mikrotik RB760iGS hEX S 5x', 'mikrotik-rb760igs-hex-s-5x', 'Mikrotik RB760i', '', '', 12000.00, NULL, NULL, 10, 5, '1787412428_dd55de52efe2.jpg', 1, 1, 0, 'Mikrotik RB760i', '', 'Mikrotik', '2026-08-22 15:25:27', '2026-08-22 15:27:08'),
 (31, 1, 1, 'Mikrotik hAP Lite TC RB941', 'mikrotik-hap-lite-tc-rb941', 'Mikrotik RB941', '', '', 4500.00, 5000.00, NULL, 0, 5, '1787752575_cec87816fd03.jpg', 1, 1, 0, 'Mikrotik RB941', '', 'Mikrotik', '2026-08-26 13:56:15', '2026-08-26 14:00:33'),
-(32, 1, 1, 'Mikrotik RB951Ui-2HnD Router', 'mikrotik-rb951ui-2hnd-router', 'Mikrotik RB951', '', '', 9000.00, 9500.00, NULL, 0, 5, '1788361767_f55be6c4220a.jpg', 1, 1, 0, 'Mikrotik RB951', '', 'Mikrotik', '2026-09-02 15:08:02', '2026-09-02 15:09:27');
+(32, 1, 1, 'Mikrotik RB951Ui-2HnD Router', 'mikrotik-rb951ui-2hnd-router', 'Mikrotik RB951', '', '', 9000.00, 9500.00, NULL, 0, 5, '1788361767_f55be6c4220a.jpg', 1, 1, 0, 'Mikrotik RB951', '', 'Mikrotik', '2026-09-02 15:08:02', '2026-09-02 15:09:27'),
+(33, 10, 1, 'Mikrotik SXTsq Series', 'mikrotik-sxtsq-series', 'Mikrotik SXT', '', '', 8000.00, NULL, NULL, 10, 5, '1788363234_89658944764b.jpg', 1, 1, 0, 'Mikrotik SXT', '', 'receiver', '2026-09-02 15:33:54', '2026-09-02 15:33:54'),
+(34, 1, 4, 'PowerBeam M5', 'powerbeam-m5', 'PowerBeam M5', '', '', 9500.00, 9800.00, NULL, 10, 5, '1788363934_39c5dbd3b571.jpeg', 1, 1, 0, 'PowerBeam M5', '', 'receiver', '2026-09-02 15:45:34', '2026-09-02 15:45:34'),
+(35, 1, 13, 'RDCOM Cat 6 Indoor Cable', 'rdcom-cat-6-indoor-cable', 'RDCOM Cat 6 Indoor', '', '', 4800.00, NULL, NULL, 14, 5, '1788596567_7514c93693a5.webp', 1, 1, 0, 'RDCOM Cat 6 Indoor', '', '', '2026-09-05 08:22:47', '2026-09-05 08:22:47'),
+(36, 2, 5, 'Ruijie | Reyee RG-EW300N Router', 'ruijie-reyee-rg-ew300n-router', 'Ruijie RG-EW300N Router', '', '', 1900.00, 2000.00, NULL, 10, 5, '1791555876_48a7efb0af6f.jpg', 1, 1, 0, 'Ruijie RG-EW300N Router', '', 'Ruijie RG-EW300N Router', '2026-10-09 14:24:36', '2026-10-09 14:24:36'),
+(37, 3, 5, 'Ruijie Reyee RG-ES206GS-P PoE+ Switch', 'ruijie-reyee-rg-es206gs-p-poe-switch', 'Ruijie RG-ES206GS-P 4-PORT', '', '', 7500.00, 7800.00, NULL, 10, 5, '1791557099_2b69bef31022.webp', 1, 1, 0, 'Ruijie RG-ES206GS-P 4-PORT', '', 'Ruijie RG-ES206GS-P 4-PORT', '2026-10-09 14:44:59', '2026-10-09 14:44:59'),
+(38, 2, 5, 'Ruijie Reyee RG-EW1200 AC1200 Dual-Band Wireless Router', 'ruijie-reyee-rg-ew1200-ac1200-dual-band-wireless-router', 'Ruijie RG-EW1200 Router', '', '', 3000.00, 3200.00, NULL, 10, 5, '1791559697_c674f4430369.png', 1, 1, 0, 'Ruijie RG-EW1200 Router', '', 'Ruijie RG-EW1200 Router', '2026-10-09 15:28:17', '2026-10-09 15:28:17'),
+(39, 4, 5, 'Ruijie Reyee RG-RAP62-OD AX3000 WIFI 6 Outdoor Access Point', 'ruijie-reyee-rg-rap62-od-ax3000-wifi-6-outdoor-access-point', 'Ruijie RG-RAP62-OD', '', '', 13500.00, 14000.00, NULL, 10, 5, '1791560028_aa7a98d015f2.jpg', 1, 1, 0, 'Ruijie RG-RAP62-OD', '', 'Ruijie RG-RAP62-OD', '2026-10-09 15:33:48', '2026-10-09 15:33:48'),
+(40, 1, 13, 'Scoop Cat 6 Indoor Cable', 'scoop-cat-6-indoor-cable', 'Scoop Cat 6 Indoor', '', '', 3800.00, 3900.00, NULL, 10, 5, '1791629404_ea8249a60023.webp', 1, 1, 0, 'Scoop Cat 6 Indoor', '', 'Scoop Cat 6 Indoor', '2026-10-10 10:50:04', '2026-10-10 10:50:04'),
+(41, 5, 9, 'Signal Fire AI-9 Fusion Splicing Machine', 'signal-fire-ai-9-fusion-splicing-machine', 'Fusion Splicing Machine AI-9', '', '', 80000.00, 90000.00, NULL, 5, 5, '1791630536_f2f4d4e3980b.jpg', 1, 1, 0, 'Fusion Splicing Machine AI-9', '', 'Fusion Splicing Machine AI-9', '2026-10-10 11:08:56', '2026-10-10 11:08:56'),
+(42, 1, 16, 'Starlink Gen 3 Standard Kit (V3)', 'starlink-gen-3-standard-kit-v3', 'Starlink Gen 3', '', '', 49000.00, 50000.00, NULL, 5, 5, '1791635511_29d52f5502c9.png', 1, 1, 0, 'Starlink Gen 3', '', 'Starlink Gen 3', '2026-10-10 12:31:51', '2026-10-30 11:42:21'),
+(43, 4, 2, 'Tenda OAP1200 Outdoor Wi-Fi Access Point', 'tenda-oap1200-outdoor-wi-fi-access-point', 'Tenda OAP1200', '', '', 5300.00, 5500.00, NULL, 79, 5, '1791639670_6bd3aef87bc8.jpeg', 1, 1, 0, 'Tenda OAP1200', '', 'Tenda OAP1200', '2026-10-10 13:41:10', '2026-10-30 14:41:22'),
+(44, 1, 16, 'Starlink Mini Satellite Internet Kit', 'starlink-mini-satellite-internet-kit', 'Starlink Mini Kit', '', '', 35000.00, NULL, 0.00, 5, 5, '1793361695_394cee4ae809.jpg', 1, 1, 0, 'Starlink Mini Kit', '', 'Starlink Mini Kit', '2026-10-30 12:01:35', '2026-10-30 12:01:35'),
+(45, 2, 2, 'Tenda 4G03 N300 Wi-Fi 4G LTE Router.', 'tenda-4g03-n300-wi-fi-4g-lte-router', 'Tenda 4G LTE Router.', '', '', 5500.00, NULL, NULL, 9, 5, '1794649930_525a9c184ecd.jpg', 1, 1, 0, 'Tenda 4G LTE Router.', '', 'Tenda 4G LTE Router.', '2026-10-30 14:46:41', '2026-11-14 09:52:10'),
+(46, 2, 2, 'Tenda AC10 AC1200 Dual-Band Gigabit Wi-Fi Router', 'tenda-ac10-ac1200-dual-band-gigabit-wi-fi-router', 'Tenda AC10', '', '', 4000.00, 5000.00, NULL, 10, 5, '1794649834_932adfda36b0.jpg', 1, 1, 0, 'Tenda AC10', '', 'Tenda AC10', '2026-10-30 14:53:27', '2026-11-14 09:50:34'),
+(47, 2, 2, 'Tenda F6 N300 Wireless Wi-Fi Router', 'tenda-f6-n300-wireless-wi-fi-router', 'Tenda F6', '', '', 1600.00, NULL, NULL, 10, 5, '1793373120_40f766398ce5.jpg', 1, 1, 0, 'Tenda F6', '', 'Tenda F6', '2026-10-30 15:12:00', '2026-10-30 15:12:00'),
+(48, 11, 2, 'Tenda CP7 5MP 3K Smart Wi-Fi Security Pan/Tilt Camera', 'tenda-cp7-5mp-3k-smart-wi-fi-security-pan-tilt-camera', 'Tenda CP7 Camera', '', '', 3000.00, 3500.00, NULL, 10, 5, '1793439336_c862b9dca88b.jpg', 1, 1, 0, 'Tenda CP7 Camera', '', 'Tenda CP7 Camera', '2026-10-31 09:35:36', '2026-10-31 09:35:36'),
+(49, 11, 2, 'Tenda CP3 3MP 2K Smart Wi-Fi Security Pan/Tilt Camera', 'tenda-cp3-3mp-2k-smart-wi-fi-security-pan-tilt-camera', 'Tenda CP3 Camera', '', '', 2500.00, 2800.00, NULL, 10, 5, '1793440167_e80b52e12d78.jpg', 1, 1, 0, 'Tenda CP3 Camera', '', 'Tenda CP3 Camera', '2026-10-31 09:49:27', '2026-10-31 09:49:27'),
+(50, 3, 2, 'Tenda SG108 8-Port Gigabit Ethernet Switch', 'tenda-sg108-8-port-gigabit-ethernet-switch', 'Tenda  8-Port Gigabit Switch', '', '', 2500.00, NULL, NULL, 10, 5, '1793441424_953989e29c01.jpeg', 1, 1, 0, 'Tenda  8-Port Gigabit Switch', '', 'Tenda  8-Port Gigabit Switch', '2026-10-31 10:10:24', '2026-10-31 10:10:24');
 
 -- --------------------------------------------------------
 
@@ -413,14 +483,6 @@ INSERT INTO `product_features` (`id`, `product_id`, `feature`, `benefit`, `sort_
 (142, 12, 'Sheath Color', 'Gray', 5, '2026-08-14 05:47:12'),
 (143, 12, 'Sequential Marking', 'Printed marking at every meter', 6, '2026-08-14 05:47:12'),
 (144, 12, 'Length', '305 Meters (Full Box)', 7, '2026-08-14 05:47:12'),
-(145, 13, 'Cable Type', '2 Core Fiber Optic Drop Cable (FTTH)', 1, '2026-08-14 05:57:07'),
-(146, 13, 'Fiber Count', '2 Fibers (Single Mode)', 2, '2026-08-14 05:57:07'),
-(147, 13, 'Application', 'Ideal for Fiber-to-the-Home (FTTH), last-mile connectivity, and outdoor installations.', 3, '2026-08-14 05:57:07'),
-(148, 13, 'Length', '1000 Meters (1KM Roll)', 4, '2026-08-14 05:57:07'),
-(149, 13, 'Strength Member', 'Reinforced with steel wire / FRP for added durability and tensile strength.', 5, '2026-08-14 05:57:07'),
-(150, 13, 'Weather Resistance', 'Designed to withstand harsh environmental conditions including sun, rain, and wind.', 6, '2026-08-14 05:57:07'),
-(151, 13, 'Low Signal Loss', 'Ensures stable and efficient data transmission over long distances.', 7, '2026-08-14 05:57:07'),
-(152, 13, 'Lightweight & Flexible', 'Easy to handle, route, and install in residential and commercial setups.', 8, '2026-08-14 05:57:07'),
 (153, 11, '24 Core High Capacity', 'Connect more homes, offices, CCTV systems, or network points using one cable.', 1, '2026-08-14 05:58:22'),
 (154, 11, '4KM Full Roll', 'Long distance coverage with fewer joints, saving time and installation costs.', 2, '2026-08-14 05:58:22'),
 (155, 11, 'Perfect for Aerial Use', 'Designed for pole-to-pole installations without needing extra support wire.', 3, '2026-08-14 05:58:22'),
@@ -575,7 +637,173 @@ INSERT INTO `product_features` (`id`, `product_id`, `feature`, `benefit`, `sort_
 (380, 32, 'Compact & Reliable', 'Small, durable design that fits neatly in any home or office environment.', 5, '2026-09-02 15:09:27'),
 (381, 32, 'Easy to Manage', 'Configure and monitor your network easily using WinBox, WebFig, or the MikroTik mobile app.', 6, '2026-09-02 15:09:27'),
 (382, 32, 'Supports PoE Input', 'Can be powered through Ethernet, making installation cleaner and more flexible.', 7, '2026-09-02 15:09:27'),
-(383, 32, 'Secure Network', 'Protect your users with built-in firewall rules, access control, and network security features.', 8, '2026-09-02 15:09:27');
+(383, 32, 'Secure Network', 'Protect your users with built-in firewall rules, access control, and network security features.', 8, '2026-09-02 15:09:27'),
+(384, 33, 'Long-Distance Wireless Link', 'Connect two locations wirelessly over long distances without the need to run expensive cables.', 1, '2026-09-02 15:33:54'),
+(385, 33, 'High-Gain Directional Antenna', 'Focuses the wireless signal toward another device for a stronger and more stable point-to-point connection.', 2, '2026-09-02 15:33:54'),
+(386, 33, 'Weatherproof Outdoor Design', 'Built for outdoor installations and designed to withstand rain, dust, sun, and changing weather conditions.', 3, '2026-09-02 15:33:54'),
+(387, 33, 'Compact & Lightweight', 'Small and easy to mount on poles or walls, making installation simple even in tight spaces.', 4, '2026-09-02 15:33:54'),
+(388, 33, 'PoE Powered', 'Power and connect the device using one Ethernet cable, keeping outdoor installations neat and simple.', 5, '2026-09-02 15:33:54'),
+(389, 33, 'Stable Point-to-Point Connection', 'Ideal for connecting offices, buildings, shops, CCTV locations, and other sites wirelessly.', 6, '2026-09-02 15:33:54'),
+(390, 33, 'RouterOS Support', 'Provides advanced wireless and network management options for professional installations.', 7, '2026-09-02 15:33:54'),
+(391, 33, 'Low Power Consumption', 'Designed to deliver reliable wireless performance while using minimal power.', 8, '2026-09-02 15:33:54'),
+(392, 34, 'High-Speed Performance', 'Delivers up to 100+ Mbps throughput on the 5 GHz frequency band for point-to-point or CPE connections.', 1, '2026-09-02 15:45:34'),
+(393, 34, 'Long-Distance Connectivity', 'Supports wireless links up to 30+ km with focused beam technology for reliable outdoor coverage.', 2, '2026-09-02 15:45:34'),
+(394, 34, 'Directional Antenna Design', 'Integrated 23 dBi directional antenna provides strong signal quality with minimal interference.', 3, '2026-09-02 15:45:34'),
+(395, 34, 'Lightweight & Compact', 'Weighs less than 1 kg with a sleek, highly efficient design—ideal for quick installations.', 4, '2026-09-02 15:45:34'),
+(396, 34, 'AirOS & AirMax Technology', 'Features Ubiquiti’s AirOS for intuitive device management and AirMax TDMA protocol for scalable, low-latency networks.', 5, '2026-09-02 15:45:34'),
+(397, 34, 'Robust Outdoor Build', 'Designed for harsh environments with UV-stabilized plastic and wind resistance up to 200 km/h.', 6, '2026-09-02 15:45:34'),
+(398, 34, 'Power over Ethernet (PoE)', 'Powered via passive PoE adapter (24V), reducing cable clutter and simplifying deployment.', 7, '2026-09-02 15:45:34'),
+(399, 13, 'Cable Type', '2 Core Fiber Optic Drop Cable (FTTH)', 1, '2026-09-05 06:17:51'),
+(400, 13, 'Fiber Count', '2 Fibers (Single Mode)', 2, '2026-09-05 06:17:51'),
+(401, 13, 'Application', 'Ideal for Fiber-to-the-Home (FTTH), last-mile connectivity, and outdoor installations.', 3, '2026-09-05 06:17:51'),
+(402, 13, 'Length', '1000 Meters (1KM Roll)', 4, '2026-09-05 06:17:51'),
+(403, 13, 'Strength Member', 'Reinforced with steel wire / FRP for added durability and tensile strength.', 5, '2026-09-05 06:17:51'),
+(404, 13, 'Weather Resistance', 'Designed to withstand harsh environmental conditions including sun, rain, and wind.', 6, '2026-09-05 06:17:51'),
+(405, 13, 'Low Signal Loss', 'Ensures stable and efficient data transmission over long distances.', 7, '2026-09-05 06:17:51'),
+(406, 13, 'Lightweight & Flexible', 'Easy to handle, route, and install in residential and commercial setups.', 8, '2026-09-05 06:17:51'),
+(407, 35, 'High-Speed Cat 6', 'Enjoy fast and reliable wired networking for internet, file sharing and other network applications.', 1, '2026-09-05 08:22:47'),
+(408, 35, 'Gigabit Ethernet Support', 'Designed for Gigabit network connections, making it a great choice for modern home and business networks.', 2, '2026-09-05 08:22:47'),
+(409, 35, 'Reliable Data Transmission', 'Provides a stable connection between computers, routers, switches, access points and other network devices.', 3, '2026-09-05 08:22:47'),
+(410, 35, 'Ideal for CCTV & Networking', 'Perfect for CCTV installations, LAN networks, offices, homes, shops and structured cabling projects.', 4, '2026-09-05 08:22:47'),
+(411, 35, '305M Full Roll', 'Comes in a 305-meter roll, giving you plenty of cable for multiple network points and larger installations.', 5, '2026-09-05 08:22:47'),
+(412, 35, 'UTP Cable Design', 'Uses twisted pairs to help maintain dependable network communication.', 6, '2026-09-05 08:22:47'),
+(413, 35, 'Indoor Installation', 'Suitable for network installations inside homes, offices, schools, shops and other buildings.', 7, '2026-09-05 08:22:47'),
+(414, 35, 'Easy to Install', 'Easy to route and terminate, helping technicians complete installations efficiently.', 8, '2026-09-05 08:22:47'),
+(415, 36, 'Wi‑Fi 4 (802.11n)', 'Delivers reliable wireless speeds up to 300 Mbps on the 2.4 GHz band with 2×2 MIMO architecture.', 1, '2026-10-09 14:24:36'),
+(416, 36, 'Four Operational Modes', 'Can function as a Router, Access Point (AP), Repeater, or WISP, offering flexibility for home or SOHO setups.', 2, '2026-10-09 14:24:36'),
+(417, 36, 'Lifetime Cloud Management', 'Manage remotely via Ruijie’s free cloud platform or mobile app.', 3, '2026-10-09 14:24:36'),
+(418, 36, 'Advanced Family Controls', 'Parental Control, guest network, health mode, and blacklist/whitelist scheduling.', 4, '2026-10-09 14:24:36'),
+(419, 36, 'Compact & Efficient Hardware', 'MT7628D CPU, 16 MB flash, 64 MB RAM; power consumption under 5 W.', 5, '2026-10-09 14:24:36'),
+(420, 36, 'Wired Connectivity', '1×10/100 Mbps WAN port and 3×10/100 Mbps LAN ports.', 6, '2026-10-09 14:24:36'),
+(421, 36, 'Antennae & Coverage', 'Two external 5 dBi antennas with 2×2 MIMO for strong signal.', 7, '2026-10-09 14:24:36'),
+(422, 36, 'Designed for Your Space', 'Supports up to 8 users (max 16); compact size: 180×120×27 mm; weight: 0.18 kg.', 8, '2026-10-09 14:24:36'),
+(423, 37, '4 Gigabit PoE+ Ports', 'Connect and power compatible IP cameras, wireless access points and other PoE devices using a single Ethernet cable for each device.', 1, '2026-10-09 14:44:59'),
+(424, 37, 'Fast Gigabit Network', 'Enjoy fast data transfer for CCTV systems, office networks and business connectivity.', 2, '2026-10-09 14:44:59'),
+(425, 37, '54W PoE Power Budget', 'Provides a combined power budget of up to 54W for compatible connected PoE devices.', 3, '2026-10-09 14:44:59'),
+(426, 37, 'Easy Cloud Management', 'Manage and monitor your network remotely using Ruijie Cloud, making maintenance more convenient.', 4, '2026-10-09 14:44:59'),
+(427, 37, 'Ideal for CCTV Installations', 'A practical solution for connecting IP cameras and network equipment in homes, shops, offices and small businesses.', 5, '2026-10-09 14:44:59'),
+(428, 37, '6 Gigabit Ethernet Ports', 'Offers six Gigabit Ethernet ports for connecting network devices, including four PoE+ ports.', 6, '2026-10-09 14:44:59'),
+(429, 37, 'PoE Watchdog', 'Helps detect unresponsive connected PoE devices and restart their power to restore operation.', 7, '2026-10-09 14:44:59'),
+(430, 37, 'Automatic Loop Prevention', 'Helps protect network stability by preventing common network loop problems.', 8, '2026-10-09 14:44:59'),
+(431, 38, 'AC1200 Dual-Band Wi-Fi', 'Enjoy combined wireless speeds of up to 1200 Mbps for smoother browsing, streaming, online learning and everyday internet use.', 1, '2026-10-09 15:28:17'),
+(432, 38, '4 External Antennas', 'Helps provide strong, reliable Wi-Fi coverage throughout your home, office or shop.', 2, '2026-10-09 15:28:17'),
+(433, 38, '2.4GHz & 5GHz Wi-Fi', 'Choose wider coverage on 2.4GHz or faster wireless performance on 5GHz, depending on your needs.', 3, '2026-10-09 15:28:17'),
+(434, 38, 'Connect Multiple Devices', 'Supports multiple connected devices, making it suitable for families, small offices and shops.', 4, '2026-10-09 15:28:17'),
+(435, 38, 'Easy App Management', 'Set up and manage your Wi-Fi conveniently using the Reyee Router App on your phone.', 5, '2026-10-09 15:28:17'),
+(436, 38, '3 LAN Ports & 1 WAN Port', 'Connect wired devices such as computers, switches and other network equipment. The Ethernet ports support speeds up to 100 Mbps.', 6, '2026-10-09 15:28:17'),
+(437, 38, 'Parental Controls', 'Manage internet access, set usage time limits and control access for selected devices.', 7, '2026-10-09 15:28:17'),
+(438, 38, 'MU-MIMO Technology', 'Helps the router serve multiple compatible devices more efficiently for a smoother wireless experience.', 8, '2026-10-09 15:28:17'),
+(439, 39, 'Wi-Fi 6 AX3000 Performance', 'Delivers ultra-fast speeds up to 2976 Mbps (574 Mbps @2.4 GHz + 2402 Mbps @5 GHz) for high-density outdoor environments.', 1, '2026-10-09 15:33:48'),
+(440, 39, 'Rugged IP68 Outdoor Design', 'Fully weatherproof, dustproof, and waterproof housing with lightning protection for harsh outdoor conditions.', 2, '2026-10-09 15:33:48'),
+(441, 39, 'High-Gain Omni Antennas', 'Built-in high-gain antennas provide wide and stable outdoor Wi-Fi coverage.', 3, '2026-10-09 15:33:48'),
+(442, 39, 'Reyee Mesh Technology', 'Supports plug-and-play mesh networking for seamless expansion without complex configuration.', 4, '2026-10-09 15:33:48'),
+(443, 39, 'Cloud & App Management', 'Free lifetime cloud management via Ruijie Cloud or Reyee mobile app—no controller required.', 5, '2026-10-09 15:33:48'),
+(444, 39, 'High Client Capacity', 'Supports up to 256 concurrent clients, ideal for campuses, hotels, churches, and outdoor events.', 6, '2026-10-09 15:33:48'),
+(445, 39, 'OFDMA & MU-MIMO', 'Advanced Wi-Fi 6 technologies ensure low latency and high efficiency in multi-user environments.', 7, '2026-10-09 15:33:48'),
+(446, 39, 'Advanced Security', 'Includes WPA3, client isolation, rogue AP detection, and access control policies.', 8, '2026-10-09 15:33:48'),
+(447, 40, 'Cat 6 Network Performance', 'Designed for fast and reliable wired connections in homes, offices and business networks.', 1, '2026-10-10 10:50:04'),
+(448, 40, 'Gigabit Network Support', 'Suitable for Gigabit Ethernet connections, helping deliver smooth data transfer and internet connectivity.', 2, '2026-10-10 10:50:04'),
+(449, 40, 'Ideal for CCTV & LAN', 'Great for connecting computers, routers, switches, IP cameras and other Ethernet devices.', 3, '2026-10-10 10:50:04'),
+(450, 40, 'Easy Indoor Installation', 'Suitable for structured cabling inside homes, offices, shops, schools and other buildings.', 4, '2026-10-10 10:50:04'),
+(451, 40, '305M Full Roll', 'Provides plenty of cable for multiple network points and larger installation projects.', 5, '2026-10-10 10:50:04'),
+(452, 40, 'UTP Cable Design', 'Uses twisted pairs to support dependable network communication and help reduce signal interference.', 6, '2026-10-10 10:50:04'),
+(453, 40, 'Cost-Effective Networking', 'A practical choice for installations where you need an affordable Cat 6 cabling solution.', 7, '2026-10-10 10:50:04'),
+(454, 40, 'Grey PVC Outer Jacket', 'The outer jacket protects the cable during normal indoor handling and installation.', 8, '2026-10-10 10:50:04'),
+(455, 40, 'Ideal for Network Installers', 'Suitable for LAN installations, office networking, CCTV projects and general structured cabling.', 9, '2026-10-10 10:50:04'),
+(456, 41, 'Fast 5-Second Splicing', 'Splices optical fibres in approximately 5 seconds, helping technicians complete installations and repairs faster.', 1, '2026-10-10 11:08:56'),
+(457, 41, '6-Motor Core Alignment', 'Automatically aligns fibre cores for accurate splicing and low signal loss.', 2, '2026-10-10 11:08:56'),
+(458, 41, 'Built-in Power Meter & VFL', 'Test optical power and trace fibre faults using built-in tools, reducing the need to carry separate testing equipment.', 3, '2026-10-10 11:08:56'),
+(459, 41, 'Long-Lasting 7800mAh Battery', 'Supports approximately 240–260 splicing and heating cycles per charge, depending on working conditions.', 4, '2026-10-10 11:08:56'),
+(460, 41, '5-Inch Colour Display', 'Clearly displays fibre alignment and splicing results, making operation easier for technicians.', 5, '2026-10-10 11:08:56'),
+(461, 41, '5-Inch Colour Display', 'Clearly displays fibre alignment and splicing results, making operation easier for technicians.', 6, '2026-10-10 11:08:56'),
+(462, 41, '15-Second Heating', 'Quickly heats splice protection sleeves to help protect completed fibre joints.', 7, '2026-10-10 11:08:56'),
+(463, 41, 'Supports Multiple Fibre Types', 'Suitable for common single-mode and multimode fibre applications, including FTTH and fibre network installations.', 8, '2026-10-10 11:08:56'),
+(464, 41, 'Portable Field Design', 'Compact enough to carry between installation sites, customer premises and outdoor fibre repair jobs.', 9, '2026-10-10 11:08:56'),
+(465, 41, 'Designed for ISP & FTTH Projects', 'A professional solution for fibre technicians, internet service providers, telecom contractors and network installers.', 10, '2026-10-10 11:08:56'),
+(485, 42, 'High-Speed Satellite Internet', 'Enjoy fast internet for streaming, video calls, online gaming, browsing and business activities, even in areas with limited traditional internet coverage.', 1, '2026-10-30 11:42:21'),
+(486, 42, 'Wi-Fi 6 Router', 'Get improved wireless performance and efficient connectivity for multiple devices around your home or business.', 2, '2026-10-30 11:42:21'),
+(487, 42, 'Wide Wi-Fi Coverage', 'The Gen 3 router provides coverage of up to 297 m² under suitable conditions, helping connect devices across your space.', 3, '2026-10-30 11:42:21'),
+(488, 42, 'Works in Remote Areas', 'Connect homes, farms, offices and sites where fibre or reliable terrestrial internet may not be available, provided there is Starlink service coverage and a clear view of the sky.', 4, '2026-10-30 11:42:21'),
+(489, 42, 'Easy Self-Installation', 'Use the Starlink app to guide setup and find a suitable position for the dish, making installation straightforward.', 5, '2026-10-30 11:42:21'),
+(490, 42, 'Two Ethernet LAN Ports', 'Connect compatible wired devices such as computers, TVs, network switches and other equipment directly to the router.', 6, '2026-10-30 11:42:21'),
+(491, 42, 'Weather-Resistant Dish', 'The outdoor dish is designed to withstand challenging weather conditions, including rain and strong winds within its operating specifications.', 7, '2026-10-30 11:42:21'),
+(492, 42, 'Connect Many Devices', 'The Gen 3 router supports up to 235 connected devices, depending on network conditions and usage.', 8, '2026-10-30 11:42:21'),
+(493, 42, 'Mesh Wi-Fi Expansion', 'Expand coverage using compatible Starlink Gen 2 or Gen 3 mesh nodes to help reach areas with weaker Wi-Fi signals.', 9, '2026-10-30 11:42:21'),
+(494, 42, 'Complete Standard Kit', 'Includes the Starlink dish, kickstand, Gen 3 router, 15-metre Starlink cable, power supply and power cable.', 10, '2026-10-30 11:42:21'),
+(495, 42, 'Ideal for Homes & Businesses', 'A practical internet solution for homes, offices, farms, shops, remote work locations and businesses needing reliable connectivity.', 11, '2026-10-30 11:42:21'),
+(496, 44, 'Portable Satellite Internet', 'Take your internet connection wherever you go. Ideal for travel, camping, remote work, farms and locations without reliable fibre coverage.', 1, '2026-10-30 12:01:35'),
+(497, 44, 'Built-in Wi-Fi Router', 'Connect your phones, laptops, tablets and other devices directly without needing a separate Wi-Fi router.', 2, '2026-10-30 12:01:35'),
+(498, 44, 'Compact & Lightweight Design', 'Weighs approximately 1.1kg, making it easy to carry, pack and set up at different locations.', 3, '2026-10-30 12:01:35'),
+(499, 44, 'Weather-Resistant IP67 Design', 'Built to handle dust, rain and challenging outdoor conditions, making it suitable for outdoor use.', 4, '2026-10-30 12:01:35'),
+(500, 44, 'Low Power Consumption', 'Uses an average of approximately 25–40W, making it suitable for portable power setups and off-grid applications.', 5, '2026-10-30 12:01:35'),
+(501, 44, 'Wi-Fi 5 Dual-Band Technology', 'Supports both 2.4GHz and 5GHz Wi-Fi bands for convenient wireless connectivity.', 6, '2026-10-30 12:01:35'),
+(502, 44, 'Connect Up to 128 Devices', 'Supports up to 128 connected devices, making it useful for families, small teams and mobile work setups.', 7, '2026-10-30 12:01:35'),
+(503, 44, 'Built-in Ethernet Port', 'Connect compatible wired devices and additional networking equipment through its Ethernet LAN port.', 8, '2026-10-30 12:01:35'),
+(504, 44, 'Wide Wi-Fi Coverage', 'Provides Wi-Fi coverage of up to approximately 112 m² under suitable conditions.', 9, '2026-10-30 12:01:35'),
+(505, 44, 'Flexible Power Options', 'Supports 12–48V DC power input, making it suitable for compatible vehicle, battery and portable power systems.', 10, '2026-10-30 12:01:35'),
+(506, 44, 'Easy Setup with Starlink App', 'Use the Starlink mobile app to set up your equipment, find a suitable position and manage your connection.', 11, '2026-10-30 12:01:35'),
+(507, 44, 'Ideal for Travel & Remote Areas', 'A convenient internet solution for travellers, campers, field teams, rural homes, farms and remote businesses.', 12, '2026-10-30 12:01:35'),
+(508, 43, 'AC1200 Dual-Band Speeds', 'Delivers concurrent throughput up to 1167 Mbps (300 Mbps @2.4 GHz + 867 Mbps @5 GHz).', 1, '2026-10-30 14:41:22'),
+(509, 43, 'High-Gain External Antennas', 'Equipped with 2 omni-directional antennas covering up to 200 m in open areas.', 2, '2026-10-30 14:41:22'),
+(510, 43, 'Wide Outdoor Wi-Fi Coverage', 'Designed for wireless coverage across open spaces, compounds, gardens, warehouses and business premises. Coverage can reach up to a 200-metre radius under suitable conditions.', 3, '2026-10-30 14:41:22'),
+(511, 43, 'IP65 Weather Protection', 'Built to resist dust and water, making it suitable for outdoor installations in changing weather conditions.', 4, '2026-10-30 14:41:22'),
+(512, 43, 'Gigabit Ethernet Port', 'Provides a Gigabit wired connection to your network for fast data transfer between the access point and network equipment.', 5, '2026-10-30 14:41:22'),
+(513, 43, 'Flexible PoE Power Options', 'Supports standard 802.3af PoE and 24V passive PoE, helping simplify installation where a power socket is not nearby.', 6, '2026-10-30 14:41:22'),
+(514, 43, 'Supports Multiple Users', 'Supports up to 256 client devices, with approximately 50 recommended for normal deployment.', 7, '2026-10-30 14:41:22'),
+(515, 43, 'MU-MIMO Technology', 'Helps serve multiple compatible wireless devices more efficiently for a better shared Wi-Fi experience.', 8, '2026-10-30 14:41:22'),
+(550, 47, '300Mbps Wireless Speed', 'Enjoy reliable Wi-Fi for browsing, social media, online learning, video streaming and everyday internet activities.', 1, '2026-10-30 15:12:00'),
+(551, 47, '4 High-Gain 5dBi Antennas', 'Four external antennas help deliver stronger Wi-Fi signals and wider coverage throughout your home or office.', 2, '2026-10-30 15:12:00'),
+(552, 47, 'Wide Wi-Fi Coverage', 'Designed to provide dependable wireless coverage in apartments, bedrooms, homes and small offices.', 3, '2026-10-30 15:12:00'),
+(553, 47, 'Wi-Fi Extender Mode', 'Extend an existing Wi-Fi network to help eliminate weak signal areas and improve coverage in your space.', 4, '2026-10-30 15:12:00'),
+(554, 47, 'Easy Setup & Management', 'Simple installation and user-friendly settings make it easy to get your home or office connected.', 5, '2026-10-30 15:12:00'),
+(555, 47, '1 WAN & 3 LAN Ports', 'Connect your internet source and up to three wired devices such as computers, TVs and other network equipment. Ports support up to 100Mbps.', 6, '2026-10-30 15:12:00'),
+(556, 47, '2.4GHz Wireless Connection', 'Provides reliable wireless connectivity with good coverage for everyday home and office use.', 7, '2026-10-30 15:12:00'),
+(557, 47, 'Multiple Operating Modes', 'Supports Router, Access Point, WISP and Universal Repeater modes for flexible networking setups.', 8, '2026-10-30 15:12:00'),
+(558, 48, '5MP Ultra-Clear 3K Video', 'Capture sharp, detailed footage with 3K resolution (2880 × 1620), making it easier to see what is happening around your home or business.', 1, '2026-10-31 09:35:36'),
+(559, 48, '360° Panoramic Monitoring', 'Rotate the camera left, right, up and down using your phone to monitor almost every corner of a room and reduce blind spots.', 2, '2026-10-31 09:35:36'),
+(560, 48, 'AI Human & Cry Detection', 'Smart detection identifies human activity and baby crying, helping alert you to important events around your home.', 3, '2026-10-31 09:35:36'),
+(561, 48, 'Two-Way Audio & One-Touch Call', 'Listen and speak through the camera using your phone. The one-touch call button makes it easy for children or elderly family members to reach you.', 4, '2026-10-31 09:35:36'),
+(562, 48, 'Wi-Fi 6 Connectivity', 'Enjoy smoother video viewing and responsive camera control with modern Wi-Fi 6 wireless technology.', 5, '2026-10-31 09:35:36'),
+(563, 48, 'Clear Night Vision', 'Built-in infrared lights help you monitor your home or business even in darkness, with night vision up to approximately 10 metres.', 6, '2026-10-31 09:35:36'),
+(564, 48, 'Sound & Light Alarm', 'Provides sound and light alerts to help warn of detected activity and discourage unwanted visitors.', 7, '2026-10-31 09:35:36'),
+(565, 48, 'Automatic 360° Patrol', 'Automatically scans selected viewing areas to help monitor different parts of your room.', 8, '2026-10-31 09:35:36'),
+(566, 48, 'MicroSD Card Storage', 'Supports MicroSD cards up to 512GB, allowing you to save and review recorded footage locally.', 9, '2026-10-31 09:35:36'),
+(567, 48, 'Remote Viewing via Mobile App', 'View live footage, control camera movement and receive alerts remotely through the compatible Tenda TDSEE app.', 10, '2026-10-31 09:35:36'),
+(568, 49, '3MP Ultra-Clear 2K Video', 'Capture clear and detailed footage in 2K resolution (2304 × 1296), helping you see what is happening around your home or business.', 1, '2026-10-31 09:49:27'),
+(569, 49, '360° Panoramic Monitoring', 'Rotate the camera up to 355° horizontally and 70° vertically using your phone to monitor different areas and reduce blind spots.', 2, '2026-10-31 09:49:27'),
+(570, 49, 'Smart Human Detection & Tracking', 'Detects human movement and automatically follows detected people, helping you keep important activity within view.', 3, '2026-10-31 09:49:27'),
+(571, 49, 'Two-Way Audio', 'Detects human movement and automatically follows detected people, helping you keep important activity within view.', 4, '2026-10-31 09:49:27'),
+(572, 49, 'Wi-Fi 6 Connectivity', 'Enjoy modern wireless connectivity for smoother live viewing and convenient remote camera control.', 5, '2026-10-31 09:49:27'),
+(573, 49, 'Infrared Night Vision', 'Monitor your home or business even in darkness with infrared night vision reaching up to 10 metres under suitable conditions.', 6, '2026-10-31 09:49:27'),
+(574, 49, 'Motion & Cry Detection', 'Detects movement and crying sounds to help alert you to important activity, especially useful for monitoring children and babies.', 7, '2026-10-31 09:49:27'),
+(575, 49, 'Remote Viewing via TDSEE App', 'View live footage, control camera movement and receive alerts directly on your smartphone from wherever you are.', 8, '2026-10-31 09:49:27'),
+(576, 49, 'MicroSD Card Storage', 'Supports MicroSD card storage for saving and reviewing recorded footage. Capacity depends on the camera version, up to 512GB on V3.1.', 9, '2026-10-31 09:49:27'),
+(577, 50, '8 Gigabit Ethernet Ports', 'Connect up to 8 network devices such as computers, routers, CCTV recorders, access points and smart TVs.', 1, '2026-10-31 10:10:24'),
+(578, 50, 'High-Speed 1000Mbps Connectivity', 'Enjoy network speeds of up to 1Gbps per port for faster file transfers, smooth video streaming and reliable networking.', 2, '2026-10-31 10:10:24'),
+(579, 50, '16Gbps Switching Capacity', 'Handles network traffic efficiently, helping multiple connected devices communicate smoothly.', 3, '2026-10-31 10:10:24'),
+(580, 50, 'Plug & Play Installation', 'No complicated configuration required. Simply connect your Ethernet cables and start expanding your network.', 4, '2026-10-31 10:10:24'),
+(581, 50, 'Ideal for CCTV & Office Networks', 'Perfect for connecting computers, IP cameras, NVRs, routers and other network equipment in homes and businesses.', 5, '2026-10-31 10:10:24'),
+(582, 50, 'Full-Duplex Transmission', 'Supports simultaneous sending and receiving of data for efficient network communication.', 6, '2026-10-31 10:10:24'),
+(583, 50, 'Auto MDI/MDIX', 'Automatically detects cable connections, eliminating the need for special crossover cables.', 7, '2026-10-31 10:10:24'),
+(584, 50, 'Compact Space-Saving Design', 'Its small design fits neatly on desks, shelves and network installation spaces.', 8, '2026-10-31 10:10:24');
+INSERT INTO `product_features` (`id`, `product_id`, `feature`, `benefit`, `sort_order`, `created_at`) VALUES
+(585, 46, 'AC1200 Dual-Band Wi-Fi', 'Enjoy combined wireless speeds of up to 1167 Mbps for smooth streaming, online gaming, browsing and everyday internet use.', 1, '2026-11-14 09:50:34'),
+(586, 46, '4 High-Gain Antennas', 'Four external 6dBi antennas help deliver strong Wi-Fi signals and wider coverage throughout your home or office.', 2, '2026-11-14 09:50:34'),
+(587, 46, 'Gigabit Ethernet Ports', 'Features 1 Gigabit WAN port and 3 Gigabit LAN ports for fast wired connections to computers, smart TVs and other network devices.', 3, '2026-11-14 09:50:34'),
+(588, 46, 'Powerful Dual-Core Processor', 'The 1GHz dual-core processor helps handle network traffic efficiently for a smoother internet experience.', 4, '2026-11-14 09:50:34'),
+(589, 46, 'Perfect for Fibre Internet', 'Ideal for fibre connections, homes, offices and small businesses that need fast and reliable wired and wireless networking.', 5, '2026-11-14 09:50:34'),
+(590, 46, '2.4GHz & 5GHz Wi-Fi', 'Use 2.4GHz for wider coverage and 5GHz for faster speeds and smoother performance on compatible devices.', 6, '2026-11-14 09:50:34'),
+(591, 46, 'Beamforming Technology', 'Helps direct Wi-Fi signals towards connected devices for improved wireless connectivity.', 7, '2026-11-14 09:50:34'),
+(592, 46, 'MU-MIMO Technology', 'Helps the router communicate with multiple compatible devices more efficiently.', 8, '2026-11-14 09:50:34'),
+(593, 46, 'Multiple Operating Modes', 'Supports router, access point, universal repeater and WISP modes for different networking needs.', 9, '2026-11-14 09:50:34'),
+(594, 45, '4G LTE SIM Card Support', 'Insert your SIM card and enjoy fast internet anywhere with 4G coverage—no fiber or DSL required.', 1, '2026-11-14 09:52:10'),
+(595, 45, '300Mbps Wireless Speed', 'Provides smooth browsing, online learning, HD streaming, and video calls for your family or office.', 2, '2026-11-14 09:52:10'),
+(596, 45, 'Works with Most SIM Networks', 'Compatible with many 4G LTE mobile providers, giving you the freedom to choose your preferred network.', 3, '2026-11-14 09:52:10'),
+(597, 45, 'Plug & Play Setup', 'Simply insert a SIM card, power it on, and connect your devices in minutes.', 4, '2026-11-14 09:52:10'),
+(598, 45, 'Wired & Wireless Connections', 'Connect computers, Smart TVs, CCTV systems, or gaming consoles using Ethernet while enjoying Wi-Fi for mobile devices.', 5, '2026-11-14 09:52:10'),
+(599, 45, 'Guest Wi-Fi Network', 'Create a separate Wi-Fi network for visitors while keeping your personal devices secure.', 6, '2026-11-14 09:52:10'),
+(600, 45, 'Strong Security', 'Built-in wireless security helps protect your network from unauthorized access.', 7, '2026-11-14 09:52:10'),
+(601, 45, 'Supports Multiple Devices', 'Connect smartphones, laptops, tablets, Smart TVs, and other Wi-Fi devices simultaneously.', 8, '2026-11-14 09:52:10');
 
 -- --------------------------------------------------------
 
@@ -654,7 +882,104 @@ INSERT INTO `product_images` (`id`, `product_id`, `image`, `alt_text`, `sort_ord
 (74, 32, '1788361767_504efd7ebbb1.jpg', 'Mikrotik RB951Ui-2HnD Router - Image 2', 2, 0, '2026-09-02 15:09:27'),
 (75, 32, '1788361767_f817b1ac320e.jpg', 'Mikrotik RB951Ui-2HnD Router - Image 3', 3, 0, '2026-09-02 15:09:27'),
 (76, 32, '1788361767_fd8df57c8d01.webp', 'Mikrotik RB951Ui-2HnD Router - Image 4', 4, 0, '2026-09-02 15:09:27'),
-(77, 32, '1788361767_a580ef0a8c89.png', 'Mikrotik RB951Ui-2HnD Router - Image 5', 5, 0, '2026-09-02 15:09:27');
+(77, 32, '1788361767_a580ef0a8c89.png', 'Mikrotik RB951Ui-2HnD Router - Image 5', 5, 0, '2026-09-02 15:09:27'),
+(78, 33, '1788363234_89658944764b.jpg', 'Mikrotik SXTsq Series', 1, 1, '2026-09-02 15:33:54'),
+(79, 33, '1788363234_1ccf414163cf.jpg', 'Mikrotik SXTsq Series - Image 2', 2, 0, '2026-09-02 15:33:54'),
+(80, 33, '1788363234_e6ea4aea4f90.jpg', 'Mikrotik SXTsq Series - Image 3', 3, 0, '2026-09-02 15:33:54'),
+(81, 33, '1788363234_2be7be201069.png', 'Mikrotik SXTsq Series - Image 4', 4, 0, '2026-09-02 15:33:54'),
+(82, 33, '1788363234_83d1f635d12a.webp', 'Mikrotik SXTsq Series - Image 5', 5, 0, '2026-09-02 15:33:54'),
+(83, 34, '1788363934_39c5dbd3b571.jpeg', 'PowerBeam M5', 1, 1, '2026-09-02 15:45:34'),
+(84, 34, '1788363934_6725b1e5873a.jpeg', 'PowerBeam M5 - Image 2', 2, 0, '2026-09-02 15:45:34'),
+(85, 34, '1788363934_fccee6dc3fee.webp', 'PowerBeam M5 - Image 3', 3, 0, '2026-09-02 15:45:34'),
+(86, 34, '1788363934_8daa1212fce9.jpg', 'PowerBeam M5 - Image 4', 4, 0, '2026-09-02 15:45:34'),
+(87, 34, '1788363934_0d8048645185.jpg', 'PowerBeam M5 - Image 5', 5, 0, '2026-09-02 15:45:34'),
+(88, 34, '1788363934_af06695bc0e2.webp', 'PowerBeam M5 - Image 6', 6, 0, '2026-09-02 15:45:34'),
+(89, 35, '1788596567_7514c93693a5.webp', 'RDCOM Cat 6 Indoor Cable', 1, 1, '2026-09-05 08:22:47'),
+(90, 35, '1788596567_28df3f8abb8c.webp', 'RDCOM Cat 6 Indoor Cable - Image 2', 2, 0, '2026-09-05 08:22:47'),
+(91, 36, '1791555876_48a7efb0af6f.jpg', 'Ruijie | Reyee RG-EW300N Router', 1, 1, '2026-10-09 14:24:36'),
+(92, 36, '1791555876_d7efedc1a83b.jpg', 'Ruijie | Reyee RG-EW300N Router - Image 2', 2, 0, '2026-10-09 14:24:36'),
+(93, 36, '1791555876_3f192193e0f9.jpg', 'Ruijie | Reyee RG-EW300N Router - Image 3', 3, 0, '2026-10-09 14:24:36'),
+(94, 36, '1791555876_b412db6208f5.jpg', 'Ruijie | Reyee RG-EW300N Router - Image 4', 4, 0, '2026-10-09 14:24:36'),
+(95, 36, '1791555876_768a286be4c5.png', 'Ruijie | Reyee RG-EW300N Router - Image 5', 5, 0, '2026-10-09 14:24:36'),
+(96, 37, '1791557099_2b69bef31022.webp', 'Ruijie Reyee RG-ES206GS-P PoE+ Switch', 1, 1, '2026-10-09 14:44:59'),
+(97, 37, '1791557099_d05b6ff3d53b.png', 'Ruijie Reyee RG-ES206GS-P PoE+ Switch - Image 2', 2, 0, '2026-10-09 14:44:59'),
+(98, 37, '1791557099_c96f57b426e6.png', 'Ruijie Reyee RG-ES206GS-P PoE+ Switch - Image 3', 3, 0, '2026-10-09 14:44:59'),
+(99, 37, '1791557099_324fdb4ac2d9.webp', 'Ruijie Reyee RG-ES206GS-P PoE+ Switch - Image 4', 4, 0, '2026-10-09 14:44:59'),
+(100, 37, '1791557099_cfca55183d4f.webp', 'Ruijie Reyee RG-ES206GS-P PoE+ Switch - Image 5', 5, 0, '2026-10-09 14:44:59'),
+(101, 38, '1791559697_c674f4430369.png', 'Ruijie Reyee RG-EW1200 AC1200 Dual-Band Wireless Router', 1, 1, '2026-10-09 15:28:17'),
+(102, 38, '1791559697_51e39e6adac5.png', 'Ruijie Reyee RG-EW1200 AC1200 Dual-Band Wireless Router - Image 2', 2, 0, '2026-10-09 15:28:17'),
+(103, 38, '1791559697_f2773eac964e.png', 'Ruijie Reyee RG-EW1200 AC1200 Dual-Band Wireless Router - Image 3', 3, 0, '2026-10-09 15:28:17'),
+(104, 38, '1791559697_f006caf9bd4f.png', 'Ruijie Reyee RG-EW1200 AC1200 Dual-Band Wireless Router - Image 4', 4, 0, '2026-10-09 15:28:17'),
+(105, 38, '1791559697_560d08d8bf1b.png', 'Ruijie Reyee RG-EW1200 AC1200 Dual-Band Wireless Router - Image 5', 5, 0, '2026-10-09 15:28:17'),
+(106, 38, '1791559697_07b09efbb39c.png', 'Ruijie Reyee RG-EW1200 AC1200 Dual-Band Wireless Router - Image 6', 6, 0, '2026-10-09 15:28:17'),
+(107, 39, '1791560028_aa7a98d015f2.jpg', 'Ruijie Reyee RG-RAP62-OD AX3000 WIFI 6 Outdoor Access Point', 1, 1, '2026-10-09 15:33:48'),
+(108, 39, '1791560028_16fd36af1eca.jpg', 'Ruijie Reyee RG-RAP62-OD AX3000 WIFI 6 Outdoor Access Point - Image 2', 2, 0, '2026-10-09 15:33:48'),
+(109, 39, '1791560028_9d89dfb3b19a.png', 'Ruijie Reyee RG-RAP62-OD AX3000 WIFI 6 Outdoor Access Point - Image 3', 3, 0, '2026-10-09 15:33:48'),
+(110, 39, '1791560028_b10398820226.jpg', 'Ruijie Reyee RG-RAP62-OD AX3000 WIFI 6 Outdoor Access Point - Image 4', 4, 0, '2026-10-09 15:33:48'),
+(111, 39, '1791560028_b507d11a3f2b.webp', 'Ruijie Reyee RG-RAP62-OD AX3000 WIFI 6 Outdoor Access Point - Image 5', 5, 0, '2026-10-09 15:33:48'),
+(112, 39, '1791560028_f6fc9e6e51ad.jpg', 'Ruijie Reyee RG-RAP62-OD AX3000 WIFI 6 Outdoor Access Point - Image 6', 6, 0, '2026-10-09 15:33:48'),
+(113, 40, '1791629404_ea8249a60023.webp', 'Scoop Cat 6 Indoor Cable', 1, 1, '2026-10-10 10:50:04'),
+(114, 40, '1791629404_876d2f549de6.webp', 'Scoop Cat 6 Indoor Cable - Image 2', 2, 0, '2026-10-10 10:50:04'),
+(115, 41, '1791630536_f2f4d4e3980b.jpg', 'Signal Fire AI-9 Fusion Splicing Machine', 1, 1, '2026-10-10 11:08:56'),
+(116, 41, '1791630536_f32003238199.jpg', 'Signal Fire AI-9 Fusion Splicing Machine - Image 2', 2, 0, '2026-10-10 11:08:56'),
+(117, 41, '1791630536_968cc7a1f0e8.jpg', 'Signal Fire AI-9 Fusion Splicing Machine - Image 3', 3, 0, '2026-10-10 11:08:56'),
+(118, 41, '1791630536_2636ed752068.jpg', 'Signal Fire AI-9 Fusion Splicing Machine - Image 4', 4, 0, '2026-10-10 11:08:56'),
+(119, 41, '1791630536_eb8a94792050.webp', 'Signal Fire AI-9 Fusion Splicing Machine - Image 5', 5, 0, '2026-10-10 11:08:56'),
+(120, 41, '1791630536_f059a42661be.jpg', 'Signal Fire AI-9 Fusion Splicing Machine - Image 6', 6, 0, '2026-10-10 11:08:56'),
+(121, 42, '1791635511_29d52f5502c9.png', 'Starlink Gen 3 Standard Kit (V3)', 1, 1, '2026-10-10 12:31:51'),
+(122, 42, '1791635511_a15391cdd1c5.jpg', 'Starlink Gen 3 Standard Kit (V3) - Image 2', 2, 0, '2026-10-10 12:31:51'),
+(123, 42, '1791635511_a76292305dd5.jpg', 'Starlink Gen 3 Standard Kit (V3) - Image 3', 3, 0, '2026-10-10 12:31:51'),
+(124, 42, '1791635511_b38d7f6d1468.webp', 'Starlink Gen 3 Standard Kit (V3) - Image 4', 4, 0, '2026-10-10 12:31:51'),
+(125, 42, '1791635511_4e35dbdfcf92.png', 'Starlink Gen 3 Standard Kit (V3) - Image 5', 5, 0, '2026-10-10 12:31:51'),
+(126, 42, '1791635511_8ca2ff482f33.webp', 'Starlink Gen 3 Standard Kit (V3) - Image 6', 6, 0, '2026-10-10 12:31:51'),
+(127, 43, '1791639670_6bd3aef87bc8.jpeg', 'Tenda OAP1200 Outdoor Wi-Fi Access Point', 1, 1, '2026-10-10 13:41:10'),
+(128, 43, '1791639670_64d5265f1b07.png', 'Tenda OAP1200 Outdoor Wi-Fi Access Point - Image 2', 2, 0, '2026-10-10 13:41:10'),
+(129, 43, '1791639670_66cb3bb601f2.jpg', 'Tenda OAP1200 Outdoor Wi-Fi Access Point - Image 3', 3, 0, '2026-10-10 13:41:10'),
+(130, 44, '1793361695_394cee4ae809.jpg', 'Starlink Mini Satellite Internet Kit', 1, 1, '2026-10-30 12:01:35'),
+(131, 44, '1793361695_7e7ce440f55d.webp', 'Starlink Mini Satellite Internet Kit - Image 2', 2, 0, '2026-10-30 12:01:35'),
+(132, 44, '1793361695_22ebd676441c.jpg', 'Starlink Mini Satellite Internet Kit - Image 3', 3, 0, '2026-10-30 12:01:35'),
+(133, 44, '1793361695_85b3cec5d646.jpg', 'Starlink Mini Satellite Internet Kit - Image 4', 4, 0, '2026-10-30 12:01:35'),
+(134, 44, '1793361695_30844ad2cd4e.png', 'Starlink Mini Satellite Internet Kit - Image 5', 5, 0, '2026-10-30 12:01:35'),
+(135, 45, '1793371601_b62037429264.jpg', 'Tenda 4G03 N300 Wi-Fi 4G LTE Router. - Image 2', 2, 0, '2026-10-30 14:46:41'),
+(136, 46, '1793372007_5fa4a5c58899.jpg', 'Tenda AC10 AC1200 Dual-Band Gigabit Wi-Fi Router - Image 2', 2, 0, '2026-10-30 14:53:27'),
+(137, 46, '1793372144_22cb292eb2c3.jpg', 'Tenda AC10 AC1200 Dual-Band Gigabit Wi-Fi Router - Image 3', 3, 0, '2026-10-30 14:55:44'),
+(138, 46, '1793372144_6bbaa47df861.jpg', 'Tenda AC10 AC1200 Dual-Band Gigabit Wi-Fi Router - Image 4', 4, 0, '2026-10-30 14:55:44'),
+(139, 46, '1793372144_c47cd4989187.jpg', 'Tenda AC10 AC1200 Dual-Band Gigabit Wi-Fi Router - Image 5', 5, 0, '2026-10-30 14:55:44'),
+(140, 46, '1793372144_886ba2bcbab2.png', 'Tenda AC10 AC1200 Dual-Band Gigabit Wi-Fi Router - Image 6', 6, 0, '2026-10-30 14:55:44'),
+(141, 46, '1793372144_6a00ff0154b8.jpg', 'Tenda AC10 AC1200 Dual-Band Gigabit Wi-Fi Router - Image 7', 7, 0, '2026-10-30 14:55:44'),
+(142, 45, '1793372203_ece262effab1.jpg', 'Tenda 4G03 N300 Wi-Fi 4G LTE Router. - Image 3', 3, 0, '2026-10-30 14:56:43'),
+(143, 45, '1793372203_eb8fc1cb89f3.jpg', 'Tenda 4G03 N300 Wi-Fi 4G LTE Router. - Image 4', 4, 0, '2026-10-30 14:56:43'),
+(144, 45, '1793372203_88a74b59c9fc.jpg', 'Tenda 4G03 N300 Wi-Fi 4G LTE Router. - Image 5', 5, 0, '2026-10-30 14:56:43'),
+(145, 45, '1793372203_a61184454c95.png', 'Tenda 4G03 N300 Wi-Fi 4G LTE Router. - Image 6', 6, 0, '2026-10-30 14:56:43'),
+(146, 45, '1793372203_8d40d142462b.jpg', 'Tenda 4G03 N300 Wi-Fi 4G LTE Router. - Image 7', 7, 0, '2026-10-30 14:56:43'),
+(147, 45, '1793372203_f1f50b4dbc05.png', 'Tenda 4G03 N300 Wi-Fi 4G LTE Router. - Image 8', 8, 0, '2026-10-30 14:56:43'),
+(148, 47, '1793373120_40f766398ce5.jpg', 'Tenda F6 N300 Wireless Wi-Fi Router', 1, 1, '2026-10-30 15:12:00'),
+(149, 47, '1793373120_11db07267827.jpg', 'Tenda F6 N300 Wireless Wi-Fi Router - Image 2', 2, 0, '2026-10-30 15:12:00'),
+(150, 47, '1793373120_d0d5d4268185.jpg', 'Tenda F6 N300 Wireless Wi-Fi Router - Image 3', 3, 0, '2026-10-30 15:12:00'),
+(151, 47, '1793373120_0fcfbb3d141e.jpg', 'Tenda F6 N300 Wireless Wi-Fi Router - Image 4', 4, 0, '2026-10-30 15:12:00'),
+(152, 47, '1793373120_4ae024843589.jpg', 'Tenda F6 N300 Wireless Wi-Fi Router - Image 5', 5, 0, '2026-10-30 15:12:00'),
+(153, 47, '1793373120_02563a7f1af4.webp', 'Tenda F6 N300 Wireless Wi-Fi Router - Image 6', 6, 0, '2026-10-30 15:12:00'),
+(154, 48, '1793439336_c862b9dca88b.jpg', 'Tenda CP7 5MP 3K Smart Wi-Fi Security Pan/Tilt Camera', 1, 1, '2026-10-31 09:35:36'),
+(155, 48, '1793439336_e36f191c152d.jpg', 'Tenda CP7 5MP 3K Smart Wi-Fi Security Pan/Tilt Camera - Image 2', 2, 0, '2026-10-31 09:35:36'),
+(156, 48, '1793439336_171a3d3298b6.jpg', 'Tenda CP7 5MP 3K Smart Wi-Fi Security Pan/Tilt Camera - Image 3', 3, 0, '2026-10-31 09:35:36'),
+(157, 48, '1793439336_5572677ee292.jpg', 'Tenda CP7 5MP 3K Smart Wi-Fi Security Pan/Tilt Camera - Image 4', 4, 0, '2026-10-31 09:35:36'),
+(158, 48, '1793439336_15a92763b571.jpg', 'Tenda CP7 5MP 3K Smart Wi-Fi Security Pan/Tilt Camera - Image 5', 5, 0, '2026-10-31 09:35:36'),
+(159, 48, '1793439336_ae2a386c805c.jpg', 'Tenda CP7 5MP 3K Smart Wi-Fi Security Pan/Tilt Camera - Image 6', 6, 0, '2026-10-31 09:35:36'),
+(160, 48, '1793439336_925e134c7e84.png', 'Tenda CP7 5MP 3K Smart Wi-Fi Security Pan/Tilt Camera - Image 7', 7, 0, '2026-10-31 09:35:36'),
+(161, 49, '1793440167_e80b52e12d78.jpg', 'Tenda CP3 3MP 2K Smart Wi-Fi Security Pan/Tilt Camera', 1, 1, '2026-10-31 09:49:27'),
+(162, 49, '1793440167_bbacd6a87f80.jpg', 'Tenda CP3 3MP 2K Smart Wi-Fi Security Pan/Tilt Camera - Image 2', 2, 0, '2026-10-31 09:49:27'),
+(163, 49, '1793440167_15672dea89d5.jpg', 'Tenda CP3 3MP 2K Smart Wi-Fi Security Pan/Tilt Camera - Image 3', 3, 0, '2026-10-31 09:49:27'),
+(164, 49, '1793440167_7361b8261e41.jpg', 'Tenda CP3 3MP 2K Smart Wi-Fi Security Pan/Tilt Camera - Image 4', 4, 0, '2026-10-31 09:49:27'),
+(165, 49, '1793440167_7d9c6591ca3a.jpg', 'Tenda CP3 3MP 2K Smart Wi-Fi Security Pan/Tilt Camera - Image 5', 5, 0, '2026-10-31 09:49:27'),
+(166, 49, '1793440167_f2b979b98a63.jpg', 'Tenda CP3 3MP 2K Smart Wi-Fi Security Pan/Tilt Camera - Image 6', 6, 0, '2026-10-31 09:49:27'),
+(167, 49, '1793440167_4cab6e2b72c6.jpg', 'Tenda CP3 3MP 2K Smart Wi-Fi Security Pan/Tilt Camera - Image 7', 7, 0, '2026-10-31 09:49:27'),
+(168, 50, '1793441424_953989e29c01.jpeg', 'Tenda SG108 8-Port Gigabit Ethernet Switch', 1, 1, '2026-10-31 10:10:24'),
+(169, 50, '1793441424_ddc5a023d8f1.webp', 'Tenda SG108 8-Port Gigabit Ethernet Switch - Image 2', 2, 0, '2026-10-31 10:10:24'),
+(170, 50, '1793441424_88b3951f7427.png', 'Tenda SG108 8-Port Gigabit Ethernet Switch - Image 3', 3, 0, '2026-10-31 10:10:24'),
+(171, 50, '1793441424_7a3b0511ca18.jpeg', 'Tenda SG108 8-Port Gigabit Ethernet Switch - Image 4', 4, 0, '2026-10-31 10:10:24'),
+(172, 50, '1793441424_6fb098ea5c6f.png', 'Tenda SG108 8-Port Gigabit Ethernet Switch - Image 5', 5, 0, '2026-10-31 10:10:24'),
+(173, 46, '1794649834_932adfda36b0.jpg', 'Tenda AC10 AC1200 Dual-Band Gigabit Wi-Fi Router', 1, 1, '2026-11-14 09:50:34'),
+(174, 45, '1794649930_525a9c184ecd.jpg', 'Tenda 4G03 N300 Wi-Fi 4G LTE Router.', 1, 1, '2026-11-14 09:52:10');
 
 -- --------------------------------------------------------
 
@@ -747,6 +1072,39 @@ CREATE TABLE `reviews` (
   `review` text NOT NULL,
   `status` enum('pending','approved','rejected') DEFAULT 'pending',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `description`, `created_at`) VALUES
+(1, 'admin', 'Full access to the CORE LTD administration system', '2026-09-07 06:07:17'),
+(2, 'manager', 'Access controlled by assigned permissions', '2026-09-07 06:07:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role_permissions`
+--
+
+CREATE TABLE `role_permissions` (
+  `id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -845,7 +1203,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `phone`, `password`, `role`, `status`, `last_login`, `created_at`, `updated_at`) VALUES
-(1, 'ALEX GITAHI', 'alex.gtahi@gmail.com', '0757130130', '$2y$10$H/d9FZ39dOCi28MtT6P8w.uYrZetgIHhMtbFsGLZeAS65U0b09/4.', 'admin', 1, '2026-09-02 17:59:21', '2026-08-09 18:22:42', '2026-09-02 14:59:21');
+(1, 'ALEX GITAHI', 'alex.gtahi@gmail.com', '0757130130', '$2y$10$H/d9FZ39dOCi28MtT6P8w.uYrZetgIHhMtbFsGLZeAS65U0b09/4.', 'admin', 1, '2026-11-14 11:49:24', '2026-08-09 18:22:42', '2026-11-14 08:49:24');
 
 -- --------------------------------------------------------
 
@@ -949,6 +1307,13 @@ ALTER TABLE `order_items`
   ADD KEY `idx_product_id` (`product_id`);
 
 --
+-- Indexes for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -1021,6 +1386,21 @@ ALTER TABLE `reviews`
   ADD KEY `idx_reviews_product` (`product_id`);
 
 --
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `role_permissions`
+--
+ALTER TABLE `role_permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_role_permission` (`role_id`,`permission_id`),
+  ADD KEY `fk_role_permissions_permission` (`permission_id`);
+
+--
 -- Indexes for table `settings`
 --
 ALTER TABLE `settings`
@@ -1076,13 +1456,13 @@ ALTER TABLE `admin_notifications`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `contact_messages`
@@ -1094,7 +1474,7 @@ ALTER TABLE `contact_messages`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `inquiries`
@@ -1121,22 +1501,28 @@ ALTER TABLE `order_items`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
+-- AUTO_INCREMENT for table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `product_features`
 --
 ALTER TABLE `product_features`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=384;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=602;
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
 
 --
 -- AUTO_INCREMENT for table `product_specifications`
@@ -1167,6 +1553,18 @@ ALTER TABLE `redirects`
 --
 ALTER TABLE `reviews`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `role_permissions`
+--
+ALTER TABLE `role_permissions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -1276,6 +1674,13 @@ ALTER TABLE `quote_items`
 --
 ALTER TABLE `reviews`
   ADD CONSTRAINT `fk_review_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `role_permissions`
+--
+ALTER TABLE `role_permissions`
+  ADD CONSTRAINT `fk_role_permissions_permission` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_role_permissions_role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `stock_movements`
