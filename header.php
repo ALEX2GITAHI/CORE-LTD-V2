@@ -183,148 +183,148 @@ foreach ($headerProducts as $product) {
                         </form>
 
                         <script>
-                            document.addEventListener("DOMContentLoaded", function() {
+                        document.addEventListener("DOMContentLoaded", function() {
 
-                                const searchBox = document.getElementById("search-box");
-                                const searchResults = document.getElementById("search-results");
-                                const searchForm = document.getElementById("header-search-form");
+                            const searchBox = document.getElementById("search-box");
+                            const searchResults = document.getElementById("search-results");
+                            const searchForm = document.getElementById("header-search-form");
 
-                                /* All products loaded from PHP */
-                                const allProducts = <?= json_encode(
+                            /* All products loaded from PHP */
+                            const allProducts = <?= json_encode(
                                                         $headerSearchJson,
                                                         JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
                                                     ) ?>;
 
-                                /*
-                                 * Display products
-                                 * If searchTerm is empty -> show ALL products
-                                 * If searchTerm has text -> filter products
-                                 */
-                                function displaySearchResults(searchTerm = "") {
+                            /*
+                             * Display products
+                             * If searchTerm is empty -> show ALL products
+                             * If searchTerm has text -> filter products
+                             */
+                            function displaySearchResults(searchTerm = "") {
 
-                                    const term = searchTerm.trim().toLowerCase();
+                                const term = searchTerm.trim().toLowerCase();
 
-                                    let products = allProducts;
+                                let products = allProducts;
 
-                                    /* Filter when user types */
-                                    if (term !== "") {
-                                        products = allProducts.filter(function(product) {
-                                            return product.name.toLowerCase().includes(term);
-                                        });
-                                    }
-
-                                    /* Clear old results */
-                                    searchResults.innerHTML = "";
-
-                                    /* No results */
-                                    if (products.length === 0) {
-
-                                        const noResults = document.createElement("li");
-
-                                        noResults.className = "search-no-results";
-                                        noResults.textContent = "No products found.";
-
-                                        searchResults.appendChild(noResults);
-
-                                        searchResults.style.display = "block";
-
-                                        return;
-                                    }
-
-                                    /*
-                                     * Show count at the top
-                                     */
-                                    const count = document.createElement("li");
-
-                                    count.className = "search-count";
-
-                                    if (term === "") {
-                                        count.textContent = "All Products (" + products.length + ")";
-                                    } else {
-                                        count.textContent = products.length + " product(s) found";
-                                    }
-
-                                    searchResults.appendChild(count);
-
-                                    /*
-                                     * Show EVERY product
-                                     *
-                                     * IMPORTANT:
-                                     * There is NO array_slice()
-                                     * There is NO limit such as 10, 20 or 50.
-                                     */
-                                    products.forEach(function(product) {
-
-                                        const li = document.createElement("li");
-
-                                        const link = document.createElement("a");
-
-                                        link.href = product.url;
-                                        link.textContent = product.name;
-
-                                        li.appendChild(link);
-
-                                        searchResults.appendChild(li);
+                                /* Filter when user types */
+                                if (term !== "") {
+                                    products = allProducts.filter(function(product) {
+                                        return product.name.toLowerCase().includes(term);
                                     });
-
-                                    /* Show dropdown */
-                                    searchResults.style.display = "block";
                                 }
 
+                                /* Clear old results */
+                                searchResults.innerHTML = "";
+
+                                /* No results */
+                                if (products.length === 0) {
+
+                                    const noResults = document.createElement("li");
+
+                                    noResults.className = "search-no-results";
+                                    noResults.textContent = "No products found.";
+
+                                    searchResults.appendChild(noResults);
+
+                                    searchResults.style.display = "block";
+
+                                    return;
+                                }
 
                                 /*
-                                 * When user clicks/focuses on search box,
-                                 * show ALL products.
+                                 * Show count at the top
                                  */
-                                searchBox.addEventListener("focus", function() {
-                                    displaySearchResults(searchBox.value);
-                                });
+                                const count = document.createElement("li");
 
+                                count.className = "search-count";
+
+                                if (term === "") {
+                                    count.textContent = "All Products (" + products.length + ")";
+                                } else {
+                                    count.textContent = products.length + " product(s) found";
+                                }
+
+                                searchResults.appendChild(count);
 
                                 /*
-                                 * When user types,
-                                 * filter the complete product list.
+                                 * Show EVERY product
+                                 *
+                                 * IMPORTANT:
+                                 * There is NO array_slice()
+                                 * There is NO limit such as 10, 20 or 50.
                                  */
-                                searchBox.addEventListener("input", function() {
-                                    displaySearchResults(searchBox.value);
+                                products.forEach(function(product) {
+
+                                    const li = document.createElement("li");
+
+                                    const link = document.createElement("a");
+
+                                    link.href = product.url;
+                                    link.textContent = product.name;
+
+                                    li.appendChild(link);
+
+                                    searchResults.appendChild(li);
                                 });
 
-
-                                /*
-                                 * Keep dropdown open when clicking inside it.
-                                 */
-                                searchResults.addEventListener("mousedown", function(event) {
-                                    event.preventDefault();
-                                });
+                                /* Show dropdown */
+                                searchResults.style.display = "block";
+                            }
 
 
-                                /*
-                                 * Hide results when clicking somewhere else.
-                                 */
-                                document.addEventListener("click", function(event) {
-
-                                    if (
-                                        !searchForm.contains(event.target)
-                                    ) {
-                                        searchResults.style.display = "none";
-                                    }
-
-                                });
+                            /*
+                             * When user clicks/focuses on search box,
+                             * show ALL products.
+                             */
+                            searchBox.addEventListener("focus", function() {
+                                displaySearchResults(searchBox.value);
+                            });
 
 
-                                /*
-                                 * If user presses ESC, close the dropdown.
-                                 */
-                                searchBox.addEventListener("keydown", function(event) {
+                            /*
+                             * When user types,
+                             * filter the complete product list.
+                             */
+                            searchBox.addEventListener("input", function() {
+                                displaySearchResults(searchBox.value);
+                            });
 
-                                    if (event.key === "Escape") {
-                                        searchResults.style.display = "none";
-                                        searchBox.blur();
-                                    }
 
-                                });
+                            /*
+                             * Keep dropdown open when clicking inside it.
+                             */
+                            searchResults.addEventListener("mousedown", function(event) {
+                                event.preventDefault();
+                            });
+
+
+                            /*
+                             * Hide results when clicking somewhere else.
+                             */
+                            document.addEventListener("click", function(event) {
+
+                                if (
+                                    !searchForm.contains(event.target)
+                                ) {
+                                    searchResults.style.display = "none";
+                                }
 
                             });
+
+
+                            /*
+                             * If user presses ESC, close the dropdown.
+                             */
+                            searchBox.addEventListener("keydown", function(event) {
+
+                                if (event.key === "Escape") {
+                                    searchResults.style.display = "none";
+                                    searchBox.blur();
+                                }
+
+                            });
+
+                        });
                         </script>
 
 
@@ -384,18 +384,18 @@ foreach ($headerProducts as $product) {
 
                                             <?php if (empty($miniCart)): ?>
 
-                                                <li class="mini-cart-empty" style="
+                                            <li class="mini-cart-empty" style="
                         padding:15px 0;
                         text-align:left;
                     ">
-                                                    Your cart is empty.
-                                                </li>
+                                                Your cart is empty.
+                                            </li>
 
                                             <?php else: ?>
 
-                                                <?php foreach ($miniCart as $item): ?>
+                                            <?php foreach ($miniCart as $item): ?>
 
-                                                    <?php
+                                            <?php
 
                                                     /*
                     |--------------------------------------------------------------------------
@@ -437,8 +437,8 @@ foreach ($headerProducts as $product) {
 
                                                     ?>
 
-                                                    <li class="mini-cart-product" data-product-id="<?= (int) $item['id'] ?>"
-                                                        style="
+                                            <li class="mini-cart-product" data-product-id="<?= (int) $item['id'] ?>"
+                                                style="
                             display:flex;
                             align-items:center;
                             gap:12px;
@@ -446,9 +446,9 @@ foreach ($headerProducts as $product) {
                             border-bottom:1px solid #eee;
                         ">
 
-                                                        <!-- IMAGE -->
+                                                <!-- IMAGE -->
 
-                                                        <div style="
+                                                <div style="
                                 width:48px;
                                 min-width:48px;
                                 height:48px;
@@ -457,8 +457,8 @@ foreach ($headerProducts as $product) {
                                 justify-content:center;
                             ">
 
-                                                            <img src="<?= htmlspecialchars($miniImageUrl) ?>"
-                                                                alt="<?= htmlspecialchars($item['name']) ?>" style="
+                                                    <img src="<?= htmlspecialchars($miniImageUrl) ?>"
+                                                        alt="<?= htmlspecialchars($item['name']) ?>" style="
                                     width:48px;
                                     height:48px;
                                     object-fit:contain;
@@ -468,49 +468,49 @@ foreach ($headerProducts as $product) {
                                     this.src='uploads/products/default.png';
                                 ">
 
-                                                        </div>
+                                                </div>
 
 
-                                                        <!-- PRODUCT DETAILS -->
+                                                <!-- PRODUCT DETAILS -->
 
-                                                        <div style="
+                                                <div style="
                                 flex:1;
                                 min-width:0;
                             ">
 
-                                                            <h6 style="
+                                                    <h6 style="
                                     margin:0 0 5px;
                                     font-size:14px;
                                     line-height:1.35;
                                     font-weight:500;
                                 ">
 
-                                                                <?= htmlspecialchars($item['name']) ?>
+                                                        <?= htmlspecialchars($item['name']) ?>
 
-                                                            </h6>
+                                                    </h6>
 
-                                                            <span style="
+                                                    <span style="
                                     font-size:13px;
                                     color:#555;
                                 ">
 
-                                                                Ksh.
-                                                                <?= number_format($item['price'], 0) ?>
+                                                        Ksh.
+                                                        <?= number_format($item['price'], 0) ?>
 
-                                                                ×
+                                                        ×
 
-                                                                <?= (int) $item['quantity'] ?>
+                                                        <?= (int) $item['quantity'] ?>
 
-                                                            </span>
+                                                    </span>
 
-                                                        </div>
+                                                </div>
 
 
-                                                        <!-- REMOVE X -->
+                                                <!-- REMOVE X -->
 
-                                                        <button type="button" class="mini-cart-remove"
-                                                            data-product-id="<?= (int) $item['id'] ?>" title="Remove item"
-                                                            style="
+                                                <button type="button" class="mini-cart-remove"
+                                                    data-product-id="<?= (int) $item['id'] ?>" title="Remove item"
+                                                    style="
                                 border:none;
                                 background:none;
                                 color:#aaa;
@@ -520,13 +520,13 @@ foreach ($headerProducts as $product) {
                                 cursor:pointer;
                             ">
 
-                                                            ×
+                                                    ×
 
-                                                        </button>
+                                                </button>
 
-                                                    </li>
+                                            </li>
 
-                                                <?php endforeach; ?>
+                                            <?php endforeach; ?>
 
                                             <?php endif; ?>
 
@@ -598,35 +598,35 @@ foreach ($headerProducts as $product) {
         </div>
         <!-- Header Middle Area End Here -->
         <!-- Begin Header Bottom Area -->
+
         <div class="header-bottom header-sticky d-none d-lg-block">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <!-- Begin Header Bottom Menu Area -->
-                        <div class="hb-menu hb-menu-2 d-xl-block">
+
+                        <div class="hb-menu hb-menu-1 core-header-menu">
                             <nav>
-                                <ul>
-                                    <li><a href="index.php">Home</a></li>
-                                    <li class="megamenu-holder core-shop-megamenu-holder">
-                                        <a href="products.php">Shop</a>
+                                <ul class="core-main-navigation">
+
+                                    <!-- HOME -->
+                                    <li>
+                                        <a href="index.php">Home</a>
+                                    </li>
+
+                                    <!-- SHOP - THE ONLY DROPDOWN -->
+                                    <li class="core-shop-megamenu-holder">
+                                        <a href="products.php" class="core-shop-link">
+                                            Shop
+                                        </a>
 
                                         <ul class="megamenu hb-megamenu core-shop-megamenu">
 
-                                            <?php
-                                            /*
-        |--------------------------------------------------------------------------
-        | DATABASE DRIVEN SHOP MEGA MENU
-        |--------------------------------------------------------------------------
-        | Every active top-level category becomes a column.
-        | Every child category appears underneath it.
-        |--------------------------------------------------------------------------
-        */
+                                            <?php if (!empty($headerCategoryTree[0])): ?>
 
-                                            if (!empty($headerCategoryTree[0])):
-
-                                                foreach ($headerCategoryTree[0] as $topCategory):
+                                            <?php foreach ($headerCategoryTree[0] as $topCategory):
 
                                                     $topId = (int)$topCategory['id'];
+
                                                     $topName = htmlspecialchars(
                                                         $topCategory['name'],
                                                         ENT_QUOTES,
@@ -635,26 +635,20 @@ foreach ($headerProducts as $product) {
 
                                                     $topSlug = rawurlencode($topCategory['slug']);
 
-                                                    /*
-                |--------------------------------------------------------------------------
-                | TOP CATEGORY COLUMN
-                |--------------------------------------------------------------------------
-                */
-                                            ?>
+                                                ?>
 
-                                                    <li class="core-shop-column">
+                                            <li class="core-shop-column">
 
-                                                        <a href="category.php?slug=<?= $topSlug ?>"
-                                                            class="core-shop-main-category">
-                                                            <?= $topName ?>
-                                                        </a>
+                                                <a href="category.php?slug=<?= $topSlug ?>"
+                                                    class="core-shop-main-category">
+                                                    <?= $topName ?>
+                                                </a>
 
-                                                        <?php if (!empty($headerCategoryTree[$topId])): ?>
+                                                <?php if (!empty($headerCategoryTree[$topId])): ?>
 
-                                                            <ul class="core-shop-subcategories">
+                                                <ul class="core-shop-subcategories">
 
-                                                                <?php
-                                                                foreach ($headerCategoryTree[$topId] as $childCategory):
+                                                    <?php foreach ($headerCategoryTree[$topId] as $childCategory):
 
                                                                     $childId = (int)$childCategory['id'];
 
@@ -667,676 +661,750 @@ foreach ($headerProducts as $product) {
                                                                     $childSlug = rawurlencode(
                                                                         $childCategory['slug']
                                                                     );
+
                                                                 ?>
 
-                                                                    <li>
+                                                    <li>
 
-                                                                        <a href="category.php?slug=<?= $childSlug ?>">
-                                                                            <?= $childName ?>
-                                                                        </a>
+                                                        <a href="category.php?slug=<?= $childSlug ?>">
+                                                            <?= $childName ?>
+                                                        </a>
 
-                                                                        <?php
-                                                                        /*
-                                    |--------------------------------------------------------------------------
-                                    | THIRD LEVEL CATEGORIES
-                                    |--------------------------------------------------------------------------
-                                    */
+                                                        <?php if (!empty($headerCategoryTree[$childId])): ?>
 
-                                                                        if (!empty($headerCategoryTree[$childId])):
-                                                                        ?>
+                                                        <ul class="core-shop-third-level">
 
-                                                                            <ul class="core-shop-third-level">
+                                                            <?php foreach ($headerCategoryTree[$childId] as $grandChildCategory):
 
-                                                                                <?php
-                                                                                foreach (
-                                                                                    $headerCategoryTree[$childId]
-                                                                                    as $grandChildCategory
-                                                                                ):
+                                                                                    $grandChildName = htmlspecialchars(
+                                                                                        $grandChildCategory['name'],
+                                                                                        ENT_QUOTES,
+                                                                                        'UTF-8'
+                                                                                    );
 
-                                                                                    $grandChildName =
-                                                                                        htmlspecialchars(
-                                                                                            $grandChildCategory['name'],
-                                                                                            ENT_QUOTES,
-                                                                                            'UTF-8'
-                                                                                        );
+                                                                                    $grandChildSlug = rawurlencode(
+                                                                                        $grandChildCategory['slug']
+                                                                                    );
 
-                                                                                    $grandChildSlug =
-                                                                                        rawurlencode(
-                                                                                            $grandChildCategory['slug']
-                                                                                        );
                                                                                 ?>
 
-                                                                                    <li>
-                                                                                        <a href="category.php?slug=<?= $grandChildSlug ?>">
-                                                                                            <?= $grandChildName ?>
-                                                                                        </a>
-                                                                                    </li>
+                                                            <li>
+                                                                <a href="category.php?slug=<?= $grandChildSlug ?>">
+                                                                    <?= $grandChildName ?>
+                                                                </a>
+                                                            </li>
 
-                                                                                <?php endforeach; ?>
+                                                            <?php endforeach; ?>
 
-                                                                            </ul>
-
-                                                                        <?php endif; ?>
-
-                                                                    </li>
-
-                                                                <?php endforeach; ?>
-
-                                                            </ul>
+                                                        </ul>
 
                                                         <?php endif; ?>
 
                                                     </li>
 
-                                                <?php endforeach; ?>
+                                                    <?php endforeach; ?>
+
+                                                </ul>
+
+                                                <?php endif; ?>
+
+                                            </li>
+
+                                            <?php endforeach; ?>
 
                                             <?php else: ?>
 
-                                                <li class="core-shop-column">
-                                                    <a href="products.php">
-                                                        All Products
-                                                    </a>
-                                                </li>
+                                            <li class="core-shop-column">
+                                                <a href="products.php">
+                                                    All Products
+                                                </a>
+                                            </li>
 
                                             <?php endif; ?>
 
                                         </ul>
-                                        <style>
-                                            /* =========================================================
-   CORE LTD SHOP MEGA MENU
-   ========================================================= */
-
-                                            .core-shop-megamenu-holder {
-                                                position: relative;
-                                            }
-
-
-                                            /* Main Mega Menu */
-
-                                            .core-shop-megamenu {
-                                                width: 100%;
-                                                min-width: 950px;
-                                                max-width: 1250px;
-
-                                                padding: 30px 25px !important;
-
-                                                display: grid !important;
-
-                                                grid-template-columns: repeat(4, minmax(180px, 1fr));
-
-                                                gap: 30px;
-
-                                                background: #ffffff;
-
-                                                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-
-                                                border-top: 3px solid #5ccdf0;
-
-                                                z-index: 9999;
-                                            }
-
-
-                                            /* Each Category Column */
-
-                                            .core-shop-column {
-                                                display: block !important;
-
-                                                width: auto !important;
-
-                                                padding: 0 !important;
-
-                                                margin: 0 !important;
-
-                                                position: relative;
-                                            }
-
-
-                                            /* Main Category */
-
-                                            .core-shop-main-category {
-                                                display: block !important;
-
-                                                padding: 0 0 12px 0 !important;
-
-                                                margin-bottom: 10px;
-
-                                                font-size: 16px !important;
-
-                                                font-weight: 700 !important;
-
-                                                color: #222 !important;
-
-                                                text-transform: uppercase;
-
-                                                border-bottom: 2px solid #eeeeee;
-
-                                                white-space: normal !important;
-                                            }
-
-
-                                            /* Main Category Hover */
-
-                                            .core-shop-main-category:hover {
-                                                color: #5ccdf0 !important;
-                                            }
-
-
-                                            /* Subcategories */
-
-                                            .core-shop-subcategories {
-                                                display: block !important;
-
-                                                position: static !important;
-
-                                                width: auto !important;
-
-                                                min-width: 0 !important;
-
-                                                padding: 0 !important;
-
-                                                margin: 0 !important;
-
-                                                background: transparent !important;
-
-                                                box-shadow: none !important;
-
-                                                border: none !important;
-                                            }
-
-
-                                            /* Individual Subcategory */
-
-                                            .core-shop-subcategories>li {
-                                                display: block !important;
-
-                                                width: 100% !important;
-
-                                                padding: 0 !important;
-
-                                                margin: 0 !important;
-
-                                                position: relative;
-                                            }
-
-
-                                            /* Subcategory Links */
-
-                                            .core-shop-subcategories>li>a {
-                                                display: block !important;
-
-                                                padding: 5px 0 !important;
-
-                                                font-size: 14px !important;
-
-                                                font-weight: 400 !important;
-
-                                                color: #555 !important;
-
-                                                text-transform: none !important;
-
-                                                white-space: normal !important;
-
-                                                transition: all 0.2s ease;
-                                            }
-
-
-                                            /* Subcategory Hover */
-
-                                            .core-shop-subcategories>li>a:hover {
-                                                color: #5ccdf0 !important;
-
-                                                padding-left: 6px !important;
-                                            }
-
-
-                                            /* =========================================================
-   THIRD LEVEL CATEGORY
-   ========================================================= */
-
-                                            .core-shop-third-level {
-                                                display: block !important;
-
-                                                position: static !important;
-
-                                                width: auto !important;
-
-                                                padding: 0 0 0 12px !important;
-
-                                                margin: 0 !important;
-
-                                                background: transparent !important;
-
-                                                box-shadow: none !important;
-
-                                                border: none !important;
-                                            }
-
-
-                                            .core-shop-third-level li {
-                                                display: block !important;
-
-                                                width: 100% !important;
-
-                                                padding: 0 !important;
-
-                                                margin: 0 !important;
-                                            }
-
-
-                                            .core-shop-third-level li a {
-                                                display: block !important;
-
-                                                padding: 4px 0 !important;
-
-                                                font-size: 13px !important;
-
-                                                color: #777 !important;
-
-                                                white-space: normal !important;
-                                            }
-
-
-                                            .core-shop-third-level li a:hover {
-                                                color: #5ccdf0 !important;
-
-                                                padding-left: 5px !important;
-                                            }
-
-
-                                            /* =========================================================
-   SHOP MENU HOVER
-   ========================================================= */
-
-                                            .core-shop-megamenu-holder:hover .core-shop-megamenu {
-                                                visibility: visible;
-
-                                                opacity: 1;
-
-                                                transform: translateY(0);
-                                            }
-
-
-                                            /* =========================================================
-   LARGE SCREEN
-   ========================================================= */
-
-                                            @media (min-width: 1200px) {
-
-                                                .core-shop-megamenu {
-                                                    grid-template-columns: repeat(4, minmax(190px, 1fr));
-
-                                                    min-width: 1050px;
-                                                }
-
-                                            }
-
-
-                                            /* =========================================================
-   MEDIUM SCREEN
-   ========================================================= */
-
-                                            @media (min-width: 992px) and (max-width: 1199px) {
-
-                                                .core-shop-megamenu {
-                                                    grid-template-columns: repeat(3, minmax(180px, 1fr));
-
-                                                    min-width: 850px;
-
-                                                    gap: 20px;
-
-                                                    padding: 25px 20px !important;
-                                                }
-
-                                            }
-
-
-                                            /* =========================================================
-   MOBILE
-   ========================================================= */
-
-                                            @media (max-width: 991px) {
-
-                                                .core-shop-megamenu {
-                                                    display: block !important;
-
-                                                    width: 100% !important;
-
-                                                    min-width: 0 !important;
-
-                                                    max-width: none !important;
-
-                                                    padding: 10px !important;
-                                                }
-
-
-                                                .core-shop-column {
-                                                    margin-bottom: 20px !important;
-                                                }
-
-
-                                                .core-shop-main-category {
-                                                    font-size: 15px !important;
-                                                }
-
-                                            }
-                                        </style>
                                     </li>
-                                    <li><a href="about.php">About Us</a></li>
-                                    <li><a href="services.php">Service </a></li>
-                                    <li><a href="contact.php">Contact</a></li>
-                                    <li><a href="events.php">Events</a></li>
+
+                                    <!-- ABOUT US -->
+                                    <li>
+                                        <a href="about.php">About Us</a>
+                                    </li>
+
+                                    <!-- SERVICES -->
+                                    <li>
+                                        <a href="services.php">Services</a>
+                                    </li>
+
+                                    <!-- CONTACT -->
+                                    <li>
+                                        <a href="contact.php">Contact</a>
+                                    </li>
+
+                                    <!-- EVENTS -->
+                                    <li>
+                                        <a href="events.php">Events</a>
+                                    </li>
+
                                 </ul>
                             </nav>
                         </div>
-                        <!-- Header Bottom Area End Here -->
-                        <!-- Begin Mobile Menu Area -->
-                        <div class="mobile-menu-area d-lg-none d-xl-none col-12">
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <div class="mobile-menu"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Mobile Menu Area End Here -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- MOBILE MENU -->
+        <div class="mobile-menu-area d-lg-none d-xl-none col-12">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="mobile-menu"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <style>
+        /* ==========================================
+   CORE LTD - HEADER NAVIGATION
+========================================== */
+
+        .core-header-menu {
+            display: block !important;
+            width: 100%;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .core-header-menu nav {
+            width: 100%;
+        }
+
+        .core-header-menu nav>ul.core-main-navigation {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            gap: 34px !important;
+
+            list-style: none !important;
+            margin: 0 !important;
+            padding: 0 10px !important;
+
+            width: 100%;
+            min-height: 55px;
+        }
+
+        .core-main-navigation>li {
+            display: flex !important;
+            align-items: center !important;
+            position: relative;
+            padding: 0 !important;
+            margin: 0 !important;
+            list-style: none !important;
+            flex: 0 0 auto !important;
+        }
+
+        /* ==========================================
+   TOP LEVEL LINKS
+========================================== */
+
+        .core-main-navigation>li>a {
+            display: inline-flex !important;
+            align-items: center !important;
+
+            padding: 17px 0 !important;
+            margin: 0 !important;
+
+            color: #17324d !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+
+            text-transform: uppercase !important;
+            text-decoration: none !important;
+            white-space: nowrap !important;
+
+            line-height: 20px !important;
+            letter-spacing: 0.2px;
+
+            transition: color 0.25s ease;
+        }
+
+        /* Remove all theme-generated dropdown arrows */
+
+        .core-main-navigation>li>a::before,
+        .core-main-navigation>li>a::after {
+            content: none !important;
+            display: none !important;
+            background: none !important;
+        }
+
+        /* Hover */
+
+        .core-main-navigation>li>a:hover {
+            color: #078bdb !important;
+        }
+
+        /* ==========================================
+   SHOP DROPDOWN ARROW ONLY
+========================================== */
+
+        .core-main-navigation>li.core-shop-megamenu-holder>a {
+            gap: 12px !important;
+        }
+
+        .core-main-navigation>li.core-shop-megamenu-holder>a::after {
+            content: "" !important;
+            display: inline-block !important;
+
+            width: 9px;
+            height: 9px;
+
+            border-right: 2px solid #17324d;
+            border-bottom: 2px solid #17324d;
+
+            transform: rotate(45deg);
+            margin-top: -5px;
+
+            transition: transform 0.25s ease;
+        }
+
+        .core-shop-megamenu-holder:hover>a::after,
+        .core-shop-megamenu-holder:focus-within>a::after {
+            transform: rotate(225deg);
+            margin-top: 5px;
+        }
+
+        /* ==========================================
+   SHOP MEGA MENU
+========================================== */
+
+        .core-shop-megamenu-holder {
+            position: relative !important;
+        }
+
+        .core-shop-megamenu-holder>.core-shop-megamenu {
+            position: absolute !important;
+
+            top: 100% !important;
+            left: 0 !important;
+
+            width: min(1100px, calc(100vw - 40px)) !important;
+            min-width: 0 !important;
+            max-width: calc(100vw - 40px) !important;
+
+            display: grid !important;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+
+            gap: 28px !important;
+
+            padding: 30px !important;
+            margin: 0 !important;
+
+            background: #ffffff !important;
+
+            border: none !important;
+            border-top: 3px solid #5ccdf0 !important;
+
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.13) !important;
+
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+
+            transform: translateY(10px);
+
+            transition: opacity 0.25s ease,
+                visibility 0.25s ease,
+                transform 0.25s ease;
+
+            z-index: 99999 !important;
+        }
+
+        /* Show Shop menu only on hover or keyboard focus */
+
+        .core-shop-megamenu-holder:hover>.core-shop-megamenu,
+        .core-shop-megamenu-holder:focus-within>.core-shop-megamenu {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        /* ==========================================
+   CATEGORY COLUMNS
+========================================== */
+
+        .core-shop-megamenu>.core-shop-column {
+            display: block !important;
+            width: auto !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            position: relative !important;
+            list-style: none !important;
+        }
+
+        /* Main category */
+
+        .core-shop-main-category {
+            display: block !important;
+
+            padding: 0 0 12px !important;
+            margin-bottom: 10px !important;
+
+            color: #17324d !important;
+            font-size: 15px !important;
+            font-weight: 700 !important;
+
+            text-transform: uppercase !important;
+
+            border-bottom: 2px solid #eeeeee !important;
+            white-space: normal !important;
+        }
+
+        .core-shop-main-category:hover {
+            color: #078bdb !important;
+        }
+
+        /* ==========================================
+   SECOND LEVEL CATEGORIES
+========================================== */
+
+        .core-shop-subcategories {
+            display: block !important;
+
+            position: static !important;
+
+            width: 100% !important;
+            min-width: 0 !important;
+
+            padding: 0 !important;
+            margin: 0 !important;
+
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .core-shop-subcategories>li {
+            display: block !important;
+            width: 100% !important;
+
+            padding: 0 !important;
+            margin: 0 !important;
+
+            position: relative !important;
+            list-style: none !important;
+        }
+
+        .core-shop-subcategories>li>a {
+            display: block !important;
+
+            padding: 6px 0 !important;
+
+            color: #555555 !important;
+            font-size: 13px !important;
+            font-weight: 400 !important;
+
+            text-transform: none !important;
+            white-space: normal !important;
+
+            transition: all 0.2s ease;
+        }
+
+        .core-shop-subcategories>li>a:hover {
+            color: #078bdb !important;
+            padding-left: 6px !important;
+        }
+
+        /* ==========================================
+   THIRD LEVEL CATEGORIES
+========================================== */
+
+        .core-shop-third-level {
+            display: block !important;
+
+            position: static !important;
+
+            width: 100% !important;
+
+            padding: 0 0 0 12px !important;
+            margin: 0 !important;
+
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .core-shop-third-level li {
+            display: block !important;
+            width: 100% !important;
+
+            padding: 0 !important;
+            margin: 0 !important;
+
+            list-style: none !important;
+        }
+
+        .core-shop-third-level li a {
+            display: block !important;
+
+            padding: 5px 0 !important;
+
+            color: #777777 !important;
+            font-size: 12px !important;
+            font-weight: 400 !important;
+
+            text-transform: none !important;
+        }
+
+        .core-shop-third-level li a:hover {
+            color: #078bdb !important;
+            padding-left: 5px !important;
+        }
+
+        /* ==========================================
+   PREVENT OTHER NAVIGATION DROPDOWNS
+========================================== */
+
+        .core-main-navigation>li:not(.core-shop-megamenu-holder)>ul {
+            display: none !important;
+        }
+
+        /* ==========================================
+   MEDIUM DESKTOP
+========================================== */
+
+        @media (min-width: 992px) and (max-width: 1199px) {
+
+            .core-main-navigation {
+                gap: 23px !important;
+            }
+
+            .core-shop-megamenu-holder>.core-shop-megamenu {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 20px !important;
+                padding: 25px !important;
+            }
+
+        }
+
+        /* ==========================================
+   SMALL DESKTOP
+========================================== */
+
+        @media (min-width: 992px) and (max-width: 1050px) {
+
+            .core-main-navigation {
+                gap: 16px !important;
+            }
+
+            .core-main-navigation>li>a {
+                font-size: 12px !important;
+            }
+
+        }
+        </style>
+
     </header>
     <!-- Header Area End Here -->
     <!-- Begin Slider With Category Menu Area -->
     <script>
-        $(document).ready(function() {
-            const items =
-                <?php echo json_encode($headerSearchJson, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>;
-            const $searchBox = $('#search-box');
-            const $results = $('#search-results');
+    $(document).ready(function() {
+        const items =
+            <?php echo json_encode($headerSearchJson, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?>;
+        const $searchBox = $('#search-box');
+        const $results = $('#search-results');
 
-            function escapeHtml(value) {
-                return $('<div>').text(value || '').html();
+        function escapeHtml(value) {
+            return $('<div>').text(value || '').html();
+        }
+
+        function showResults(query = '') {
+            const cleanQuery = query.trim().toLowerCase();
+            const filtered = items
+                .filter(item => item.name.toLowerCase().includes(cleanQuery))
+                .slice(0, 15);
+
+            $results.empty();
+
+            if (!filtered.length) {
+                $results.hide();
+                return;
             }
 
-            function showResults(query = '') {
-                const cleanQuery = query.trim().toLowerCase();
-                const filtered = items
-                    .filter(item => item.name.toLowerCase().includes(cleanQuery))
-                    .slice(0, 15);
-
-                $results.empty();
-
-                if (!filtered.length) {
-                    $results.hide();
-                    return;
-                }
-
-                filtered.forEach(item => {
-                    $results.append(
-                        `<li class="search-item" data-url="${escapeHtml(item.url)}">${escapeHtml(item.name)}</li>`
-                    );
-                });
-
-                $results.show();
-            }
-
-            $searchBox.on('focus input', function() {
-                showResults($(this).val());
+            filtered.forEach(item => {
+                $results.append(
+                    `<li class="search-item" data-url="${escapeHtml(item.url)}">${escapeHtml(item.name)}</li>`
+                );
             });
 
-            $(document).on('click', '.search-item', function(e) {
-                e.preventDefault();
-                window.location.href = $(this).data('url');
-            });
+            $results.show();
+        }
 
-            $(document).on('click', function(event) {
-                if (!$(event.target).closest('#search-box, #search-results').length) {
-                    $results.hide();
-                }
-            });
+        $searchBox.on('focus input', function() {
+            showResults($(this).val());
         });
+
+        $(document).on('click', '.search-item', function(e) {
+            e.preventDefault();
+            window.location.href = $(this).data('url');
+        });
+
+        $(document).on('click', function(event) {
+            if (!$(event.target).closest('#search-box, #search-results').length) {
+                $results.hide();
+            }
+        });
+    });
     </script>
     <style>
-        .header-db-shop-menu {
-            min-width: 100%;
-        }
+    .header-db-shop-menu {
+        min-width: 100%;
+    }
 
-        .header-db-shop-menu>li>a {
-            font-weight: 600;
-        }
+    .header-db-shop-menu>li>a {
+        font-weight: 600;
+    }
 
-        .header-db-shop-menu li a {
-            white-space: nowrap;
-        }
+    .header-db-shop-menu li a {
+        white-space: nowrap;
+    }
 
-        .header-db-shop-menu ul {
-            margin-top: 5px;
-        }
+    .header-db-shop-menu ul {
+        margin-top: 5px;
+    }
 
-        .header-db-shop-menu li ul li a {
-            display: block;
-        }
+    .header-db-shop-menu li ul li a {
+        display: block;
+    }
 
-        .header-db-category-list {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
+    .header-db-category-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
 
-        .header-db-category-list li {
-            position: relative;
-        }
+    .header-db-category-list li {
+        position: relative;
+    }
 
-        .hm-searchbox {
-            position: relative;
-            width: 60%;
-            max-width: 400px;
-        }
+    .hm-searchbox {
+        position: relative;
+        width: 60%;
+        max-width: 400px;
+    }
 
-        #search-results {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            background: white;
-            border: 1px solid #ccc;
-            display: none;
-            max-height: 200px;
-            overflow-y: auto;
-            z-index: 1000;
-            border-radius: 5px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-        }
+    #search-results {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        border: 1px solid #ccc;
+        display: none;
+        max-height: 200px;
+        overflow-y: auto;
+        z-index: 1000;
+        border-radius: 5px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        .search-item {
-            padding: 10px;
-            cursor: pointer;
-            border-bottom: 1px solid #eee;
-            transition: background 0.3s, color 0.3s;
-        }
+    .search-item {
+        padding: 10px;
+        cursor: pointer;
+        border-bottom: 1px solid #eee;
+        transition: background 0.3s, color 0.3s;
+    }
 
-        .search-item:hover {
-            background: #5ccdf0;
-            color: white;
-        }
+    .search-item:hover {
+        background: #5ccdf0;
+        color: white;
+    }
 
-        /* =========================================================
+    /* =========================================================
    CORE LTD HEADER SEARCH
    ========================================================= */
 
-        .hm-searchbox {
-            position: relative;
-        }
+    .hm-searchbox {
+        position: relative;
+    }
 
-        #search-results {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
+    #search-results {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
 
-            margin: 0;
-            padding: 0;
+        margin: 0;
+        padding: 0;
 
-            background: #fff;
-            border: 1px solid #e5e5e5;
+        background: #fff;
+        border: 1px solid #e5e5e5;
 
-            max-height: 420px;
-            overflow-y: auto;
-            overflow-x: hidden;
+        max-height: 420px;
+        overflow-y: auto;
+        overflow-x: hidden;
 
-            z-index: 99999;
+        z-index: 99999;
 
-            list-style: none;
+        list-style: none;
 
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
-        }
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+    }
 
-        /* Each product */
-        #search-results li {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            border-bottom: 1px solid #eeeeee;
-        }
+    /* Each product */
+    #search-results li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border-bottom: 1px solid #eeeeee;
+    }
 
-        /* Product link */
-        #search-results li a {
-            display: block;
+    /* Product link */
+    #search-results li a {
+        display: block;
 
-            padding: 12px 16px;
+        padding: 12px 16px;
 
-            color: #333;
-            background: #fff;
+        color: #333;
+        background: #fff;
 
-            font-size: 14px;
-            line-height: 1.4;
+        font-size: 14px;
+        line-height: 1.4;
 
-            text-decoration: none;
+        text-decoration: none;
 
-            transition: background 0.2s ease;
-        }
+        transition: background 0.2s ease;
+    }
 
-        /* Hover */
-        #search-results li a:hover {
-            background: #f5f5f5;
-            color: #007bff;
-        }
+    /* Hover */
+    #search-results li a:hover {
+        background: #f5f5f5;
+        color: #007bff;
+    }
 
-        /* Scrollbar */
-        #search-results::-webkit-scrollbar {
-            width: 7px;
-        }
+    /* Scrollbar */
+    #search-results::-webkit-scrollbar {
+        width: 7px;
+    }
 
-        #search-results::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
+    #search-results::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
 
-        #search-results::-webkit-scrollbar-thumb {
-            background: #bbb;
-            border-radius: 10px;
-        }
+    #search-results::-webkit-scrollbar-thumb {
+        background: #bbb;
+        border-radius: 10px;
+    }
 
-        #search-results::-webkit-scrollbar-thumb:hover {
-            background: #999;
-        }
+    #search-results::-webkit-scrollbar-thumb:hover {
+        background: #999;
+    }
 
-        /* Firefox */
-        #search-results {
-            scrollbar-width: thin;
-        }
+    /* Firefox */
+    #search-results {
+        scrollbar-width: thin;
+    }
 
-        /* No results */
-        #search-results li.search-no-results {
-            padding: 14px 16px;
-            color: #777;
-            font-size: 14px;
-            background: #fff;
-        }
+    /* No results */
+    #search-results li.search-no-results {
+        padding: 14px 16px;
+        color: #777;
+        font-size: 14px;
+        background: #fff;
+    }
 
-        /* Number of results */
-        #search-results li.search-count {
-            padding: 9px 16px;
-            background: #f8f8f8;
-            color: #888;
-            font-size: 12px;
-            font-weight: 600;
-            position: sticky;
-            top: 0;
-            z-index: 2;
-        }
+    /* Number of results */
+    #search-results li.search-count {
+        padding: 9px 16px;
+        background: #f8f8f8;
+        color: #888;
+        font-size: 12px;
+        font-weight: 600;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+    }
     </style>
     </style>
     <script>
-        (function() {
+    (function() {
 
-            /*
-            |--------------------------------------------------------------------------
-            | FORMAT MONEY
-            |--------------------------------------------------------------------------
-            */
+        /*
+        |--------------------------------------------------------------------------
+        | FORMAT MONEY
+        |--------------------------------------------------------------------------
+        */
 
-            function formatMoney(amount) {
+        function formatMoney(amount) {
 
-                amount = parseFloat(amount) || 0;
+            amount = parseFloat(amount) || 0;
 
-                return amount.toLocaleString();
+            return amount.toLocaleString();
 
-            }
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | BUILD IMAGE URL
-            |--------------------------------------------------------------------------
-            */
-
-            function getCartImage(image) {
-
-                if (!image) {
-
-                    return 'uploads/products/default.png';
-
-                }
+        }
 
 
-                if (image.indexOf('images/') === 0) {
+        /*
+        |--------------------------------------------------------------------------
+        | BUILD IMAGE URL
+        |--------------------------------------------------------------------------
+        */
 
-                    return image;
+        function getCartImage(image) {
 
-                }
+            if (!image) {
 
-
-                return 'uploads/products/' + image;
+                return 'uploads/products/default.png';
 
             }
 
 
+            if (image.indexOf('images/') === 0) {
+
+                return image;
+
+            }
+
+
+            return 'uploads/products/' + image;
+
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | UPDATE HEADER MINI CART
+        |--------------------------------------------------------------------------
+        */
+
+        window.updateHeaderMiniCart = function(cart, cartCount, cartTotal) {
+
+            const container =
+                $('#cart-items');
+
+
+            if (!container.length) {
+
+                return;
+
+            }
+
+
+            container.empty();
+
+
             /*
             |--------------------------------------------------------------------------
-            | UPDATE HEADER MINI CART
+            | EMPTY CART
             |--------------------------------------------------------------------------
             */
 
-            window.updateHeaderMiniCart = function(cart, cartCount, cartTotal) {
+            if (!cart || Object.keys(cart).length === 0) {
 
-                const container =
-                    $('#cart-items');
-
-
-                if (!container.length) {
-
-                    return;
-
-                }
-
-
-                container.empty();
-
-
-                /*
-                |--------------------------------------------------------------------------
-                | EMPTY CART
-                |--------------------------------------------------------------------------
-                */
-
-                if (!cart || Object.keys(cart).length === 0) {
-
-                    container.append(`
+                container.append(`
 
                 <li
                     class="mini-cart-empty"
@@ -1352,23 +1420,23 @@ foreach ($headerProducts as $product) {
 
             `);
 
-                } else {
+            } else {
 
 
-                    /*
-                    |--------------------------------------------------------------------------
-                    | PRODUCTS
-                    |--------------------------------------------------------------------------
-                    */
+                /*
+                |--------------------------------------------------------------------------
+                | PRODUCTS
+                |--------------------------------------------------------------------------
+                */
 
-                    Object.values(cart).forEach(function(item) {
-
-
-                        const image =
-                            getCartImage(item.image);
+                Object.values(cart).forEach(function(item) {
 
 
-                        container.append(`
+                    const image =
+                        getCartImage(item.image);
+
+
+                    container.append(`
 
                     <li
                         class="mini-cart-product"
@@ -1475,186 +1543,165 @@ foreach ($headerProducts as $product) {
 
                 `);
 
-                    });
-
-                }
-
-
-                /*
-                |--------------------------------------------------------------------------
-                | UPDATE COUNT
-                |--------------------------------------------------------------------------
-                */
-
-                $('.cart-item-count').text(
-                    parseInt(cartCount) || 0
-                );
-
-
-                /*
-                |--------------------------------------------------------------------------
-                | UPDATE TOTAL
-                |--------------------------------------------------------------------------
-                */
-
-                $('#cart-total').text(
-                    formatMoney(cartTotal)
-                );
-
-
-                $('#cart-subtotal').text(
-                    formatMoney(cartTotal)
-                );
-
-            };
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | HTML ESCAPE
-            |--------------------------------------------------------------------------
-            */
-
-            function escapeHtml(text) {
-
-                return $('<div>')
-                    .text(text || '')
-                    .html();
+                });
 
             }
 
 
             /*
             |--------------------------------------------------------------------------
-            | REMOVE FROM MINI CART
+            | UPDATE COUNT
             |--------------------------------------------------------------------------
             */
 
-            $(document).on(
-                'click',
-                '.mini-cart-remove',
-                function(e) {
-
-                    e.preventDefault();
-
-                    e.stopPropagation();
+            $('.cart-item-count').text(
+                parseInt(cartCount) || 0
+            );
 
 
-                    const button =
-                        $(this);
+            /*
+            |--------------------------------------------------------------------------
+            | UPDATE TOTAL
+            |--------------------------------------------------------------------------
+            */
+
+            $('#cart-total').text(
+                formatMoney(cartTotal)
+            );
 
 
-                    const productId =
-                        parseInt(
-                            button.data('product-id')
-                        );
+            $('#cart-subtotal').text(
+                formatMoney(cartTotal)
+            );
+
+        };
 
 
-                    if (!productId) {
+        /*
+        |--------------------------------------------------------------------------
+        | HTML ESCAPE
+        |--------------------------------------------------------------------------
+        */
 
-                        return;
+        function escapeHtml(text) {
 
-                    }
+            return $('<div>')
+                .text(text || '')
+                .html();
+
+        }
 
 
-                    button.prop(
-                        'disabled',
-                        true
+        /*
+        |--------------------------------------------------------------------------
+        | REMOVE FROM MINI CART
+        |--------------------------------------------------------------------------
+        */
+
+        $(document).on(
+            'click',
+            '.mini-cart-remove',
+            function(e) {
+
+                e.preventDefault();
+
+                e.stopPropagation();
+
+
+                const button =
+                    $(this);
+
+
+                const productId =
+                    parseInt(
+                        button.data('product-id')
                     );
 
 
-                    button.html(
-                        '<i class="fa fa-spinner fa-spin"></i>'
-                    );
+                if (!productId) {
+
+                    return;
+
+                }
 
 
-                    $.ajax({
-
-                        url: 'cart-action.php',
-
-                        type: 'POST',
-
-                        dataType: 'json',
-
-                        data: {
-
-                            action: 'remove',
-
-                            product_id: productId
-
-                        },
+                button.prop(
+                    'disabled',
+                    true
+                );
 
 
-                        success: function(response) {
+                button.html(
+                    '<i class="fa fa-spinner fa-spin"></i>'
+                );
 
 
-                            if (response.success) {
+                $.ajax({
+
+                    url: 'cart-action.php',
+
+                    type: 'POST',
+
+                    dataType: 'json',
+
+                    data: {
+
+                        action: 'remove',
+
+                        product_id: productId
+
+                    },
 
 
-                                /*
-                                |--------------------------------------------------------------------------
-                                | UPDATE MINI CART WITHOUT REFRESH
-                                |--------------------------------------------------------------------------
-                                */
+                    success: function(response) {
 
-                                updateHeaderMiniCart(
-                                    response.cart,
-                                    response.cart_count,
+
+                        if (response.success) {
+
+
+                            /*
+                            |--------------------------------------------------------------------------
+                            | UPDATE MINI CART WITHOUT REFRESH
+                            |--------------------------------------------------------------------------
+                            */
+
+                            updateHeaderMiniCart(
+                                response.cart,
+                                response.cart_count,
+                                response.cart_total
+                            );
+
+
+                            /*
+                            |--------------------------------------------------------------------------
+                            | UPDATE OTHER CART COUNTERS
+                            |--------------------------------------------------------------------------
+                            */
+
+                            $('.cart-item-count').text(
+                                response.cart_count
+                            );
+
+
+                            $('#cart-total').text(
+                                formatMoney(
                                     response.cart_total
-                                );
+                                )
+                            );
 
 
-                                /*
-                                |--------------------------------------------------------------------------
-                                | UPDATE OTHER CART COUNTERS
-                                |--------------------------------------------------------------------------
-                                */
-
-                                $('.cart-item-count').text(
-                                    response.cart_count
-                                );
+                            $('#cart-subtotal').text(
+                                formatMoney(
+                                    response.cart_total
+                                )
+                            );
 
 
-                                $('#cart-total').text(
-                                    formatMoney(
-                                        response.cart_total
-                                    )
-                                );
-
-
-                                $('#cart-subtotal').text(
-                                    formatMoney(
-                                        response.cart_total
-                                    )
-                                );
-
-
-                            } else {
-
-                                alert(
-                                    response.message ||
-                                    'Unable to remove item.'
-                                );
-
-
-                                button.prop(
-                                    'disabled',
-                                    false
-                                );
-
-
-                                button.text('×');
-
-                            }
-
-                        },
-
-
-                        error: function() {
-
+                        } else {
 
                             alert(
-                                'Unable to remove this item. Please try again.'
+                                response.message ||
+                                'Unable to remove item.'
                             );
 
 
@@ -1668,11 +1715,32 @@ foreach ($headerProducts as $product) {
 
                         }
 
-                    });
+                    },
 
-                }
 
-            );
+                    error: function() {
 
-        })();
+
+                        alert(
+                            'Unable to remove this item. Please try again.'
+                        );
+
+
+                        button.prop(
+                            'disabled',
+                            false
+                        );
+
+
+                        button.text('×');
+
+                    }
+
+                });
+
+            }
+
+        );
+
+    })();
     </script>
